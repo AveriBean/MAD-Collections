@@ -1,6 +1,8 @@
 package learn.collectMe.models;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Item {
@@ -10,6 +12,25 @@ public class Item {
     private String description;
     private BigDecimal value;
     private int userId;
+    private List<Action> actions = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
+
+
+    public boolean isViewable() {
+        return actions.stream().findAny(a -> a.getStatus().equals("viewable"));
+    }
+
+    public boolean isTradeable() {
+        return actions.stream().findAny(a -> a.getStatus().equals("tradeable"));
+    }
+
+    public boolean isSaleable() {
+        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
+    }
+
+    public boolean isNegotiable() {
+        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
+    }
 
     public int getItemId() {
         return itemId;
