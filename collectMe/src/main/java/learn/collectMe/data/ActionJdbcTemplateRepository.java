@@ -1,5 +1,6 @@
 package learn.collectMe.data;
 
+import learn.collectMe.data.mappers.ActionMapper;
 import learn.collectMe.models.Action;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -15,12 +16,17 @@ public class ActionJdbcTemplateRepository implements ActionRepository {
 
 
     @Override
-    public List<Action> findAll() {
+    public Action add(Action action) {
         return null;
     }
 
     @Override
-    public Action findById(int actionId) {
-        return null;
+    public boolean update(Action action) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(int actionId) {
+        return false;
     }
 }

@@ -5,7 +5,9 @@ import learn.collectMe.models.Action;
 import java.util.List;
 
 public interface ActionRepository {
-    List<Action> findAll();
+    Action add(Action action);
 
-    Action findById(int actionId);
+    boolean update(Action action);
+
+    boolean deleteById(int actionId);
 }
