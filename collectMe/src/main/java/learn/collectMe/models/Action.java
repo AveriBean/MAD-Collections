@@ -21,4 +21,43 @@ public class Action {
     }
 
 
+    public int getActionId() {
+        return actionId;
+    }
+
+    public void setActionId(int actionId) {
+        this.actionId = actionId;
+    }
+
+    public boolean isViewable() {
+        return viewable;
+    }
+
+    public void setViewable(boolean viewable) {
+        this.viewable = viewable;
+    }
+
+    public boolean isTradeable() {
+        return tradeable;
+    }
+
+    public void setTradeable(boolean tradeable) {
+        this.tradeable = tradeable;
+    }
+
+    public boolean isSaleable() {
+        return saleable;
+    }
+
+    public void setSaleable(boolean saleable) {
+        this.saleable = saleable;
+    }
+
+    public boolean isNegotiable() {
+        return negotiable;
+    }
+
+    public void setNegotiable(boolean negotiable) {
+        this.negotiable = negotiable;
+    }
 }
