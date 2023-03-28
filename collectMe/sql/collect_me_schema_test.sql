@@ -4,7 +4,6 @@ use collect_me_test;
 
 create table user (
 user_id int primary key auto_increment,
-username varchar(60) not null,
 first_name varchar(64) not null,
 last_name varchar(64) not null,
 location varchar(255) null,
