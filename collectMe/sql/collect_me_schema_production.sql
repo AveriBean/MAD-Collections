@@ -4,7 +4,6 @@ use collect_me;
 
 create table user (
 user_id int primary key auto_increment,
-username varchar(60) not null,
 first_name varchar(64) not null,
 last_name varchar(64) not null,
 location varchar(255) null,
@@ -17,7 +16,6 @@ create table item (
 item_id int primary key auto_increment,
 `name` varchar(30) not null,
 description varchar(128) not null,
-`value` decimal(10,2) null,
 user_id int not null,
 constraint fk_item_user_id
         foreign key (user_id)
@@ -26,13 +24,16 @@ constraint fk_item_user_id
 
 create table `action` (
 action_id int primary key auto_increment,
-status varchar(60) not null
+viewable binary not null,
+tradeable binary not null,
+saleable binary not null,
+negotiable binary not null
 );
 
 
 create table item_action (
-item_id int not null,
 action_id int not null,
+item_id int not null,
 constraint pk_item_action
         primary key (action_id, item_id),
 constraint fk_item_action_action_id
@@ -64,7 +65,7 @@ create table user_role (
 );
 
 create table category (
-category_id int primary key auto_increment,
+category_id int primary key,
 `name` varchar(64) not null
 );
 
