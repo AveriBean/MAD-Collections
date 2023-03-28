@@ -13,18 +13,7 @@ public class ActionMapper implements RowMapper<Action> {
     public Action mapRow(ResultSet resultSet, int i) throws SQLException {
         Action action = new Action();
         action.setActionId(resultSet.getInt("action_id"));
-        if(resultSet.getBoolean("viewable") != action.isViewable()) {
-            action.setViewable(resultSet.getBoolean("viewable"));
-        }
-        if(resultSet.getBoolean("tradeable") != action.isTradeable()) {
-            action.setTradeable(resultSet.getBoolean("tradeable"));
-        }
-        if(resultSet.getBoolean("saleable") != action.isSaleable()) {
-            action.setSaleable(resultSet.getBoolean("saleable"));
-        }
-        if(resultSet.getBoolean("negotiable") != action.isNegotiable()) {
-            action.setNegotiable(resultSet.getBoolean("negotiable"));
-        }
+        action.setStatus(resultSet.getString("status"));
         return action;
     }
 }
