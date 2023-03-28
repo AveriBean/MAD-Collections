@@ -1,6 +1,7 @@
 package learn.collectMe.models;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Item {
 
@@ -48,5 +49,18 @@ public class Item {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return itemId == item.itemId && userId == item.userId && itemName.equals(item.itemName) && description.equals(item.description) && Objects.equals(value, item.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId, itemName, description, value, userId);
     }
 }
