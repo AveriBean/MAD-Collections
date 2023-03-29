@@ -12,9 +12,9 @@ public class UserWithoutRolesMapper implements RowMapper<User>{
     public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         return new User(
                 resultSet.getInt("user_id"),
+                resultSet.getString("username"),
                 resultSet.getString("first_name"),
                 resultSet.getString("last_name"),
-                resultSet.getString("username"),
                 resultSet.getString("location"),
                 resultSet.getString("password_hash"),
                 resultSet.getString("phone"),

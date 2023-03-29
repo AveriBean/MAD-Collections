@@ -24,12 +24,12 @@ public class User implements UserDetails {
     List<Item> items = new ArrayList<>();
     private Collection<GrantedAuthority> authorities = new ArrayList<>();
 
-    public User( int userId, String firstName, String lastName, String location, String username, String password, String phone, String email, boolean enabled, List<String> roles) {
+    public User( int userId, String username, String firstName, String lastName, String location, String password, String phone, String email, boolean enabled, List<String> roles) {
         this.userId = userId;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.location = location;
-        this.username = username;
         this.password = password;
         this.phone = phone;
         this.email = email;
