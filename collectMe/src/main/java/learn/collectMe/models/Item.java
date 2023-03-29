@@ -23,6 +23,7 @@ public class Item {
         return new ArrayList<>(categories);
     }
 
+
     public void setActions(List<Action> actions) {
         this.actions = actions;
     }
@@ -41,6 +42,7 @@ public class Item {
     public boolean isNegotiable() {
         return actions.stream().anyMatch(a -> a.getStatus().equals("saleable"));
     }
+
 
     public int getItemId() {
         return itemId;
