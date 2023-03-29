@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KnownGoodState {
-
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -18,5 +17,4 @@ public class KnownGoodState {
             jdbcTemplate.update("call set_known_good_state();");
         }
     }
-
 }

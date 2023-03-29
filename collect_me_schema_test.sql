@@ -4,7 +4,7 @@ use collect_me_test;
 
 create table user (
 user_id int primary key auto_increment,
-username varchar(60) not null,
+username varchar(60) not null unique,
 first_name varchar(64) not null,
 last_name varchar(64) not null,
 location varchar(255) null,
@@ -124,11 +124,11 @@ alter table user auto_increment = 1;
   
 
 
-insert into user (first_name, last_name, location, password_hash, phone, email) 
+insert into user (first_name, last_name, location, password_hash, phone, email, username) 
 values 
-("Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com"),
-("Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com"),
-("Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com");
+("Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com", "mjuser"),
+("Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", "swuser"),
+("Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com", "jruser");
 
 insert into category (`name`)
 values
