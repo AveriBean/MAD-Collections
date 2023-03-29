@@ -26,7 +26,7 @@ public class TestHelper {
 
         Item item = new Item();
 
-        item.setItemId(0);
+        item.setItemId(1);
         item.setItemName("Bulbasor 31");
         item.setDescription("This is a Bulbasor 31 card in mint condition");
         item.setUserId(1);
