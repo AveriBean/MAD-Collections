@@ -1,11 +1,13 @@
 package learn.collectMe.data;
 
 import learn.collectMe.models.Action;
+import learn.collectMe.models.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +26,6 @@ class ActionJdbcTemplateRepositoryTest {
         knownGoodState.set();
     }
 
-
     @Test
     void shouldFindAllActions() {
         List<Action> actions = repository.findAll();
@@ -33,11 +34,4 @@ class ActionJdbcTemplateRepositoryTest {
         assertTrue(actions.size() == 4);
     }
 
-    @Test
-    void shouldFindActionByItem() {
-    }
-
-    @Test
-    void shouldFindActionById() {
-    }
 }
