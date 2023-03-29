@@ -1,6 +1,7 @@
 package learn.collectMe.data;
 
 import learn.collectMe.data.mappers.CategoryMapper;
+import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,8 +32,8 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
 
         final String sql = "select category_id, `name` from category where category_id = ?;";
 
-        Category result = jdbcTemplate.query(sql, new CategoryMapper(), categoryId.stream()
-                .findAny().orElse(null));
+        Category result = jdbcTemplate.query(sql, new CategoryMapper(), categoryId).stream()
+                .findAny().orElse(null);
 
         if (result != null) {
             addItems(result);

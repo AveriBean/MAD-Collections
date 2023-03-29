@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 public class Item {
 
     private int itemId;
@@ -15,22 +16,33 @@ public class Item {
     private List<Action> actions = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
+    public List<Action> getActions() {
+        return new ArrayList<>(actions);
+    }
+    public List<Category> getCategories() {
+        return new ArrayList<>(categories);
+    }
 
-//    public boolean isViewable() {
-//        return actions.stream().findAny(a -> a.getStatus().equals("viewable"));
-//    }
-//
-//    public boolean isTradeable() {
-//        return actions.stream().findAny(a -> a.getStatus().equals("tradeable"));
-//    }
-//
-//    public boolean isSaleable() {
-//        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
-//    }
-//
-//    public boolean isNegotiable() {
-//        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
-//    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+    }
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public boolean isViewable() {return actions.stream().anyMatch(a -> a.getStatus().equals("viewable"));}
+
+    public boolean isTradeable() {
+        return actions.stream().anyMatch(a -> a.getStatus().equals("tradeable"));
+    }
+
+    public boolean isSaleable() {return actions.stream().anyMatch(a -> a.getStatus().equals("saleable"));}
+
+    public boolean isNegotiable() {
+        return actions.stream().anyMatch(a -> a.getStatus().equals("saleable"));
+    }
+
 
     public int getItemId() {
         return itemId;
