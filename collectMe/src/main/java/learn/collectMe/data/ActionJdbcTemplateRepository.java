@@ -1,12 +1,14 @@
 package learn.collectMe.data;
 
 import learn.collectMe.models.Action;
+import learn.collectMe.models.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 
 public class ActionJdbcTemplateRepository implements ActionRepository {
 
@@ -16,6 +18,11 @@ public class ActionJdbcTemplateRepository implements ActionRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+    @Override
+    public List<Action> findByItem(Item item) {
+        return null;
+    }
 
     @Override
     public Action add(Action action) {
