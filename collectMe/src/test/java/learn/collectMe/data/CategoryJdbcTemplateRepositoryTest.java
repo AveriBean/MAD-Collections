@@ -30,4 +30,25 @@ class CategoryJdbcTemplateRepositoryTest {
         assertTrue(categories.size() > 0);
     }
 
+    @Test
+    void shouldFindMagic() {
+        Category magic = repository.findById(2);
+
+        assertEquals(2, magic.getCategoryId());
+        assertEquals("Magic", magic.getCategoryName());
+        assertEquals(3, magic.getItems().size());
+    }
+
+    @Test
+    void shouldAddStamp() {
+        Category category = new Category();
+        category.setCategoryName("Stamp");
+
+        Category actual = repository.add(category);
+
+        assertNotNull(actual);
+        assertEquals(4, actual.getCategoryId());
+        assertEquals(4, repository.findAll().size());
+        assertEquals("Stamp", repository.findById(4).getCategoryName());
+    }
 }

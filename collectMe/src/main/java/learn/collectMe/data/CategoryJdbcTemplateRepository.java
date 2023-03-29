@@ -48,12 +48,12 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
 
     @Override
     public Category add(Category category) {
-        final String sql = "insert int category (`name`) values (?);";
+        final String sql = "insert in category (`name`) values (?);";
 
         KeyHolder keyholder = new GeneratedKeyHolder();
 
         int rowsAffected = jdbcTemplate.update(connection -> {
-            PreparedStatement statement = connection.prepareStatement((sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, category.getCategoryName());
             return statement;
         }, keyholder);
@@ -78,7 +78,18 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
 
 
     private void addItems (Category category) {
-        final String sql = "select item_id, `name`, description, value, user_id from item where category_id = ?";
+        final String sql = "select\n" +
+                "\tci.category_id,\n" +
+                "    ci.item_id,\n" +
+                "    c.`name`,\n" +
+                "    i.`name`,\n" +
+                "    i.`description`,\n" +
+                "    i.`value`,\n" +
+                "    i.user_id\n" +
+                "from category_item ci\n" +
+                "inner join item i on ci.item_id = i.item_id\n" +
+                "inner join category c on ci.category_id = c.category_id\n" +
+                "where ci.category_id = ?;";
 
         var items = jdbcTemplate.query(sql, new ItemMapper(), category.getCategoryId());
 
