@@ -16,21 +16,21 @@ public class Item {
     private List<Category> categories = new ArrayList<>();
 
 
-    public boolean isViewable() {
-        return actions.stream().findAny(a -> a.getStatus().equals("viewable"));
-    }
-
-    public boolean isTradeable() {
-        return actions.stream().findAny(a -> a.getStatus().equals("tradeable"));
-    }
-
-    public boolean isSaleable() {
-        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
-    }
-
-    public boolean isNegotiable() {
-        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
-    }
+//    public boolean isViewable() {
+//        return actions.stream().findAny(a -> a.getStatus().equals("viewable"));
+//    }
+//
+//    public boolean isTradeable() {
+//        return actions.stream().findAny(a -> a.getStatus().equals("tradeable"));
+//    }
+//
+//    public boolean isSaleable() {
+//        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
+//    }
+//
+//    public boolean isNegotiable() {
+//        return actions.stream().findAny(a -> a.getStatus().equals("saleable"));
+//    }
 
     public int getItemId() {
         return itemId;
