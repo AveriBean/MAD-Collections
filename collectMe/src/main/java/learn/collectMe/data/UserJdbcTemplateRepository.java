@@ -2,11 +2,13 @@ package learn.collectMe.data;
 
 import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.data.mappers.UserMapper;
+import learn.collectMe.data.mappers.UserWithoutRolesMapper;
 import learn.collectMe.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.sql.Statement;
 import java.util.Collection;
 import java.util.List;
 
+@Repository
 public class UserJdbcTemplateRepository implements UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -23,27 +26,27 @@ public class UserJdbcTemplateRepository implements UserRepository {
     }
 
     @Override
-    public List<User> findAll(String username) {
-        List<String> roles = getRolesByUsername(username);
+    public List<User> findAll() {
 
         final String sql = "select user_id, first_name, last_name, location, username, password_hash, phone, email, enabled  order by last_name;";
 
-        return jdbcTemplate.query(sql, new UserMapper(roles));
+        return jdbcTemplate.query(sql, new UserWithoutRolesMapper());
     }
 
     @Override
     @Transactional
-    public User findById(int userId, String username) {
-        List<String> roles = getRolesByUsername(username);
+    public User findById(int userId) {
 
         final String sql = "select user_id, first_name, last_name, location, username, password_hash, phone, email, enabled "
                 + "where user_id = ?;";
 
-        User user = jdbcTemplate.query(sql, new UserMapper(roles), userId)
+        User user = jdbcTemplate.query(sql, new UserWithoutRolesMapper(), userId)
                 .stream().findFirst().orElse(null);
 
         if (user != null) {
             addItems(user);
+            List<String> roles = getRolesByUsername(user.getUsername());
+            user.convertRolesToAuthorities(roles);
         }
 
         return user;

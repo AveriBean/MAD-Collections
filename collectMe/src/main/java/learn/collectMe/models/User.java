@@ -22,7 +22,7 @@ public class User implements UserDetails {
     private String email;
     private boolean enabled;
     List<Item> items = new ArrayList<>();
-    private final Collection<GrantedAuthority> authorities;
+    private Collection<GrantedAuthority> authorities = new ArrayList<>();
 
     public User( int userId, String firstName, String lastName, String location, String username, String password, String phone, String email, boolean enabled, List<String> roles) {
         this.userId = userId;
@@ -34,7 +34,7 @@ public class User implements UserDetails {
         this.phone = phone;
         this.email = email;
         this.enabled = enabled;
-        this.authorities = convertRolesToAuthorities(roles);
+        convertRolesToAuthorities(roles);
 
     }
 
@@ -141,8 +141,8 @@ public class User implements UserDetails {
         return false;
     }
 
-    private static Collection<GrantedAuthority> convertRolesToAuthorities(List<String> roles) {
-        return roles.stream()
+    public void convertRolesToAuthorities(List<String> roles) {
+        this.authorities = roles.stream()
                 .map(r -> new SimpleGrantedAuthority(r))
                 .collect(Collectors.toList());
     }
