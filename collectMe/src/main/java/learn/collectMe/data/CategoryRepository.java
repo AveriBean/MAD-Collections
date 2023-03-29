@@ -11,4 +11,11 @@ public interface CategoryRepository {
 
     @Transactional
     Category findById(int categoryId);
+
+    Category add(Category category);
+
+    boolean update(Category category);
+
+    @Transactional
+    boolean deleteById(int categoryId);
 }
