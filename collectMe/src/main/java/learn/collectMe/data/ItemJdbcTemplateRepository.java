@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import learn.collectMe.models.Action;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -36,6 +37,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     @Override
+    @Transactional
     public Item findById(int itemId) {
         final String sql = "select item_id, `name`, description, value, user_id "
                 + "from item "
@@ -89,6 +91,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     @Override
+    @Transactional
     public boolean deleteById(int itemId) {
         return jdbcTemplate.update(
                 "delete from item where item_id = ?", itemId) > 0;
