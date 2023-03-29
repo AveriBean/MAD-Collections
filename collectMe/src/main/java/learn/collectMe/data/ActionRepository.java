@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ActionRepository {
 
+    List<Action> findAll();
     List<Action> findByItem(Item item);
+    Action findById(int actionId);
 
     Action add(Action action);
 

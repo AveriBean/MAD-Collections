@@ -15,7 +15,7 @@ email varchar(64) not null
 create table item (
 item_id int primary key auto_increment,
 `name` varchar(30) not null,
-description varchar(128) not null,
+`description` varchar(128) not null,
 `value` decimal(10,2) null,
 user_id int not null,
 constraint fk_item_user_id
@@ -25,7 +25,7 @@ constraint fk_item_user_id
 
 create table `action` (
 action_id int primary key auto_increment,
-status varchar(60) not null
+`status` varchar(60) not null
 );
 
 
@@ -133,16 +133,17 @@ insert into category (`name`)
 values
 ('Pokemon'),
 ('Magic'),
-('Baseball');
+('Baseball'),
+('Bug');
 
-insert into action (status)
+insert into action (`status`)
 values
 ("viewable"),
 ("tradeable"),
 ("saleable"),
 ("negotiable");
 
-insert into item (`name`, description, `value`, user_id)
+insert into item (`name`, `description`, `value`, user_id)
 values
 ("Pokemon card A", "Pokemon card A", 25.00, 1),
 ("Pokemon card B", "Pokemon card B", 25.00, 1),
