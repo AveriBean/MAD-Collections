@@ -4,14 +4,11 @@ import learn.collectMe.data.mappers.ActionMapper;
 import learn.collectMe.models.Action;
 import learn.collectMe.models.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
-import javax.swing.*;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 
+@Repository
 public class ActionJdbcTemplateRepository implements ActionRepository {
 
     private final JdbcTemplate jdbcTemplate;
