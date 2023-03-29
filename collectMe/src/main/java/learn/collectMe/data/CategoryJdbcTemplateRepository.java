@@ -48,7 +48,7 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
 
     @Override
     public Category add(Category category) {
-        final String sql = "insert in category (`name`) values (?);";
+        final String sql = "insert into category (`name`) values (?);";
 
         KeyHolder keyholder = new GeneratedKeyHolder();
 
