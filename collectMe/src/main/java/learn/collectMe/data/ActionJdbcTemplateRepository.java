@@ -48,38 +48,4 @@ public class ActionJdbcTemplateRepository implements ActionRepository {
                 .orElse(null);
     }
 
-    @Override
-    public Action add(Action action) {
-        final String sql = "insert into action (status) values (?);";
-
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-
-        int rowsAffected = jdbcTemplate.update(connection -> {
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, action.getStatus());
-            return statement;
-        }, keyHolder);
-
-        if (rowsAffected > 0) {
-            action.setActionId(keyHolder.getKey().intValue());
-            return action;
-        }
-
-        return null;
-
-    }
-
-    @Override
-    public boolean update(Action action) {
-        final String sql = "update action set status = ? where action_id = ?;";
-
-        return jdbcTemplate.update(sql, action.getStatus(), action.getActionId()) > 0;
-    }
-
-    @Override
-    public boolean deleteById(int actionId) {
-        final String sql = "delete from action where action_id = ?;";
-
-        return jdbcTemplate.update(sql, actionId) > 0;
-    }
 }

@@ -11,9 +11,4 @@ public interface ActionRepository {
     List<Action> findByItem(Item item);
     Action findById(int actionId);
 
-    Action add(Action action);
-
-    boolean update(Action action);
-
-    boolean deleteById(int actionId);
 }

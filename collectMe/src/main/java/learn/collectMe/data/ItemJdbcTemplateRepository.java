@@ -56,6 +56,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     @Override
+    @Transactional
     public Item add(Item item) {
         final String sql = "insert into item (`name`, description, value, user_id)"
                 + "values (?,?,?,?);";
@@ -69,14 +70,11 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
             return ps;
         }, keyHolder);
 
-
-        final String sql = "insert into action (status) values (?);";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        int rowsAffected = jdbcTemplate.update(connection -> {
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, action.getStatus());
-            return statement;
-        }, keyHolder);
+        Item i = jdbcTemplate.query(sql, new ItemMapper(), item.getItemId()).stream()
+                .findFirst().orElse(null);
+        if (i != null) {
+            addActions(i);
+        }
 
         if (rowsAffected <= 0) {
             return null;
