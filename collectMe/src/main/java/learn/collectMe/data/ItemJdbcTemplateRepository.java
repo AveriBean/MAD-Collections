@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import learn.collectMe.models.Action;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -26,6 +27,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     @Override
+    @Transactional
     public List<Item> findAll() {
         final String sql = "select item_id, `name`, description, value, user_id "
                 + "from item limit 1000;";
@@ -38,6 +40,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     @Override
+    @Transactional
     public Item findById(int itemId) {
         final String sql = "select item_id, `name`, description, value, user_id "
                 + "from item "
@@ -92,12 +95,14 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
 
     @Override
     public boolean deleteById(int itemId) {
+        jdbcTemplate.update("delete from category_item where item_id = ?;", itemId);
+        jdbcTemplate.update("delete from item_action where item_id = ?;", itemId);
         return jdbcTemplate.update(
                 "delete from item where item_id = ?", itemId) > 0;
     }
 
     private void addActions(Item item) {
-        String sql = "select a.status from action a " +
+        String sql = "select a.status, a.action_id from action a " +
                 "inner join item_action ia on a.action_id = ia.action_id " +
                 "inner join item i on i.item_id = ia.item_id where i.item_id = ?";
         List<Action> actions = jdbcTemplate.query(sql, new ActionMapper(), item.getItemId());
@@ -107,11 +112,12 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     private void addCategories(Item item) {
-        String sql = "select" +
-                "c.name" +
-                "from category c" +
-                "inner join category_item ci on c.category_id = ci.category_id" +
-                "inner join item i on ci.item_id = i.item_id" +
+        String sql = "select\n" +
+                "c.name,\n" +
+                "c.category_id \n" +
+                "from category c\n" +
+                "inner join category_item ci on c.category_id = ci.category_id\n" +
+                "inner join item i on ci.item_id = i.item_id\n" +
                 "where i.item_id = ?";
         List<Category> categories = jdbcTemplate.query(sql, new CategoryMapper(), item.getItemId());
         item.setCategories(categories);

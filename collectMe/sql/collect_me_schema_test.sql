@@ -129,7 +129,8 @@ insert into user (username, first_name, last_name, location, password_hash, phon
 values 
 ("JMich","Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com", 1),
 ("SWalk","Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", 1),
-("JRipp","Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com", 1);
+("JRipp","Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com", 1),
+("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "passwordHash4", null, "dk@testing.com", 1);
 
 insert into category (`name`)
 values
