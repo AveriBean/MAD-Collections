@@ -47,8 +47,28 @@ class CategoryJdbcTemplateRepositoryTest {
         Category actual = repository.add(category);
 
         assertNotNull(actual);
-        assertEquals(4, actual.getCategoryId());
-        assertEquals(4, repository.findAll().size());
-        assertEquals("Stamp", repository.findById(4).getCategoryName());
+        assertEquals(5, actual.getCategoryId());
+        assertEquals(5, repository.findAll().size());
+        assertEquals("Stamp", repository.findById(5).getCategoryName());
+    }
+
+    @Test
+    void shouldUpdateCategory() {
+        Category category = new Category();
+
+        category.setCategoryId(3);
+        category.setCategoryName("Car");
+
+        boolean actual = repository.update(category);
+
+        assertTrue(actual);
+        assertNotEquals("Baseball", repository.findById(3).getCategoryName());
+        assertEquals("Car", repository.findById(3).getCategoryName());
+    }
+
+    @Test
+    void shouldDeleteCategoryById() {
+        assertTrue(repository.deleteById(4));
+        assertFalse(repository.deleteById(2));
     }
 }
