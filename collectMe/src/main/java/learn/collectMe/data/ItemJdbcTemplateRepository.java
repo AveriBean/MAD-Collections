@@ -5,7 +5,7 @@ import learn.collectMe.data.mappers.CategoryMapper;
 import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
 import learn.collectMe.models.Item;
-import org.apache.catalina.mapper.Mapper;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -59,7 +59,6 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     public Item add(Item item) {
         final String sql = "insert into item (`name`, description, value, user_id)"
                 + "values (?,?,?,?);";
-
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -68,6 +67,15 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
             ps.setBigDecimal(3, item.getValue());
             ps.setInt(4, item.getUserId());
             return ps;
+        }, keyHolder);
+
+
+        final String sql = "insert into action (status) values (?);";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        int rowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, action.getStatus());
+            return statement;
         }, keyHolder);
 
         if (rowsAffected <= 0) {
