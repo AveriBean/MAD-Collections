@@ -72,12 +72,13 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
     @Override
     @Transactional
     public boolean deleteById(int categoryId) {
-        return false;
+        jdbcTemplate.update("delete from item where category_id = ?", categoryId);
+        return jdbcTemplate.update("delete from category where category_id = ?", categoryId) > 0;
     }
 
 
     private void addItems (Category category) {
-        final String sql = "select...";
+        final String sql = "select item_id, `name`, description, value, user_id from item where category_id = ?";
 
         var items = jdbcTemplate.query(sql, new ItemMapper(), category.getCategoryId());
 
