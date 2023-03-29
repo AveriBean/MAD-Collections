@@ -4,12 +4,14 @@ use collect_me_test;
 
 create table user (
 user_id int primary key auto_increment,
+username varchar(60) not null,
 first_name varchar(64) not null,
 last_name varchar(64) not null,
 location varchar(255) null,
 password_hash varchar(1028) not null,
 phone varchar(64) null,
-email varchar(64) not null
+email varchar(64) not null,
+enabled bit not null default(1)
 );
 
 create table item (
@@ -123,11 +125,12 @@ alter table user auto_increment = 1;
   
 
 
-insert into user (first_name, last_name, location, password_hash, phone, email) 
+insert into user (username, first_name, last_name, location, password_hash, phone, email, enabled) 
 values 
-("Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com"),
-("Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com"),
-("Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com");
+("JMich","Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com", 1),
+("SWalk","Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", 1),
+("JRipp","Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com", 1),
+("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "passwordHash4", null, "dk@testing.com", 1);
 
 insert into category (`name`)
 values
