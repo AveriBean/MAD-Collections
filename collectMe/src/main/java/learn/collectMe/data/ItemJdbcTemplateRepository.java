@@ -63,7 +63,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Transactional
     public Item add(Item item) {
         final String sql = "insert into item (`name`, description, value, user_id, image)"
-                + "values (?,?,?,?,?);";
+                + " values (?,?,?,?,?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -126,12 +126,12 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
                 "delete from item where item_id = ?", itemId) > 0;
     }
 
-    @Override
-    public boolean userExists(int userId) {
-        int count = jdbcTemplate.queryForObject(
-                "select count(*) from item where user_id = ?;", Integer.class, userId);
-        return count > 0;
-    }
+//    @Override
+//    public boolean userExists(int userId) {
+//        int count = jdbcTemplate.queryForObject(
+//                "select count(*) from item where user_id = ?;", Integer.class, userId);
+//        return count > 0;
+//    }
 
     private void addActions(Item item) {
         String sql = "select a.status, a.action_id from action a " +

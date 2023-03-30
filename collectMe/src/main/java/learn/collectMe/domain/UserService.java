@@ -178,4 +178,3 @@ public class UserService implements UserDetailsService {
         return digits > 0 && letters > 0;
     }
 }
-*/
