@@ -4,12 +4,14 @@ use collect_me;
 
 create table user (
 user_id int primary key auto_increment,
+username varchar(60) not null,
 first_name varchar(64) not null,
 last_name varchar(64) not null,
 location varchar(255) null,
 password_hash varchar(1028) not null,
 phone varchar(64) null,
-email varchar(64) not null
+email varchar(64) not null,
+enabled bit not null default(1)
 );
 
 create table item (

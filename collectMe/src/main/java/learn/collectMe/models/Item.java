@@ -23,6 +23,7 @@ public class Item {
         return new ArrayList<>(categories);
     }
 
+
     public void setActions(List<Action> actions) {
         this.actions = actions;
     }
@@ -30,17 +31,20 @@ public class Item {
         this.categories = categories;
     }
 
-    public boolean isViewable() {return actions.stream().anyMatch(a -> a.getStatus().equals("viewable"));}
+    public boolean isViewable() {
+        return actions.stream().anyMatch(a -> a.getStatus().equals("viewable"));}
 
     public boolean isTradeable() {
         return actions.stream().anyMatch(a -> a.getStatus().equals("tradeable"));
     }
 
-    public boolean isSaleable() {return actions.stream().anyMatch(a -> a.getStatus().equals("saleable"));}
+    public boolean isSaleable() {
+        return actions.stream().anyMatch(a -> a.getStatus().equals("saleable"));}
 
     public boolean isNegotiable() {
-        return actions.stream().anyMatch(a -> a.getStatus().equals("saleable"));
+        return actions.stream().anyMatch(a -> a.getStatus().equals("negotiable"));
     }
+
 
     public int getItemId() {
         return itemId;
