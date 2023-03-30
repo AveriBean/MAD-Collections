@@ -1,5 +1,6 @@
 package learn.collectMe.data;
 
+import learn.collectMe.models.Action;
 import learn.collectMe.models.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static learn.collectMe.TestHelper.makeItem;
@@ -49,6 +51,11 @@ class ItemJdbcTemplateRepositoryTest {
     Item actual = repository.add(item);
     assertNotNull(actual);
     assertEquals(NEXT_ID, actual.getItemId());
+    Item reItem = repository.findById(NEXT_ID);
+    assertTrue(reItem.getActions().equals(List.of(
+            new Action(1,"viewable"),
+            new Action(3, "saleable")
+    )));
 }
 
 @Test
@@ -56,6 +63,17 @@ class ItemJdbcTemplateRepositoryTest {
     Item item = makeItem();
     item.setItemId(6);
     assertTrue(repository.update(item));
+    Item reItem = repository.findById(6);
+    assertTrue(reItem.getActions().equals(List.of(
+            new Action(1,"viewable"),
+            new Action(3, "saleable")
+    )));
+
+}
+
+@Test
+void shouldNotUpdateInvalid() {
+    Item item = makeItem();
     item.setItemId(500);
     assertFalse(repository.update(item));
 }

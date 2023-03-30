@@ -6,6 +6,7 @@ import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
 import learn.collectMe.models.Item;
 import org.apache.catalina.mapper.Mapper;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
+
 @Repository
 public class ItemJdbcTemplateRepository implements ItemRepository {
 
@@ -55,6 +57,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     @Override
+    @Transactional
     public Item add(Item item) {
         final String sql = "insert into item (`name`, description, value, user_id)"
                 + "values (?,?,?,?);";
@@ -74,16 +77,31 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         }
 
         item.setItemId(keyHolder.getKey().intValue());
+
+        handleBridgeTables(item);
+
+
         return item;
     }
 
+
     @Override
+    @Transactional
     public boolean update(Item item) {
         final String sql = "update item set "
                 + "name = ?, "
                 + "description = ?, "
                 + "value = ? "
                 + "where item_id = ?;";
+
+
+        jdbcTemplate.update("delete from item_action where item_id = ?", item.getItemId());
+        jdbcTemplate.update("delete from category_item where item_id = ?", item.getItemId());
+
+        boolean check = handleBridgeTables(item);
+        if(!check) {
+            return false;
+        }
 
         return jdbcTemplate.update(sql,
                 item.getItemName(),
@@ -120,5 +138,23 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
                 "where i.item_id = ?";
         List<Category> categories = jdbcTemplate.query(sql, new CategoryMapper(), item.getItemId());
         item.setCategories(categories);
+    }
+
+    private boolean handleBridgeTables(Item item) {
+        try {
+            for (Action a : item.getActions()) {
+                final String sqlTwo = "insert into item_action (item_id, action_id) values (?,?);";
+                jdbcTemplate.update(sqlTwo, item.getItemId(), a.getActionId());
+            }
+
+            for (Category c : item.getCategories()) {
+                final String sqlThree = "insert into category_item (item_id, category_id) values (?,?);";
+                jdbcTemplate.update(sqlThree, item.getItemId(), c.getCategoryId());
+            }
+            return true;
+        } catch (DataIntegrityViolationException ex) {
+            return false;
+        }
+
     }
 }
