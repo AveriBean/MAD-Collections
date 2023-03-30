@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Repository
 public class ActionJdbcTemplateRepository implements ActionRepository {
 
@@ -22,6 +21,16 @@ public class ActionJdbcTemplateRepository implements ActionRepository {
     public List<Action> findAll() {
         final String sql = "select action_id, `status` from action;";
         return jdbcTemplate.query(sql, new ActionMapper());
+    }
+
+    @Override
+    public List<Action> findByItem(int itemId) {
+        return null;
+    }
+
+    @Override
+    public Action findById(int actionId) {
+        return null;
     }
 
 }

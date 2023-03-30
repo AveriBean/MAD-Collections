@@ -13,6 +13,7 @@ public class Item {
     private String description;
     private BigDecimal value;
     private int userId;
+    private String image;
     private List<Action> actions = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
@@ -84,6 +85,14 @@ public class Item {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
