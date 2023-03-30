@@ -1,3 +1,4 @@
+/*
 package learn.collectMe.domain;
 
 import learn.collectMe.data.ItemRepository;
@@ -177,3 +178,4 @@ public class UserService implements UserDetailsService {
         return digits > 0 && letters > 0;
     }
 }
+*/
