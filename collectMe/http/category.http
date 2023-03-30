@@ -1,4 +1,4 @@
-@url = http://localhost:8080/api/collectMe/category
+@url = http://localhost:8080/api/category
 
 GET {{url}} HTTP/1.1
 
@@ -6,30 +6,26 @@ GET {{url}} HTTP/1.1
 
 GET {{url}}/1 HTTP/1.1
 
-###
+### POST a Category
 
 POST  {{url}} HTTP/1.1
 Content-Type: application/json
 
 {
-    "shortName": "CIA",
-    "longName": "Central Intelligence Agency",
-    "locations": [],
-    "agents": []
+    "name": "Gnomes"
+
 }
 
-### [ ] PUT an alias
+### [ ] PUT a Category
 
 PUT {{url}}/2 HTTP/1.1
 Content-Type: application/json
 
 {
-  "aliasId": 2,
-  "agentId": 1,
-  "name": "Test",
-  "persona": "Something"
+  "categoryId": 4,
+  "name": "Changed"
 }
 
-###
+### Delete A Category
 
 DELETE {{url}}/2 HTTP/1.1
