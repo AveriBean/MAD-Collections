@@ -1,13 +1,14 @@
 package learn.collectMe.data;
 
 import learn.collectMe.models.Action;
+import learn.collectMe.models.Item;
 
 import java.util.List;
 
 public interface ActionRepository {
-    Action add(Action action);
 
-    boolean update(Action action);
+    List<Action> findAll();
+    List<Action> findByItem(int itemId);
+    Action findById(int actionId);
 
-    boolean deleteById(int actionId);
 }

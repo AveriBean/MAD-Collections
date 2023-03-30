@@ -1,5 +1,8 @@
 package learn.collectMe.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Action {
 
     private int actionId;
@@ -31,4 +34,5 @@ public class Action {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }
