@@ -121,6 +121,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     public boolean deleteById(int itemId) {
         jdbcTemplate.update("delete from category_item where item_id = ?;", itemId);
         jdbcTemplate.update("delete from item_action where item_id = ?;", itemId);
+        jdbcTemplate.update("delete from comment where item_id = ?;", itemId);
         return jdbcTemplate.update(
                 "delete from item where item_id = ?", itemId) > 0;
     }
