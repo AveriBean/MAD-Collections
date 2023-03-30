@@ -94,6 +94,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
     }
 
     @Override
+    @Transactional
     public User add(User user) {
         final String sql = "insert into user (username, first_name, last_name, location, password_hash, phone, email, enabled) "
                 + " values (?,?,?,?,?,?,?,?);";
