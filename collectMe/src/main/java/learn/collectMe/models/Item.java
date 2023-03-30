@@ -100,11 +100,11 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return itemId == item.itemId && userId == item.userId && itemName.equals(item.itemName) && description.equals(item.description) && Objects.equals(value, item.value);
+        return itemId == item.itemId && userId == item.userId && Objects.equals(itemName, item.itemName) && Objects.equals(description, item.description) && Objects.equals(value, item.value) && Objects.equals(image, item.image) && Objects.equals(actions, item.actions) && Objects.equals(categories, item.categories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, itemName, description, value, userId);
+        return Objects.hash(itemId, itemName, description, value, userId, image, actions, categories);
     }
 }
