@@ -1,7 +1,11 @@
 package learn.collectMe.models;
 
+
+import java.util.Objects;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Action {
 
@@ -33,6 +37,20 @@ public class Action {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Action action = (Action) o;
+        return actionId == action.actionId && Objects.equals(status, action.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(actionId, status);
     }
 
 }
