@@ -3,22 +3,29 @@ package learn.collectMe.domain;
 import learn.collectMe.data.ItemRepository;
 import learn.collectMe.data.UserRepository;
 import learn.collectMe.models.User;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
-//TODO check if items exists before deleting user
 //TODO implement security methods
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
 
     public UserService(UserRepository userRepository, ItemRepository itemRepository) {
         this.userRepository = userRepository;
+        this.itemRepository = itemRepository;
+
     }
 
     public List<User> findAll() {
@@ -27,6 +34,17 @@ public class UserService {
 
     public User findById(int userId) {
         return userRepository.findById(userId);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null || !user.isEnabled()) {
+            throw new UsernameNotFoundException(username + " not found");
+        }
+
+        return user;
     }
 
     public Result<User> add(User user) {
@@ -45,6 +63,26 @@ public class UserService {
         return result;
     }
 
+//    public Result<User> create(String username, String password) {
+//        Result<User> result = validate(username, password);
+//        if (!result.isSuccess()) {
+//            return result;
+//        }
+//
+//        password = encoder.encode(password);
+//
+//        User appUser = new User(0, username, password, true, List.of("USER"));
+//
+//        try {
+//            appUser = repository.create(appUser);
+//            result.setPayload(appUser);
+//        } catch (DuplicateKeyException e) {
+//            result.addMessage(ActionStatus.INVALID, "The provided username already exists");
+//        }
+//
+//        return result;
+//    }
+
     public Result<User> update(User user) {
         Result<User> result = validate(user);
         if (!result.isSuccess()) {
@@ -57,8 +95,18 @@ public class UserService {
         return result;
     }
 
-    public boolean deleteById(int userId) {
-        return userRepository.deleteById(userId);
+    public Result<Void> deleteById(int userId) {
+        Result<Void> result = new Result<>();
+        boolean userExists = itemRepository.userExists(userId);
+        if (userExists) {
+            result.addMessage("user id is referenced by an item and can't be deleted", ResultType.INVALID);
+            return result;
+        }
+        boolean success = userRepository.deleteById(userId);
+        if(!success) {
+            result.addMessage("user id " + userId + " not found", ResultType.NOT_FOUND);
+        }
+        return result;
     }
 
     private Result<User> validate(User user) {
@@ -68,34 +116,42 @@ public class UserService {
             return result;
         }
 
-        if (Validations.isNullOrBlank(user.getUsername())) {
-            result.addMessage("username is required", ResultType.INVALID);
-        }
-
         if ((Validations.isNullOrBlank(user.getFirstName())) || (Validations.isNullOrBlank(user.getLastName()))) {
             result.addMessage("name fields are required", ResultType.INVALID);
-        }
-
-        if (Validations.isNullOrBlank(user.getPassword())) {
-            result.addMessage("password is required", ResultType.INVALID);
         }
 
         if (Validations.isNullOrBlank(user.getEmail())) {
             result.addMessage("email is required", ResultType.INVALID);
         }
 
-        if (user.getUsername().length() > 50) {
+        return result;
+    }
+
+    private Result<User> validate(String username, String password) {
+        Result<User> result = new Result<>();
+
+        if (username == null || username.isBlank()) {
+            result.addMessage("username is required", ResultType.INVALID);
+            return result;
+        }
+
+        if (password == null) {
+            result.addMessage("password is required", ResultType.INVALID);
+            return result;
+        }
+
+        if (username.length() > 50) {
             result.addMessage("username must be less than 50 characters", ResultType.INVALID);
         }
 
-        if (!isValidPassword(user.getPassword())) {
+        if (!isValidPassword(password)) {
             result.addMessage("password must be at least 8 character and contain a digit," +
-                            " a letter", ResultType.INVALID);
+                    " a letter", ResultType.INVALID);
         }
 
         List<User> users = userRepository.findAll();
         for(User u: users) {
-            if(Objects.equals(user.getUsername(), u.getUsername())) {
+            if(Objects.equals(username, u.getUsername())) {
                 result.addMessage("username cannot be duplicated", ResultType.INVALID);
             }
         }
@@ -120,5 +176,4 @@ public class UserService {
 
         return digits > 0 && letters > 0;
     }
-
 }
