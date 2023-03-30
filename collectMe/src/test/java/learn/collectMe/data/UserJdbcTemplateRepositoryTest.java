@@ -54,7 +54,7 @@ class UserJdbcTemplateRepositoryTest {
         List<String> roles = repository.getRolesByUsername("Test Username");
 
         User arg = new User(0, "Test Username", "Test", "Test", "Test", "Test", "Test", "Test", true, roles);
-        User expected = new User(4, "Test Username", "Test", "Test", "Test", "Test", "Test", "Test", true, roles);
+        User expected = new User(5, "Test Username", "Test", "Test", "Test", "Test", "Test", "Test", true, roles);
         User actual = repository.add(arg);
         assertEquals(expected, actual);
     }
