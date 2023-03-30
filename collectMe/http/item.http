@@ -1,4 +1,4 @@
-@url = http://localhost:8080/api/category
+@url = http://localhost:8080/api/item
 
 GET {{url}} HTTP/1.1
 

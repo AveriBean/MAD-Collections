@@ -1,3 +1,4 @@
+/*
 package learn.collectMe.data;
 
 import learn.collectMe.data.mappers.ItemMapper;
@@ -195,3 +196,4 @@ public class UserJdbcTemplateRepository implements UserRepository {
         return jdbcTemplate.query(sql, (rs, rowId) -> rs.getString("role_name"), username);
     }
 }
+*/

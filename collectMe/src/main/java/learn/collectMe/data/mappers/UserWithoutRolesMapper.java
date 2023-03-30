@@ -1,3 +1,4 @@
+/*
 package learn.collectMe.data.mappers;
 
 import learn.collectMe.models.User;
@@ -23,3 +24,4 @@ public class UserWithoutRolesMapper implements RowMapper<User>{
                 List.of());
     }
 }
+*/

@@ -3,6 +3,7 @@ package learn.collectMe.data;
 import learn.collectMe.data.mappers.CategoryMapper;
 import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
+import learn.collectMe.models.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -99,7 +100,7 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
                 "inner join category c on ci.category_id = c.category_id\n" +
                 "where ci.category_id = ?;";
 
-        var items = jdbcTemplate.query(sql, new ItemMapper(), category.getCategoryId());
+        List<Item> items = jdbcTemplate.query(sql, new ItemMapper(), category.getCategoryId());
 
         category.setItems(items);
     }
