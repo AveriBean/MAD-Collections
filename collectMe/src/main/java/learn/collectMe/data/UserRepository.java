@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserRepository {
 
-    List<User> findAll(String username);
+    List<User> findAll();
 
-    User findById(int userId, String username);
+    User findById(int userId);
 
     @Transactional
     User findByUsername(String username);
