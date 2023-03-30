@@ -37,7 +37,7 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<Item> getItems() {return items;}
+    public List<Item> getItems() { return new ArrayList<>(items); }
 
     public void setItems(List<Item> items) {
         this.items = items;

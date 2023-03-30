@@ -6,7 +6,6 @@ import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
 import learn.collectMe.models.Item;
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.dao.DataIntegrityViolationException;
 
 
