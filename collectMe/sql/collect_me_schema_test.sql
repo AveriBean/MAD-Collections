@@ -147,17 +147,17 @@ values
 ("saleable"),
 ("negotiable");
 
-insert into item (`name`, `description`, `value`, user_id)
+insert into item (`name`, description, `value`, user_id, image)
 values
-("Pokemon card A", "Pokemon card A", 25.00, 1),
-("Pokemon card B", "Pokemon card B", 25.00, 1),
-("Pokemon card C", "Pokemon card C", 25.00, 1),
-("Magic card A", "Magic card A", 25.00, 2),
-("Magic card B", "Magic card B", 25.00, 2),
-("Magic card C", "Magic card C", 25.00, 2),
-("Baseball card A", "Baseball card A", 25.00, 3),
-("Baseball card B", "Baseball card B", 25.00, 3),
-("Baseball card C", "Baseball card C", 25.00, 3);
+("Pokemon card A", "Pokemon card A", 25.00, 1, "TestImage"),
+("Pokemon card B", "Pokemon card B", 25.00, 1, "TestImage"),
+("Pokemon card C", "Pokemon card C", 25.00, 1, "TestImage"),
+("Magic card A", "Magic card A", 25.00, 2, "TestImage"),
+("Magic card B", "Magic card B", 25.00, 2, "TestImage"),
+("Magic card C", "Magic card C", 25.00, 2, "TestImage"),
+("Baseball card A", "Baseball card A", 25.00, 3, "TestImage"),
+("Baseball card B", "Baseball card B", 25.00, 3, "TestImage"),
+("Baseball card C", "Baseball card C", 25.00, 3, "TestImage");
 
 insert into item_action (item_id, action_id)
 values
