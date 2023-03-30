@@ -16,6 +16,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import learn.collectMe.models.Action;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -33,7 +34,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Override
     @Transactional
     public List<Item> findAll() {
-        final String sql = "select item_id, `name`, description, value, user_id "
+        final String sql = "select item_id, `name`, description, value, user_id, image "
                 + "from item limit 1000;";
         List<Item> items = jdbcTemplate.query(sql, new ItemMapper());
         for (Item i : items) {
@@ -46,7 +47,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Override
     @Transactional
     public Item findById(int itemId) {
-        final String sql = "select item_id, `name`, description, value, user_id "
+        final String sql = "select item_id, `name`, description, value, user_id, image "
                 + "from item "
                 + "where item_id = ?;";
 
@@ -62,8 +63,8 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Override
     @Transactional
     public Item add(Item item) {
-        final String sql = "insert into item (`name`, description, value, user_id)"
-                + "values (?,?,?,?);";
+        final String sql = "insert into item (`name`, description, value, user_id, image)"
+                + "values (?,?,?,?,?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -71,6 +72,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
             ps.setString(2, item.getDescription());
             ps.setBigDecimal(3, item.getValue());
             ps.setInt(4, item.getUserId());
+            ps.setString(5, item.getImage());
             return ps;
         }, keyHolder);
 
@@ -94,27 +96,31 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
 
 
     @Override
-    @Transactional
-    public boolean update(Item item) {
+    @Transactional(rollbackFor = { DataIntegrityViolationException.class})
+    public boolean update(Item item) throws DataIntegrityViolationException {
         final String sql = "update item set "
                 + "name = ?, "
                 + "description = ?, "
-                + "value = ? "
+                + "value = ?, "
+                + "image = ? "
                 + "where item_id = ?;";
 
 
         jdbcTemplate.update("delete from item_action where item_id = ?", item.getItemId());
         jdbcTemplate.update("delete from category_item where item_id = ?", item.getItemId());
 
-        boolean check = handleBridgeTables(item);
-        if(!check) {
-            return false;
-        }
+       try {
+           handleBridgeTables(item);
+       } catch (DataIntegrityViolationException ex) {
+           TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+           return false;
+       }
 
         return jdbcTemplate.update(sql,
                 item.getItemName(),
                 item.getDescription(),
                 item.getValue(),
+                item.getImage(),
                 item.getItemId()) > 0;
     }
 
@@ -156,21 +162,18 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         item.setCategories(categories);
     }
 
-    private boolean handleBridgeTables(Item item) {
-        try {
-            for (Action a : item.getActions()) {
-                final String sqlTwo = "insert into item_action (item_id, action_id) values (?,?);";
-                jdbcTemplate.update(sqlTwo, item.getItemId(), a.getActionId());
-            }
+    private void handleBridgeTables(Item item) {
 
-            for (Category c : item.getCategories()) {
-                final String sqlThree = "insert into category_item (item_id, category_id) values (?,?);";
-                jdbcTemplate.update(sqlThree, item.getItemId(), c.getCategoryId());
-            }
-            return true;
-        } catch (DataIntegrityViolationException ex) {
-            return false;
+        for (Action a : item.getActions()) {
+            final String sqlTwo = "insert into item_action (item_id, action_id) values (?,?);";
+            jdbcTemplate.update(sqlTwo, item.getItemId(), a.getActionId());
         }
+
+        for (Category c : item.getCategories()) {
+            final String sqlThree = "insert into category_item (item_id, category_id) values (?,?);";
+            jdbcTemplate.update(sqlThree, item.getItemId(), c.getCategoryId());
+        }
+
 
     }
 }

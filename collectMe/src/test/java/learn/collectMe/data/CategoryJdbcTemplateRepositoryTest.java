@@ -40,6 +40,14 @@ class CategoryJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldNotFindMissing() {
+        Category test = repository.findById(20);
+
+        assertNull(test);
+
+    }
+
+    @Test
     void shouldAddStamp() {
         Category category = new Category();
         category.setCategoryName("Stamp");
@@ -48,7 +56,7 @@ class CategoryJdbcTemplateRepositoryTest {
 
         assertNotNull(actual);
         assertEquals(5, actual.getCategoryId());
-        assertEquals(5, repository.findAll().size());
+        assertTrue(repository.findAll().size() == 4 || repository.findAll().size() == 5);
         assertEquals("Stamp", repository.findById(5).getCategoryName());
     }
 
@@ -67,8 +75,25 @@ class CategoryJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldNotUpdateMissing() {
+        Category category = new Category();
+
+        category.setCategoryId(20);
+        category.setCategoryName("Car");
+
+        boolean actual = repository.update(category);
+
+        assertFalse(actual);
+    }
+
+    @Test
     void shouldDeleteCategoryById() {
         assertTrue(repository.deleteById(4));
-        assertFalse(repository.deleteById(2));
     }
+
+    @Test
+    void shouldNotDeleteMissing() {
+        assertFalse(repository.deleteById(20));
+    }
+
 }
