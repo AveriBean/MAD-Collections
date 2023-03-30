@@ -1,5 +1,5 @@
-drop database if exists collect_me;
-create database collect_me;
+drop database if exists collect_me_production;
+create database collect_me_production;
 use collect_me;
 
 create table user (
