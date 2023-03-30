@@ -75,18 +75,11 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
             return ps;
         }, keyHolder);
 
-        Item i = jdbcTemplate.query(sql, new ItemMapper(), item.getItemId()).stream()
-                .findFirst().orElse(null);
-        if (i != null) {
-            addActions(i);
-        }
-
         if (rowsAffected <= 0) {
             return null;
         }
 
         item.setItemId(keyHolder.getKey().intValue());
-
         handleBridgeTables(item);
 
 
@@ -150,12 +143,12 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     private void addCategories(Item item) {
-        String sql = "select\n" +
-                "c.name,\n" +
-                "c.category_id \n" +
-                "from category c\n" +
-                "inner join category_item ci on c.category_id = ci.category_id\n" +
-                "inner join item i on ci.item_id = i.item_id\n" +
+        String sql = "select " +
+                "c.name, " +
+                "c.category_id  " +
+                "from category c " +
+                "inner join category_item ci on c.category_id = ci.category_id " +
+                "inner join item i on ci.item_id = i.item_id " +
                 "where i.item_id = ?";
         List<Category> categories = jdbcTemplate.query(sql, new CategoryMapper(), item.getItemId());
         item.setCategories(categories);

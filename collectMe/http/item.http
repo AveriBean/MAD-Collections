@@ -2,30 +2,70 @@
 
 GET {{url}} HTTP/1.1
 
-###
+### Find by Id#2
 
 GET {{url}}/2 HTTP/1.1
 
-### POST a Category
+### POST a Item
 
 POST  {{url}} HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Gnomes"
-
+  "itemName": "Pokemon Card D",
+  "description": "Brand new card",
+  "value": "25.00",
+  "userId": 1,
+  "image": "testImageURL",
+  "actions" : [
+    {
+      "actionId": 1,
+      "status": "viewable"
+    },
+    {
+      "actionId": 3,
+      "status": "saleable"
+    }
+  ],
+  "categories": [
+    {
+      "categoryId": 1,
+      "categoryName": "Pokemon",
+      "items": []
+    }
+  ]
 }
 
-### [ ] PUT a Category
+### [ ] PUT an Item
 
 PUT {{url}}/2 HTTP/1.1
 Content-Type: application/json
 
 {
-  "categoryId": 4,
-  "name": "Changed"
+  "itemId": 2,
+    "itemName": "Pokemon Card D",
+    "description": "Brand new card",
+    "value": 25.00,
+    "userId": 1,
+    "image": "testImageURL",
+    "actions" : [
+      {
+        "actionId": 1,
+        "status": "viewable"
+      },
+      {
+        "actionId": 3,
+        "status": "saleable"
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 1,
+        "categoryName": "Pokemon"
+      }
+    ]
 }
 
-### Delete A Category
+### Delete an Item
 
 DELETE {{url}}/2 HTTP/1.1

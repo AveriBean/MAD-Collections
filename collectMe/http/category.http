@@ -4,7 +4,7 @@ GET {{url}} HTTP/1.1
 
 ###
 
-GET {{url}}/2 HTTP/1.1
+GET {{url}}/3 HTTP/1.1
 
 ### POST a Category
 
@@ -29,4 +29,4 @@ Content-Type: application/json
 
 ### Delete A Category
 
-DELETE {{url}}/2 HTTP/1.1
+DELETE {{url}}/5 HTTP/1.1
