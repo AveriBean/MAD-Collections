@@ -1,6 +1,6 @@
 drop database if exists collect_me_production;
 create database collect_me_production;
-use collect_me;
+use collect_me_production;
 
 create table user (
 user_id int primary key auto_increment,
@@ -18,7 +18,9 @@ create table item (
 item_id int primary key auto_increment,
 `name` varchar(30) not null,
 description varchar(128) not null,
+`value` decimal(10,2) null,
 user_id int not null,
+image varchar(1028) not null,
 constraint fk_item_user_id
         foreign key (user_id)
        references user(user_id)

@@ -20,6 +20,7 @@ item_id int primary key auto_increment,
 `description` varchar(128) not null,
 `value` decimal(10,2) null,
 user_id int not null,
+image varchar(1028) not null,
 constraint fk_item_user_id
         foreign key (user_id)
        references user(user_id)

@@ -16,6 +16,7 @@ public class ItemMapper implements RowMapper<Item> {
         item.setDescription(resultSet.getString("description"));
         item.setValue(resultSet.getBigDecimal("value"));
         item.setUserId(resultSet.getInt("user_id"));
+        item.setImage(resultSet.getString("image"));
         return item;
     }
 }
