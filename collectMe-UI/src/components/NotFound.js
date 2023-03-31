@@ -1,15 +1,18 @@
 import {Link} from "react-router-dom"
-import notFound from "../utilities/images/404.webp"
+import '../styles/NotFound.css'
+import notFound from "../utilities/NotFoundPhoto/MADCollectionsNotFound.avif"
 
 function NotFound() {
     return (
       <main>
-        <h2 className="textNotFound text-center">Oops, Page Not Found!</h2>
+        <div className="bgNotFound">
+        <h2 className="textNotFound text-center">Sorry, Page Not Found. . .</h2>
         <div className="text-center">
-        <img src={notFound} alt="not found" />
+        <img className="rounded-5 my-1" src={notFound} alt="not found" />
         </div>
         <div className="text-center">
-            <Link to="/" className="btn btn-outline-primary me-2">Click Here to Return to Home Page</Link>
+            <Link to="/" className="btn btn-outline-light me-2">Click Here to Return to Home Page</Link>
+        </div>
         </div>
       </main>
     );

@@ -142,5 +142,5 @@ Content-Type: application/json
 
 {
     "username": "SWalk" ,
-    "password": "$2a$10$.zydOtTivoIcJP1CVcbEbOEaSfgDefR8yIRp3W.oZRFrvOSEOAOm6"
+    "password": "user"
 }
