@@ -14,9 +14,9 @@ function SideBar () {
     }, []);
 
     return (
-    <div id="mySidenav" className="sidenav border container-fluid h-100">
+    <div id="mySidenav" className="sidenav border container-fluid">
 
-        <div className="row h-100">
+        <div className="row">
             <a className="list-group-item" href="#">{categories.map(c => <Category key={c.categoryId} category={c} />)}</a>
         </div>
         
