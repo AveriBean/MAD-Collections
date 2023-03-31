@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home"
-import AboutUs from "./components/AboutUs";
+// import AboutUs from "./components/AboutUs";
 import NavBar from "./components/NavBar"
 import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
@@ -8,10 +8,10 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Router>
         <NavBar />
-        {/* <SideBar /> */}
+        <SideBar />
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/about" element={<AboutUs />} /> */}
@@ -19,7 +19,7 @@ function App() {
           {/* <Route path="/items/:id" element={<Item />} /> */}
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   );
