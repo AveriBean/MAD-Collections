@@ -1,5 +1,7 @@
 .site-footer
 {
+  bottom: 0; /* Stay at the bottom */
+  left: 0;
   background-color:#26272b;
   padding:45px 0 20px;
   font-size:15px;
@@ -58,6 +60,11 @@
 .site-footer .social-icons
 {
   text-align:right
+}
+img
+{
+  width: 30px;
+  height: 30px;
 }
 .site-footer .social-icons a
 {
