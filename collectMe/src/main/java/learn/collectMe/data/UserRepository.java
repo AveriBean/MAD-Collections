@@ -1,4 +1,3 @@
-/*
 package learn.collectMe.data;
 
 import learn.collectMe.models.User;
@@ -25,4 +24,3 @@ public interface UserRepository {
 
     boolean deleteById(int userId);
 }
-*/

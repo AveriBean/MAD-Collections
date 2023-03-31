@@ -1,9 +1,9 @@
-/*
 package learn.collectMe.data;
 
 import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.data.mappers.UserMapper;
 import learn.collectMe.data.mappers.UserWithoutRolesMapper;
+import learn.collectMe.models.Item;
 import learn.collectMe.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -33,7 +33,13 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 "from user " +
                 "order by last_name;";
 
-        return jdbcTemplate.query(sql, new UserWithoutRolesMapper());
+        List<User> users = jdbcTemplate.query(sql, new UserWithoutRolesMapper());
+
+        for (User user : users) {
+            addItems(user);
+        }
+
+        return users;
     }
 
     @Override
@@ -164,7 +170,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     private void addItems(User user) {
 
-        String sql = "select item_id, `name`, description, value, user_id " +
+        String sql = "select item_id, `name`, description, value, user_id, image " +
                 "from item where user_id = ?;";
 
         var userItems = jdbcTemplate.query(sql, new ItemMapper(), user.getUserId());
@@ -196,4 +202,3 @@ public class UserJdbcTemplateRepository implements UserRepository {
         return jdbcTemplate.query(sql, (rs, rowId) -> rs.getString("role_name"), username);
     }
 }
-*/

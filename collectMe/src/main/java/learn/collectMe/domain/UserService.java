@@ -1,10 +1,9 @@
-/*
+
 package learn.collectMe.domain;
 
-import learn.collectMe.data.ItemRepository;
-import learn.collectMe.data.UserRepository;
+import learn.collectMe.data.ItemJdbcTemplateRepository;
+import learn.collectMe.data.UserJdbcTemplateRepository;
 import learn.collectMe.models.User;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,17 +16,19 @@ import java.util.Objects;
 //TODO implement security methods
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements UserDetailsService{
 
-    private final UserRepository userRepository;
-    private final ItemRepository itemRepository;
+    private final UserJdbcTemplateRepository userRepository;
+    private final ItemJdbcTemplateRepository itemRepository;
 
+    private final PasswordEncoder encoder;
 
-    public UserService(UserRepository userRepository, ItemRepository itemRepository) {
+    public UserService(UserJdbcTemplateRepository userRepository, ItemJdbcTemplateRepository itemRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.itemRepository = itemRepository;
-
+        this.encoder = encoder;
     }
+
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -72,7 +73,7 @@ public class UserService implements UserDetailsService {
 //
 //        password = encoder.encode(password);
 //
-//        User appUser = new User(0, username, password, true, List.of("USER"));
+//        User user = new User(0, username, password, true, List.of("USER"));
 //
 //        try {
 //            appUser = repository.create(appUser);
@@ -125,40 +126,59 @@ public class UserService implements UserDetailsService {
             result.addMessage("email is required", ResultType.INVALID);
         }
 
-        return result;
-    }
-
-    private Result<User> validate(String username, String password) {
-        Result<User> result = new Result<>();
-
-        if (username == null || username.isBlank()) {
+        if (user.getUsername() == null || user.getUsername().isBlank()) {
             result.addMessage("username is required", ResultType.INVALID);
             return result;
         }
 
-        if (password == null) {
+        if (user.getPassword() == null) {
             result.addMessage("password is required", ResultType.INVALID);
             return result;
         }
 
-        if (username.length() > 50) {
+        if (user.getUsername().length() > 50) {
             result.addMessage("username must be less than 50 characters", ResultType.INVALID);
         }
 
-        if (!isValidPassword(password)) {
+        if (!isValidPassword(user.getPassword())) {
             result.addMessage("password must be at least 8 character and contain a digit," +
-                    " a letter", ResultType.INVALID);
-        }
-
-        List<User> users = userRepository.findAll();
-        for(User u: users) {
-            if(Objects.equals(username, u.getUsername())) {
-                result.addMessage("username cannot be duplicated", ResultType.INVALID);
-            }
+                    " and a letter", ResultType.INVALID);
         }
 
         return result;
     }
+
+//    private Result<User> validate(String username, String password) {
+//        Result<User> result = new Result<>();
+//
+//        if (username == null || username.isBlank()) {
+//            result.addMessage("username is required", ResultType.INVALID);
+//            return result;
+//        }
+//
+//        if (password == null) {
+//            result.addMessage("password is required", ResultType.INVALID);
+//            return result;
+//        }
+//
+//        if (username.length() > 50) {
+//            result.addMessage("username must be less than 50 characters", ResultType.INVALID);
+//        }
+//
+//        if (!isValidPassword(password)) {
+//            result.addMessage("password must be at least 8 character and contain a digit," +
+//                    " a letter", ResultType.INVALID);
+//        }
+//
+//        List<User> users = userRepository.findAll();
+//        for(User u: users) {
+//            if(Objects.equals(username, u.getUsername())) {
+//                result.addMessage("username cannot be duplicated", ResultType.INVALID);
+//            }
+//        }
+//
+//        return result;
+//    }
 
     private boolean isValidPassword(String password) {
         if (password.length() < 8) {
@@ -178,4 +198,3 @@ public class UserService implements UserDetailsService {
         return digits > 0 && letters > 0;
     }
 }
-*/

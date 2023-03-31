@@ -11,6 +11,5 @@ public interface ItemRepository {
     Item add(Item item);
     boolean update (Item item);
     boolean deleteById(int itemId);
-
-//    boolean userExists(int userId);
+    boolean userExists(int userId);
 }
