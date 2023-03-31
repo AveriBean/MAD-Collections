@@ -1,6 +1,6 @@
 @url = http://localhost:8080
 
-### [ ] GET all users
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiU2FsbHkiLCJ1c2VySWQiOjIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwiZmlyc3ROYW1lIjoiV2Fsa2VyIiwibGFzdE5hbWUiOiJTV2FsayIsImxvY2F0aW9uIjoiU2FsbHkncyBBZGRyZXNzIiwicGhvbmUiOiIyNjIyNjIyNjI2IiwiZW1haWwiOiJzd0B0ZXN0aW5nLmNvbSIsImV4cCI6MTY4MDI5MTQ1N30.nc280KSsoDWPhNPyAJZPV92wrX9i06mX6WgV3qotlqc
 
 GET {{url}}/api/user HTTP/1.1
 
@@ -142,5 +142,10 @@ Content-Type: application/json
 
 {
     "username": "SWalk" ,
-    "password": "$2a$10$.zydOtTivoIcJP1CVcbEbOEaSfgDefR8yIRp3W.oZRFrvOSEOAOm6"
+    "password": "user"
 }
+
+### Refresh token... be sure to replace the token in the Authorization header with a valid token
+
+POST {{url}}/refresh HTTP/1.1
+Authorization: Bearer {{jwt}}
