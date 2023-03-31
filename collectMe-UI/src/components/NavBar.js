@@ -5,8 +5,9 @@ function NavBar () {
 
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#home"><h1 className="text-white">Field Agents Inventory</h1></a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <a className="navbar-brand" href="#home"><h1 className="text-white">M.A.D. Collectibles</h1></a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsible" aria-controls="collapsible" aria-expanded="false"
+            aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="collapsible">
