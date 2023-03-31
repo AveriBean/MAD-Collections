@@ -1,3 +1,4 @@
+
 package learn.collectMe.models;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -180,3 +181,4 @@ public class User implements UserDetails {
         return Objects.hash(userId, firstName, lastName, location, username, password, phone, email, enabled);
     }
 }
+

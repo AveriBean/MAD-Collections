@@ -1,10 +1,8 @@
 package learn.collectMe.controllers;
 
 import learn.collectMe.domain.CategoryService;
-import learn.collectMe.domain.ItemService;
 import learn.collectMe.domain.Result;
 import learn.collectMe.models.Category;
-import learn.collectMe.models.Item;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @CrossOrigin
+@RequestMapping("/api/category")
 public class CategoryController {
     private final CategoryService service;
 

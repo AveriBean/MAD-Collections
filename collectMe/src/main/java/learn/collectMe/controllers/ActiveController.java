@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhose:3000"})
-@RequestMapping("api/collectMe/action")
+@CrossOrigin
+@RequestMapping("api/action")
 public class ActiveController {
 
     private final ActionService actionService;

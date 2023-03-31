@@ -6,7 +6,6 @@ import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
 import learn.collectMe.models.Item;
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.dao.DataIntegrityViolationException;
 
 
@@ -64,7 +63,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Transactional
     public Item add(Item item) {
         final String sql = "insert into item (`name`, description, value, user_id, image)"
-                + "values (?,?,?,?,?);";
+                + " values (?,?,?,?,?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -76,18 +75,11 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
             return ps;
         }, keyHolder);
 
-        Item i = jdbcTemplate.query(sql, new ItemMapper(), item.getItemId()).stream()
-                .findFirst().orElse(null);
-        if (i != null) {
-            addActions(i);
-        }
-
         if (rowsAffected <= 0) {
             return null;
         }
 
         item.setItemId(keyHolder.getKey().intValue());
-
         handleBridgeTables(item);
 
 
@@ -129,6 +121,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     public boolean deleteById(int itemId) {
         jdbcTemplate.update("delete from category_item where item_id = ?;", itemId);
         jdbcTemplate.update("delete from item_action where item_id = ?;", itemId);
+        jdbcTemplate.update("delete from comment where item_id = ?;", itemId);
         return jdbcTemplate.update(
                 "delete from item where item_id = ?", itemId) > 0;
     }
@@ -151,12 +144,12 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     private void addCategories(Item item) {
-        String sql = "select\n" +
-                "c.name,\n" +
-                "c.category_id \n" +
-                "from category c\n" +
-                "inner join category_item ci on c.category_id = ci.category_id\n" +
-                "inner join item i on ci.item_id = i.item_id\n" +
+        String sql = "select " +
+                "c.name, " +
+                "c.category_id  " +
+                "from category c " +
+                "inner join category_item ci on c.category_id = ci.category_id " +
+                "inner join item i on ci.item_id = i.item_id " +
                 "where i.item_id = ?";
         List<Category> categories = jdbcTemplate.query(sql, new CategoryMapper(), item.getItemId());
         item.setCategories(categories);

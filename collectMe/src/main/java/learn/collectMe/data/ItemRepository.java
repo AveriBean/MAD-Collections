@@ -12,5 +12,4 @@ public interface ItemRepository {
     boolean update (Item item);
     boolean deleteById(int itemId);
     boolean userExists(int userId);
-
 }
