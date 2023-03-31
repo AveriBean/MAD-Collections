@@ -1,3 +1,6 @@
+import Items from "./components/Items";
+import ItemForm from "./components/ItemForm";
+
 function App() {
   return (
     <div className="container">
