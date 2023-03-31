@@ -25,7 +25,7 @@ public class JwtConverter {
         return Jwts.builder()
                 .setIssuer(ISSUER)
                 .setSubject(user.getUsername())
-                .claim("appUserId", user.getUserId())
+                .claim("userId", user.getUserId())
                 .claim("authorities", authorities)
                 .claim("firstName", user.getFirstName())
                 .claim("lastName", user.getLastName())
