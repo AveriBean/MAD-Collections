@@ -8,10 +8,37 @@ export function getEmptyItem() {
     name: "",
     description: "",
     value: 0,
-    userId: 0,
+    userId: 2,
     image: "",
     actions: [],
     categories: [],
+  };
+}
+
+export function getTestItem() {
+  return {
+    itemId: 2,
+    itemName: "Pokemon card B",
+    description: "Pokemon card B",
+    value: 25.0,
+    userId: 1,
+    image: "TestImage",
+    actions: [
+      {
+        actionId: 1,
+        status: "viewable",
+      },
+      {
+        actionId: 2,
+        status: "tradeable",
+      },
+    ],
+    categories: [
+      {
+        categoryId: 1,
+        categoryName: "Pokemon",
+      },
+    ],
   };
 }
 

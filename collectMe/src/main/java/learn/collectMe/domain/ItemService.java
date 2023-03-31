@@ -37,6 +37,10 @@ public class ItemService {
             return result;
         }
 
+        if (item.getUserId() <= 0) {
+            result.addMessage("user id is required", ResultType.INVALID);
+        }
+
         if (item.getItemId() <= 0) {
             result.addMessage("item id must be set for `update` operation", ResultType.INVALID);
             return result;
@@ -67,9 +71,6 @@ public class ItemService {
             result.addMessage("item description is required", ResultType.INVALID);
         }
 
-        if (item.getUserId() <= 0) {
-            result.addMessage("user id is required", ResultType.INVALID);
-        }
 
         return result;
     }
