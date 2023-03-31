@@ -11,7 +11,8 @@ location varchar(255) null,
 password_hash varchar(1028) not null,
 phone varchar(64) null,
 email varchar(64) not null,
-enabled bit not null default(1)
+enabled bit not null default(1),
+locked bit not null default(0)
 );
 
 create table item (

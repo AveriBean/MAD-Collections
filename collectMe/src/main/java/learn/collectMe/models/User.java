@@ -1,4 +1,4 @@
-/*
+
 package learn.collectMe.models;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -21,9 +21,14 @@ public class User implements UserDetails {
     private String password;
     private String phone;
     private String email;
-    private boolean enabled;
-    List<Item> items = new ArrayList<>();
+    private boolean enabled = true;
+    private boolean locked;
     private Collection<GrantedAuthority> authorities = new ArrayList<>();
+    List<Item> items = new ArrayList<>();
+
+    public User() {
+
+    }
 
     public User( int userId, String username, String firstName, String lastName, String location, String password, String phone, String email, boolean enabled, List<String> roles) {
         this.userId = userId;
@@ -114,6 +119,14 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
     public List<Item> getItems() {
         return new ArrayList<>(items);
     }
@@ -129,23 +142,30 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return !locked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     public void convertRolesToAuthorities(List<String> roles) {
         this.authorities = roles.stream()
                 .map(r -> new SimpleGrantedAuthority(r))
                 .collect(Collectors.toList());
+    }
+
+    public void addAuthorities(Collection<String> authorityNames) {
+        authorities.clear();
+        for (String name : authorityNames) {
+            authorities.add(new SimpleGrantedAuthority(name));
+        }
     }
 
     @Override
@@ -161,4 +181,4 @@ public class User implements UserDetails {
         return Objects.hash(userId, firstName, lastName, location, username, password, phone, email, enabled);
     }
 }
-*/
+

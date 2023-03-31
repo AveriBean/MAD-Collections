@@ -1,4 +1,3 @@
-/*
 package learn.collectMe.controllers;
 
 import learn.collectMe.domain.Result;
@@ -68,4 +67,4 @@ public class UserController {
 
 
 }
-*/
+

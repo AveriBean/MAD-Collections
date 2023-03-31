@@ -1,4 +1,4 @@
-/*
+
 package learn.collectMe.data.mappers;
 
 import learn.collectMe.models.User;
@@ -31,4 +31,4 @@ public class UserMapper implements RowMapper<User> {
                 roles);
     }
 }
-*/
+
