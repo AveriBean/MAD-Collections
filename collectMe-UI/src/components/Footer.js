@@ -1,4 +1,8 @@
 import "../styles/Footer.css";
+import faceBook from "../images/icons/facebook.png";
+import twitter from "../images/icons/twitter.png";
+import instagram from "../images/icons/instagram.png";
+import linkedIn from "../images/icons/linkedin.png";
 
 function Footer () {
     return (
@@ -27,7 +31,7 @@ function Footer () {
                     <ul className="footer-links">
                     <li><a href="http://scanfcode.com/about/">About Us</a></li>
                     <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                    <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+                    <li><a href="https://www.flaticon.com/free-icons/linkedin" target="_blank">Attribution</a></li>
                     <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
                     <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
                     </ul>
@@ -45,10 +49,10 @@ function Footer () {
 
                 <div className="col-md-4 col-sm-6 col-xs-12">
                     <ul className="social-icons">
-                    <li><a className="facebook" href="#"><i className="fa fa-facebook"></i></a></li>
-                    <li><a className="twitter" href="#"><i className="fa fa-twitter"></i></a></li>
-                    <li><a className="instagram" href="#"><i className="fa fa-instagram"></i></a></li>
-                    <li><a className="linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>   
+                    <li><a className="facebook" href="#" target="_blank"><i className="fa fa-facebook"><img src={faceBook} /></i></a></li>
+                    <li><a className="twitter" href="#" target="_blank"><i className="fa fa-twitter"><img src={twitter} /></i></a></li>
+                    <li><a className="instagram" href="#" target="_blank"><i className="fa fa-instagram"><img src={instagram} /></i></a></li>
+                    <li><a className="linkedin" href="#" target="_blank"><i className="fa fa-linkedin"><img src={linkedIn} /></i></a></li>   
                     </ul>
                 </div>
                 </div>
