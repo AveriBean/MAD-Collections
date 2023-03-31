@@ -80,7 +80,6 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         }
 
         item.setItemId(keyHolder.getKey().intValue());
-
         handleBridgeTables(item);
 
 
@@ -127,12 +126,12 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
                 "delete from item where item_id = ?", itemId) > 0;
     }
 
-//    @Override
-//    public boolean userExists(int userId) {
-//        int count = jdbcTemplate.queryForObject(
-//                "select count(*) from item where user_id = ?;", Integer.class, userId);
-//        return count > 0;
-//    }
+    @Override
+    public boolean userExists(int userId) {
+        int count = jdbcTemplate.queryForObject(
+                "select count(*) from item where user_id = ?;", Integer.class, userId);
+        return count > 0;
+    }
 
     private void addActions(Item item) {
         String sql = "select a.status, a.action_id from action a " +
@@ -145,12 +144,12 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     }
 
     private void addCategories(Item item) {
-        String sql = "select\n" +
-                "c.name,\n" +
-                "c.category_id \n" +
-                "from category c\n" +
-                "inner join category_item ci on c.category_id = ci.category_id\n" +
-                "inner join item i on ci.item_id = i.item_id\n" +
+        String sql = "select " +
+                "c.name, " +
+                "c.category_id  " +
+                "from category c " +
+                "inner join category_item ci on c.category_id = ci.category_id " +
+                "inner join item i on ci.item_id = i.item_id " +
                 "where i.item_id = ?";
         List<Category> categories = jdbcTemplate.query(sql, new CategoryMapper(), item.getItemId());
         item.setCategories(categories);

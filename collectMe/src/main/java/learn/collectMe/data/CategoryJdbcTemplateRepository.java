@@ -3,6 +3,7 @@ package learn.collectMe.data;
 import learn.collectMe.data.mappers.CategoryMapper;
 import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
+import learn.collectMe.models.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -86,20 +87,21 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
     }
 
     private void addItems (Category category) {
-        final String sql = "select\n" +
-                "\tci.category_id,\n" +
-                "    ci.item_id,\n" +
-                "    c.`name`,\n" +
-                "    i.`name`,\n" +
-                "    i.`description`,\n" +
-                "    i.`value`,\n" +
-                "    i.user_id\n" +
-                "from category_item ci\n" +
-                "inner join item i on ci.item_id = i.item_id\n" +
-                "inner join category c on ci.category_id = c.category_id\n" +
+        final String sql = "select " +
+                "ci.category_id, " +
+                "ci.item_id, " +
+                "c.`name`, " +
+                "i.`name`, " +
+                "i.`description`, " +
+                "i.`value`, " +
+                "i.user_id, " +
+                "i.image " +
+                "from category_item ci " +
+                "inner join item i on ci.item_id = i.item_id " +
+                "inner join category c on ci.category_id = c.category_id " +
                 "where ci.category_id = ?;";
 
-        var items = jdbcTemplate.query(sql, new ItemMapper(), category.getCategoryId());
+        List<Item> items = jdbcTemplate.query(sql, new ItemMapper(), category.getCategoryId());
 
         category.setItems(items);
     }
