@@ -163,7 +163,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     private void addItems(User user) {
 
-        String sql = "select item_id, `name`, description, value, user_id " +
+        String sql = "select item_id, `name`, description, value, user_id, image " +
                 "from item where user_id = ?;";
 
         var userItems = jdbcTemplate.query(sql, new ItemMapper(), user.getUserId());

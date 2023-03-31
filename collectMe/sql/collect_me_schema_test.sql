@@ -11,7 +11,8 @@ location varchar(255) null,
 password_hash varchar(1028) not null,
 phone varchar(64) null,
 email varchar(64) not null,
-enabled bit not null default(1)
+enabled bit not null default(1),
+locked bit not null default(0)
 );
 
 create table item (
@@ -126,12 +127,12 @@ alter table user auto_increment = 1;
   
 
 
-insert into user (username, first_name, last_name, location, password_hash, phone, email, enabled) 
+insert into user (username, first_name, last_name, location, password_hash, phone, email)
 values 
-("JMich","Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com", 1),
-("SWalk","Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", 1),
-("JRipp","Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com", 1),
-("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "passwordHash4", null, "dk@testing.com", 1);
+("JMich","Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com"),
+("SWalk","Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com"),
+("JRipp","Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com"),
+("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "passwordHash4", null, "dk@testing.com");
 
 insert into category (`name`)
 values

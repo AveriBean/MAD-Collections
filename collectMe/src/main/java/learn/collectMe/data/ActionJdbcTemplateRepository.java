@@ -23,14 +23,4 @@ public class ActionJdbcTemplateRepository implements ActionRepository {
         return jdbcTemplate.query(sql, new ActionMapper());
     }
 
-    @Override
-    public List<Action> findByItem(int itemId) {
-        return null;
-    }
-
-    @Override
-    public Action findById(int actionId) {
-        return null;
-    }
-
 }
