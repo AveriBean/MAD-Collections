@@ -1,14 +1,18 @@
+import { useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 import * as base from "./baseService";
 
 const model = "item";
 
-export function getEmptyItem() {
+export function GetEmptyItem() {
+  const { user } = useContext(AuthContext);
+
   return {
     itemId: 0,
     name: "",
     description: "",
     value: 0,
-    userId: 2,
+    userId: user.userId,
     image: "",
     actions: [],
     categories: [],

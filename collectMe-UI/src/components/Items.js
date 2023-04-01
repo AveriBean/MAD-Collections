@@ -1,20 +1,21 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { findAll } from "../services/itemService";
 
 export default function Items() {
   const [items, setItems] = useState([]);
   const [wait, setWait] = useState(true);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    findAll().then((result) => {
-      setItems(result);
-      setWait(false);
-    });
-    //   .catch(() => navigate("/500"));
+    findAll()
+      .then((result) => {
+        setItems(result);
+        setWait(false);
+      })
+      .catch(() => navigate("/500"));
   }, []);
 
   if (wait) {
@@ -48,6 +49,11 @@ export default function Items() {
                 {i.categories.map((c) => (
                   <h6>{c.categoryName}</h6>
                 ))}
+              </Card.Text>
+              <Card.Text>
+                <Link to="/view/item" className="btn btn-info">
+                  View
+                </Link>
               </Card.Text>
             </Card.Body>
           </Card>

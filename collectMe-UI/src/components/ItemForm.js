@@ -1,16 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { findAll } from "../services/categoryService";
 import { findAllActions } from "../services/actionService";
-import { getEmptyItem, getTestItem, save } from "../services/itemService";
+import { GetEmptyItem, save } from "../services/itemService";
+import AuthContext from "../contexts/AuthContext";
 
 const fieldNames = ["Item Name", "Item Description", "Item Value"];
 
 export default function ItemForm() {
-  const [currentItem, setCurrentItem] = useState(getEmptyItem());
+  const [currentItem, setCurrentItem] = useState(GetEmptyItem());
   const [errors, setErrors] = useState([]);
   const [errMap, setErrMap] = useState({});
   const [wait, setWait] = useState(true);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const formRef = useRef();
 
@@ -58,14 +61,14 @@ export default function ItemForm() {
           form.classList.add("was-validated");
           setErrors(errs);
         } else {
-          // navigate("/");
+          navigate("/");
         }
       });
   }
 
   function handleChange(evt) {
     const nextItem = { ...currentItem };
-    console.log(nextItem);
+    // console.log(nextItem);
     if (evt.target.name === "actions") {
       nextItem[evt.target.name] = handleActions(evt);
     } else if (evt.target.name === "categories") {
@@ -217,7 +220,9 @@ export default function ItemForm() {
           <button type="submit" className="btn btn-primary me-2">
             Save
           </button>
-          <button className="btn btn-warning">Cancel</button>
+          <button onClick={() => navigate(-1)} className="btn btn-warning">
+            Cancel
+          </button>
         </div>
         {errors.length > 0 && (
           <div className="alert alert-danger mt-2">

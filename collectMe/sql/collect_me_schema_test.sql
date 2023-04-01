@@ -129,10 +129,10 @@ alter table user auto_increment = 1;
 
 insert into user (username, first_name, last_name, location, password_hash, phone, email)
 values 
-("JMich","Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com"),
-("SWalk","Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com"),
-("JRipp","Jack", "Ripper", "Jacks's Address", "passwordHash3", "4144144141", "jr@testing.com"),
-("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "passwordHash4", null, "dk@testing.com");
+("JMich","Micahael", "Jackson", null, "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "mj@testing.com"),
+("SWalk","Sally", "Walker", "Sally's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "2622622626", "sw@testing.com"),
+("JRipp","Jack", "Ripper", "Jacks's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "4144144141", "jr@testing.com"),
+("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "dk@testing.com");
 
 insert into category (`name`)
 values
