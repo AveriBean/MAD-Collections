@@ -1,0 +1,13 @@
+.bgNotFound {
+    background-position: center;
+    background-repeat:repeat;
+    background-size: cover;
+    background-color: #4F4F4f;
+}
+
+.textNotFound {
+    font-size:3rem;
+    color:whitesmoke;
+    line-height: 1.5;
+    text-align: center;
+}
