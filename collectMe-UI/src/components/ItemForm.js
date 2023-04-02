@@ -1,30 +1,74 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-import { getEmptyItem, getTestItem, save } from "../services/itemService";
+import { findAll } from "../services/categoryService";
+import { findAllActions } from "../services/actionService";
+import { GetEmptyItem, save } from "../services/itemService";
+import AuthContext from "../contexts/AuthContext";
 
 const fieldNames = ["Item Name", "Item Description", "Item Value"];
 
 export default function ItemForm() {
-  const [currentItem, setCurrentItem] = useState(getEmptyItem());
+  const [currentItem, setCurrentItem] = useState(GetEmptyItem());
   const [errors, setErrors] = useState([]);
   const [errMap, setErrMap] = useState({});
   const [wait, setWait] = useState(true);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const formRef = useRef();
 
-  //   const navigate = useNavigate();
-  //   const { id } = useParams();
+  const [categories, setCategories] = useState([]);
+  const [actions, setActions] = useState([]);
+
+  useEffect(() => {
+    findAll().then((result) => {
+      setCategories(result);
+      setWait(false);
+    });
+    //   .catch(() => navigate("/500"));
+  }, []);
+
+  useEffect(() => {
+    findAllActions().then((result) => {
+      setActions(result);
+      setWait(false);
+    });
+    //   .catch(() => navigate("/500"));
+  }, []);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    save(currentItem).then().catch();
+    const form = formRef.current;
+    setErrMap({});
+
+    save(currentItem)
+      .then()
+      .catch((errs) => {
+        if (errs) {
+          const map = {};
+
+          for (const err of errs) {
+            for (const fieldName of fieldNames) {
+              if (err.includes(`\`${fieldName}\``)) {
+                form.querySelector(`#${fieldName}`).setCustomValidity(err);
+                map[fieldName] = err;
+              }
+            }
+          }
+
+          setErrMap(map);
+          form.classList.add("was-validated");
+          setErrors(errs);
+        } else {
+          navigate("/");
+        }
+      });
   }
 
   function handleChange(evt) {
     const nextItem = { ...currentItem };
-    console.log(nextItem);
+    // console.log(nextItem);
     if (evt.target.name === "actions") {
       nextItem[evt.target.name] = handleActions(evt);
     } else if (evt.target.name === "categories") {
@@ -38,7 +82,7 @@ export default function ItemForm() {
   function handleCategories(evt) {
     const categoryId = parseInt(evt.target.value);
     const categories = [...currentItem.categories];
-    // debugger;
+
     // if the checkbox is checked, add the value
     if (evt.target.checked) {
       categories.push({ categoryId: categoryId, categoryName: "" });
@@ -57,7 +101,7 @@ export default function ItemForm() {
   const handleActions = function (evt) {
     const actionId = parseInt(evt.target.value);
     const actions = [...currentItem.actions];
-    // debugger;
+
     // if the checkbox is checked, add the value
     if (evt.target.checked) {
       actions.push({ actionId: actionId, status: "" });
@@ -134,93 +178,51 @@ export default function ItemForm() {
         </div>
         <div>
           <h3>Actions</h3>
-          <div>
-            <input
-              type="checkbox"
-              value="1"
-              id="chkViewable"
-              name="actions"
-              checked={currentItem.actions.find((a) => a.actionId === 1)}
-              onChange={handleChange}
-            />
-            <label htmlFor="chkViewable">Viewable</label>
-          </div>
+
+          {actions.map((a) => (
+            <div>
+              <input
+                type="checkbox"
+                value={a.actionId}
+                id={a.status}
+                name="actions"
+                checked={currentItem.actions.find(
+                  (act) => act.actionId === a.actionId
+                )}
+                onChange={handleChange}
+              />
+              <label htmlFor={a.status}>{a.status}</label>
+            </div>
+          ))}
         </div>
-        <div>
-          <input
-            type="checkbox"
-            value="2"
-            id="chkViewable"
-            name="actions"
-            checked={currentItem.actions.find((a) => a.actionId === 2)}
-            onChange={handleChange}
-          />
-          <label htmlFor="chkTradeable">Tradeable</label>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            value="3"
-            id="chkSaleable"
-            name="actions"
-            checked={currentItem.actions.find((a) => a.actionId === 3)}
-            onChange={handleChange}
-          />
-          <label htmlFor="chkSaleable">Saleable</label>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            value="4"
-            id="chkNegotiable"
-            name="actions"
-            checked={currentItem.actions.find((a) => a.actionId === 4)}
-            onChange={handleChange}
-          />
-          <label htmlFor="chkNegotiable">Negotiable</label>
-        </div>
+
         <div>
           <h3>Categories</h3>
-          <div>
-            <input
-              type="checkbox"
-              value="1"
-              id="chkPokemon"
-              name="categories"
-              checked={currentItem.categories.find((c) => c.categoryId === 1)}
-              onChange={handleChange}
-            />
-            <label htmlFor="chkPokemon">Pokemon</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              value="2"
-              id="chkMagic"
-              name="categories"
-              checked={currentItem.categories.find((c) => c.categoryId === 2)}
-              onChange={handleChange}
-            />
-            <label htmlFor="chkMagic">Magic</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              value="3"
-              id="chkBaseball"
-              name="categories"
-              checked={currentItem.categories.find((c) => c.categoryId === 3)}
-              onChange={handleChange}
-            />
-            <label htmlFor="chkBaseball">Baseball</label>
-          </div>
+
+          {categories.map((c) => (
+            <div>
+              <input
+                type="checkbox"
+                value={c.categoryId}
+                id={c.categoryName}
+                name="categories"
+                checked={currentItem.categories.find(
+                  (ca) => ca.categoryId === c.categoryId
+                )}
+                onChange={handleChange}
+              />
+              <label htmlFor={c.categoryName}>{c.categoryName}</label>
+            </div>
+          ))}
         </div>
 
         <div>
           <button type="submit" className="btn btn-primary me-2">
             Save
           </button>
-          <button className="btn btn-warning">Cancel</button>
+          <button onClick={() => navigate(-1)} className="btn btn-warning">
+            Cancel
+          </button>
         </div>
         {errors.length > 0 && (
           <div className="alert alert-danger mt-2">
