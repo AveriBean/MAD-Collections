@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("api/action")
-public class ActiveController {
+public class ActionController {
 
     private final ActionService actionService;
 
-    public ActiveController(ActionService actionService) {
+    public ActionController(ActionService actionService) {
         this.actionService = actionService;
     }
 
