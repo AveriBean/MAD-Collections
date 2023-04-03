@@ -4,6 +4,9 @@ import { findAll } from "../services/categoryService";
 import { findAllActions } from "../services/actionService";
 import { GetEmptyItem, save } from "../services/itemService";
 import AuthContext from "../contexts/AuthContext";
+import { Col, Form } from "react-bootstrap";
+import Multiselect from "react-bootstrap-multiselect";
+import Select from "react-select";
 
 const fieldNames = ["Item Name", "Item Description", "Item Value"];
 
@@ -14,7 +17,7 @@ export default function ItemForm() {
   const [wait, setWait] = useState(true);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [field, setField] = useState([]);
   const formRef = useRef();
 
   const [categories, setCategories] = useState([]);
@@ -115,6 +118,11 @@ export default function ItemForm() {
     return actions;
   };
 
+  const options = actions.map((a) => ({
+    value: a.actionId,
+    label: a.status,
+  }));
+
   return (
     <div className="container col-4 border rounded border-info">
       <form
@@ -178,6 +186,15 @@ export default function ItemForm() {
         </div>
         <div>
           <h3>Actions</h3>
+          <Select
+            defaultValue={"viewable"}
+            isMulti
+            name="actions"
+            options={options}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            // onChange={handleChange}
+          />
 
           {actions.map((a) => (
             <div>
@@ -233,24 +250,6 @@ export default function ItemForm() {
             </ul>
           </div>
         )}
-
-        {/* <div>
-          <button type="submit" className="btn btn-primary me-2">
-            Save
-          </button>
-          <Link to="/" className="btn btn-warning">
-            Cancel
-          </Link>
-        </div>
-         {errors.length > 0 && (
-          <div className="alert alert-danger mt-2">
-            <ul className="mb-0">
-              {errors.map((err) => (
-                <li key={err}>{err}</li>
-              ))} 
-            </ul>
-          </div>
-        )}  */}
       </form>
     </div>
   );
