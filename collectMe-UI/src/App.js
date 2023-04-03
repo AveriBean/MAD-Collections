@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import "./styles/App.css";
+
 import Home from "./components/Home"
 // import AboutUs from "./components/AboutUs";
+import Items from "./components/Items";
 import NavBar from "./components/NavBar"
 import NotFound from "./components/NotFound";
 import SideBar from "./components/SideBar";
@@ -16,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/about" element={<AboutUs />} /> */}
-          {/* <Route path="/items" element={<Items />} /> */}
+          <Route path="/items" element={<Items />} />
           {/* <Route path="/items/:id" element={<Item />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
