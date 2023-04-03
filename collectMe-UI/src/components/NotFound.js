@@ -11,7 +11,7 @@ function NotFound() {
         <img className="rounded-5 my-1" src={notFound} alt="not found" />
         </div>
         <div className="text-center">
-            <Link to="/" className="btn btn-outline-light me-2">Click Here to Return to Home Page</Link>
+            <Link to="/" className="btn btn-outline-light my-2">Click Here to Return to Home Page</Link>
         </div>
         </div>
       </main>
