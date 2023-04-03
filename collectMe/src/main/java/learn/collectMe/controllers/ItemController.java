@@ -20,7 +20,12 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<Item> findAll() {return service.findAll();}
+    public List<Item> findAll() { return service.findAll(); }
+
+    @GetMapping("/category/{categoryId}")
+    public List<Item> findAllByCategory(@PathVariable Integer categoryId) {
+        return service.findByCategoryId(categoryId);
+    }
 
     @GetMapping("/{itemId}")
     public Item findById(@PathVariable int itemId) {

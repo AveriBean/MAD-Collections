@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import ItemForm from "./components/ItemForm";
 import { refresh } from "./services/authService";
 import Items from "./components/Items";
+import CategoryItem from "./components/CategoryItem";
 
 function App() {
   const [user, setUser] = useState();
@@ -44,6 +45,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add" element={<ItemForm />} />
+            <Route path="/category/:categoryId" element={<CategoryItem />} />
             {/* <Route path="/about" element={<AboutUs />} /> */}
             <Route path="/items" element={<Items />} />
             {/* <Route path="/items/:id" element={<Item />} /> */}

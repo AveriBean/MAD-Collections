@@ -50,6 +50,14 @@ export async function findAll() {
   return base.findAll(model);
 }
 
+export async function findAllByCategory(categoryId) {
+  const response = await fetch(`http://localhost:8080/api/item/category/${categoryId}`);
+  if (response.ok) {
+    return response.json();
+  }
+  return Promise.reject(`could not find all items for category ${categoryId}`);
+}
+
 export async function findById(itemId) {
   return base.findById(model, itemId);
 }

@@ -1,52 +1,30 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { findAll } from "../services/itemService";
+import { Link } from "react-router-dom";
 
-export default function Item() {
-  const [items, setItems] = useState([]);
-  const [wait, setWait] = useState(true);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    findAll()
-      .then((result) => {
-        setItems(result);
-        setWait(false);
-      })
-      .catch(() => navigate("/500"));
-  }, []);
-
-  if (wait) {
-    return (
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    );
-  }
+export default function Item({ item }) {
 
   return (
     <>
-      {items.map((i) => (
         <Col className="d-flex justify-content-center">
           <Card style={{ width: "18rem", marginTop: "10px" }}>
-            <Card.Img src={i.image} />
+            <Card.Img src={item.image} />
             <Card.Body style={{ textAlign: "center" }}>
               <Card.Title style={{ marginBottom: "10px" }}>
-                {i.itemName}
+                {item.itemName}
               </Card.Title>
-              <Card.Text>Description: {i.description}</Card.Text>
-              <Card.Text>Value: {i.value}</Card.Text>
+              <Card.Text>Description: {item.description}</Card.Text>
+              <Card.Text>Value: {item.value}</Card.Text>
               <Card.Text>
                 Item Status:
-                {i.actions.map((a) => (
+                {item.actions.map((a) => (
                   <h6>{a.status}</h6>
                 ))}
               </Card.Text>
               <Card.Text>
                 Categories:
-                {i.categories.map((c) => (
+                {item.categories.map((c) => (
                   <h6>{c.categoryName}</h6>
                 ))}
               </Card.Text>
@@ -58,7 +36,6 @@ export default function Item() {
             </Card.Body>
           </Card>
         </Col>
-      ))}
     </>
   );
 }
