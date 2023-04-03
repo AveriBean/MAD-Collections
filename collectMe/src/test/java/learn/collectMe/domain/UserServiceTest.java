@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 class UserServiceTest {
 
     @MockBean
@@ -26,12 +26,12 @@ class UserServiceTest {
     @Test
     void shouldAdd() {
         List<String> roles = userRepository.getRolesByUsername("Test Username");
-        User arg = new User(0, "Test Username", "Test", "Test", "Test", "Test", "Test", "Test", true, roles);
+        User arg = new User(0, "Test Username", "Test", "Test", "Test", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "Test", "Test", true, roles);
 
         Result<User> expected = new Result<>();
-        expected.setPayload(new User(5, "Test Username", "Test", "Test", "Test", "Test", "Test", "Test", true, roles));
+        expected.setPayload(new User(5, "Test Username", "Test", "Test", "Test", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "Test", "Test", true, roles));
 
-        when(userRepository.add(any())).thenReturn(new User(5, "Test Username", "Test", "Test", "Test", "Test", "Test", "Test", true, roles));
+        when(userRepository.add(any())).thenReturn(new User(5, "Test Username", "Test", "Test", "Test", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "Test", "Test", true, roles));
 
         Result<User> actual = userService.add(arg);
 
@@ -41,7 +41,7 @@ class UserServiceTest {
     @Test
     void shouldNotAddEmptyName() {
         List<String> roles = userRepository.getRolesByUsername("Test Username");
-        User arg = new User(0, "Test Username", "", "", "Test", "Test", "Test", "Test", true, roles);
+        User arg = new User(0, "Test Username", "", "", "Test", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "Test", "Test", true, roles);
         Result<User> expected = new Result<>();
         expected.addMessage("name fields are required", ResultType.INVALID);
         Result<User> actual = userService.add(arg);
@@ -52,9 +52,20 @@ class UserServiceTest {
     @Test
     void shouldNotAddEmptyEmail() {
         List<String> roles = userRepository.getRolesByUsername("Test Username");
-        User arg = new User(0, "Test Username", "Test", "Test", "Test", "Test", "Test", "", true, roles);
+        User arg = new User(0, "Test Username", "Test", "Test", "Test", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "Test", "", true, roles);
         Result<User> expected = new Result<>();
         expected.addMessage("email is required", ResultType.INVALID);
+        Result<User> actual = userService.add(arg);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldNotAddUserOverFiftyCharacters() {
+        List<String> roles = userRepository.getRolesByUsername("Test Username");
+        User arg = new User(0, "Test UsernameTest UsernameTest UsernameTest Username", "Test", "Test", "Test", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "Test", "Test", true, roles);
+        Result<User> expected = new Result<>();
+        expected.addMessage("username must be less than 50 characters", ResultType.INVALID);
         Result<User> actual = userService.add(arg);
 
         assertEquals(expected, actual);
