@@ -23,7 +23,7 @@ function CategoryItem() {
     <div className="container d-flex-row justify-content-center" style={{minHeight: "75vh"}}>
 
       <div className="d-flex justify-content-center align-content-center">
-        <h2>By Selected Category<p></p></h2>
+        <h2>{items.length > 0 ? items[0].categories[0].categoryName : "By Selected Category"}</h2>
       </div>
 
       <div className="g-4 d-flex justify-content-center">
