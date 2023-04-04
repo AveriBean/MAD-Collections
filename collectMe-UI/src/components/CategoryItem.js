@@ -10,25 +10,32 @@ function CategoryItem() {
   const navigate = useNavigate();
   const { categoryId } = useParams();
 
-
   useEffect(() => {
-    if(categoryId) {
-      findByCategoryId(categoryId)
-        .then((setItems))
-        .catch(() => navigate("/500"));
+    if (categoryId) {
+      findByCategoryId(categoryId).then(setItems);
+      // .catch(() => navigate("/500"));
     }
-  }, [categoryId, navigate]);
- 
-  return (
-    <div className="container d-flex-row justify-content-center" style={{minHeight: "75vh"}}>
+  }, []);
 
+  return (
+    <div
+      className="container d-flex-row justify-content-center"
+      style={{ minHeight: "75vh" }}
+    >
       <div className="d-flex justify-content-center align-content-center">
-        <h2>{items.length > 0 ? items[0].categories[0].categoryName : "By Selected Category"}</h2>
+        <h2>
+          {items.length > 0
+            ? items[0].categories[0].categoryName
+            : "By Selected Category"}
+        </h2>
       </div>
 
       <div className="g-4 d-flex justify-content-center">
         {items.map((i) => (
-          <Col key={"item-"+i.itemId} className="d-flex justify-content-center">
+          <Col
+            key={"item-" + i.itemId}
+            className="d-flex justify-content-center"
+          >
             <Card style={{ width: "18rem", marginTop: "10px" }}>
               <Card.Img src={i.image} />
               <Card.Body style={{ textAlign: "center" }}>
@@ -59,12 +66,8 @@ function CategoryItem() {
           </Col>
         ))}
       </div>
-
     </div>
   );
 }
 
 export default CategoryItem;
-
-
-
