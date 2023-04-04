@@ -63,25 +63,3 @@ function Footer () {
 }
 
 export default Footer;
-
-        {/* <div className="footer container-fluid">
-            <div>
-                <p>Site Creation by M.A.D. Developers</p>
-                <p>backed by</p>
-                <p>Dev-10 Company</p>
-                Address:<br></br>
-                100 Genesis Corp Way<br></br>
-                Atlanta, GA 30001
-            </div>
-
-            <div>
-                <ul>
-                    <li>Facebook<span>F</span></li>
-                    <li>Twitter<span>T</span></li>
-                    <li>Instagram<span>I</span></li>
-                    <li>LinkedIn<span>L</span></li>
-                </ul>
-                
-            </div>
-
-        </div> */}

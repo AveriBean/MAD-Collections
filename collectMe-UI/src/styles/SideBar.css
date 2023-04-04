@@ -1,9 +1,9 @@
 /* The sidebar menu */
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 10vw; /* Set the width of the sidebar */
+    width: 15vw; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    /*z-index: 1;  Stay on top */
     background-color: #111; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
@@ -28,6 +28,38 @@
     margin-left: 160px; /* Same as the width of the sidebar */
     padding: 0px 10px;
   }
+
+
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    font-size: 22px;
+  }
+  /* .search-header {
+    display: flex;
+  } */
+  .search-text {
+    font-size: 22px;
+    display: flex;
+  }
+
+  #search-box {
+    height: 25px;
+  }
+
+  #search-box[placeholder] {
+    line-height: 25px;
+    font-size: 25px;
+  }
+  
+  #item-list {
+    min-height: 260px;
+  }
+
+  
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
