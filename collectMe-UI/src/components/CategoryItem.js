@@ -18,13 +18,12 @@ function CategoryItem() {
         .catch(console.log({items}));
     }
   }, [categoryId, navigate]);
-
  
   return (
     <div className="container d-flex-row justify-content-center" style={{minHeight: "75vh"}}>
 
       <div className="d-flex justify-content-center align-content-center">
-        <h2>TEST</h2>
+        <h2>By Selected Category<p></p></h2>
       </div>
 
       <div className="g-4 d-flex justify-content-center">
