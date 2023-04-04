@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { findAll } from "../services/categoryService";
 import "../styles/SideBar.css";
-// import Category from "./Category";
 
 function SideBar () {
 

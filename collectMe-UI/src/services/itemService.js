@@ -50,7 +50,7 @@ export async function findAll() {
   return base.findAll(model);
 }
 
-export async function findAllByCategory(categoryId) {
+export async function findByCategoryId(categoryId) {
   const response = await fetch(`http://localhost:8080/api/item/category/${categoryId}`);
   if (response.ok) {
     return response.json();

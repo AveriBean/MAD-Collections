@@ -22,10 +22,7 @@ public class ItemService {
 
     public List<Item> findAll() {return repository.findAll();};
 
-    public List<Item> findByCategoryId(Integer categoryId) {
-        Category category = categoryRepository.findById(categoryId);
-        return category != null ? category.getItems() : new ArrayList<>();
-    }
+    public List<Item> findByCategoryId(int categoryId) { return repository.findByCategoryId(categoryId); }
 
     public Item findById(int itemId) {return repository.findById(itemId);};
 

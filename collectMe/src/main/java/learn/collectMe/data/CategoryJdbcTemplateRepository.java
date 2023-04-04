@@ -27,7 +27,7 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
     @Override
     public List<Category> findAll() {
 
-        final String sql = "select category_id, `name` from category limit 1000;";
+        final String sql = "select category_id, `name` from category order by `name` limit 1000;";
         return jdbcTemplate.query(sql, new CategoryMapper());
     }
 

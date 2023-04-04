@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { findAllByCategory } from "../services/itemService";
+import { findByCategoryId } from "../services/itemService";
 
 function CategoryItem() {
   const [items, setItems] = useState([]);
@@ -13,18 +13,18 @@ function CategoryItem() {
 
   useEffect(() => {
     if(categoryId) {
-      findAllByCategory(categoryId)
+      findByCategoryId(categoryId)
         .then((setItems))
-        .catch(() => navigate("/500"));
+        .catch(console.log({items}));
     }
   }, [categoryId, navigate]);
 
  
   return (
-    <div className="container row">
+    <div className="container d-flex-row justify-content-center" style={{minHeight: "75vh"}}>
 
       <div className="d-flex justify-content-center align-content-center">
-        <h2></h2>
+        <h2>TEST</h2>
       </div>
 
       <div className="g-4 d-flex justify-content-center">
