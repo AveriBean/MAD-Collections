@@ -4,11 +4,13 @@ package learn.collectMe.domain;
 import learn.collectMe.data.ItemJdbcTemplateRepository;
 import learn.collectMe.data.UserJdbcTemplateRepository;
 import learn.collectMe.models.User;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +22,6 @@ public class UserService implements UserDetailsService{
 
     private final UserJdbcTemplateRepository userRepository;
     private final ItemJdbcTemplateRepository itemRepository;
-
     private final PasswordEncoder encoder;
 
     public UserService(UserJdbcTemplateRepository userRepository, ItemJdbcTemplateRepository itemRepository, PasswordEncoder encoder) {
@@ -49,41 +50,28 @@ public class UserService implements UserDetailsService{
         return user;
     }
 
+
     public Result<User> add(User user) {
         Result<User> result = validate(user);
         if (!result.isSuccess()) {
             return result;
         }
 
-        user =  userRepository.add(user);
-        if (user == null) {
-            result.addMessage("could not save user", ResultType.INVALID);
-            return result;
-        }
+        user.setPassword(encoder.encode(user.getPassword()));
 
+        try {
+            user = userRepository.add(user);
+            if (user == null) {
+                result.addMessage("could not save user", ResultType.INVALID);
+                return result;
+            }
+            result.setPayload(user);
+        }catch (DuplicateKeyException ex) {
+            result.addMessage("The provided username already exists", ResultType.INVALID);
+        }
         result.setPayload(user);
         return result;
     }
-
-//    public Result<User> create(String username, String password) {
-//        Result<User> result = validate(username, password);
-//        if (!result.isSuccess()) {
-//            return result;
-//        }
-//
-//        password = encoder.encode(password);
-//
-//        User user = new User(0, username, password, true, List.of("USER"));
-//
-//        try {
-//            appUser = repository.create(appUser);
-//            result.setPayload(appUser);
-//        } catch (DuplicateKeyException e) {
-//            result.addMessage(ActionStatus.INVALID, "The provided username already exists");
-//        }
-//
-//        return result;
-//    }
 
     public Result<User> update(User user) {
         Result<User> result = validate(user);
@@ -141,44 +129,12 @@ public class UserService implements UserDetailsService{
         }
 
         if (!isValidPassword(user.getPassword())) {
-            result.addMessage("password must be at least 8 character and contain a digit," +
+            result.addMessage("password must be at least 8 characters long and contain both a digit" +
                     " and a letter", ResultType.INVALID);
         }
 
         return result;
     }
-
-//    private Result<User> validate(String username, String password) {
-//        Result<User> result = new Result<>();
-//
-//        if (username == null || username.isBlank()) {
-//            result.addMessage("username is required", ResultType.INVALID);
-//            return result;
-//        }
-//
-//        if (password == null) {
-//            result.addMessage("password is required", ResultType.INVALID);
-//            return result;
-//        }
-//
-//        if (username.length() > 50) {
-//            result.addMessage("username must be less than 50 characters", ResultType.INVALID);
-//        }
-//
-//        if (!isValidPassword(password)) {
-//            result.addMessage("password must be at least 8 character and contain a digit," +
-//                    " a letter", ResultType.INVALID);
-//        }
-//
-//        List<User> users = userRepository.findAll();
-//        for(User u: users) {
-//            if(Objects.equals(username, u.getUsername())) {
-//                result.addMessage("username cannot be duplicated", ResultType.INVALID);
-//            }
-//        }
-//
-//        return result;
-//    }
 
     private boolean isValidPassword(String password) {
         if (password.length() < 8) {
