@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-export default function Upload() {
+export default function Upload({ handleUrl }) {
   const [currentFile, setCurrentFile] = useState();
   const [hasError, setHasError] = useState(false);
   const preview = useRef();
@@ -20,18 +20,34 @@ export default function Upload() {
     reader.readAsDataURL(evt.target.files[0]);
   }
 
-  function handleClick() {
+  function handleClick(evt) {
+    evt.preventDefault();
+    if (!currentFile) {
+      return;
+    }
     const formData = new FormData();
     formData.append("file", currentFile, currentFile.name);
+    console.log(currentFile);
+    // return;
 
     const init = {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("BG_JWT")}`,
+      },
       body: formData,
     };
 
-    fetch("/upload", init)
+    fetch("http://localhost:8080/upload", init)
       .then((response) => {
-        if (!response.ok) setHasError(true);
+        if (response.ok) {
+          return response.text();
+        }
+        return Promise.reject();
+      })
+      .then((relativePath) => {
+        console.log(relativePath);
+        handleUrl(relativePath);
       })
       .catch(() => {
         setHasError(true);
@@ -40,33 +56,47 @@ export default function Upload() {
 
   return (
     <>
-      <div class="container col-4">
-        <div class="row">
-          <h3 class="col">Upload Image</h3>
-          <div class="col">{/* <a href="/album.html">Go to Album</a> */}</div>
+      <div className="container mt-3">
+        <div className="row">
+          <h3 className="col">Upload Image</h3>
+          <div className="col">
+            {/* <a href="/album.html">Go to Album</a> */}
+          </div>
         </div>
 
-        <div class="form-group mb-2">
+        <div className="form-group mb-2">
           <input
-            class="form-control"
+            className="form-control"
             type="file"
             id="theFile"
             onChange={handleChange}
           />
         </div>
 
-        <div class="form-group">
-          <button class="btn btn-primary" id="btnUpload" onClick={handleClick}>
+        <div className="form-group">
+          <button
+            style={{
+              background: "black",
+              border: "1px solid lightsteelblue",
+              color: "#D3D3D3",
+              margin: "5%",
+
+              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+            }}
+            className="btn btn-primary ms-0"
+            id="btnUpload"
+            onClick={handleClick}
+          >
             Upload
           </button>
         </div>
 
-        <div ref={preview} class="form-group">
+        <div ref={preview} className="form-group">
           <img ref={imgPreview} alt="preview" />
         </div>
 
         {hasError && (
-          <div id="logPanel" class="alert alert-danger">
+          <div id="logPanel" className="alert alert-danger">
             Upload Failed
           </div>
         )}

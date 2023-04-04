@@ -1,13 +1,15 @@
 import { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
 function NavBar() {
+  const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = useContext(AuthContext);
 
   function handleLogout(evt) {
     evt.preventDefault();
+    navigate("/");
     logout();
   }
 

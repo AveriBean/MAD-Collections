@@ -31,7 +31,7 @@ public class ItemController {
     public ResponseEntity<Object> add(@RequestBody Item item) {
        Result<Item> result = service.add(item);
        if (result.isSuccess()) {
-           return new ResponseEntity<>(HttpStatus.CREATED);
+           return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
        }
        return ErrorResponse.build(result);
    }

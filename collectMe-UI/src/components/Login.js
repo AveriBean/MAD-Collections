@@ -59,10 +59,30 @@ export default function Login() {
           />
         </div>
         <div className="mb-2">
-          <Link to="/" className="btn btn-warning me-1">
+          <Link
+            style={{
+              background: "#FFD700",
+              border: "1px solid lightsteelblue",
+              color: "black",
+              margin: "5%",
+              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+            }}
+            to="/"
+            className="btn btn-warning ms-0"
+          >
             Cancel
           </Link>
-          <button type="submit" className="btn btn-primary">
+          <button
+            style={{
+              background: "black",
+              border: "1px solid lightsteelblue",
+              color: "#D3D3D3",
+              margin: "5%",
+              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+            }}
+            type="submit"
+            className="btn btn-primary ms-0"
+          >
             Login
           </button>
         </div>
