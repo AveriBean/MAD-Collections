@@ -15,7 +15,7 @@ function CategoryItem() {
     if(categoryId) {
       findByCategoryId(categoryId)
         .then((setItems))
-        .catch(console.log({items}));
+        .catch(() => navigate("/500"));
     }
   }, [categoryId, navigate]);
  
