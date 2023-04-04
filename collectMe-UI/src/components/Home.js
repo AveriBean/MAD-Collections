@@ -90,10 +90,10 @@ function Home () {
                         <div>{oneItem.saleable === true ? "saleable": "" }</div>
                         <div>{oneItem.negotiable === true ? "negotiable": "" }</div>
                     </Card.Text>
-                     <Card.Text>
+                     {/* <Card.Text>
                         <b>Categories:</b>
                         <div>{oneItem.categories[0].categoryName}</div>
-                    </Card.Text>
+                    </Card.Text> */}
                     </Card.Body>
                 </Card>
                 </Col>
