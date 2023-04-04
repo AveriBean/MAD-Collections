@@ -14,7 +14,7 @@ function Items() {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container" style={{minHeight: "75vh"}}>
     
             <Row xs={1} lg={4} className="g-4 justify-content-center container-fluid">
                 {items.map(i => <Item key={i.itemId} item={i} />)}

@@ -4,7 +4,7 @@ import notFound from "../utilities/NotFoundPhoto/MADCollectionsNotFound.avif"
 
 function NotFound() {
     return (
-      <main>
+      <main style={{minHeight: "75vh"}}>
         <div className="bgNotFound">
         <h2 className="textNotFound text-center">Sorry, Page Not Found. . .</h2>
         <div className="text-center">
