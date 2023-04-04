@@ -54,23 +54,34 @@ function NavBar() {
                 Items
               </Link>
             </li>
+            {user ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">
+                  Profile
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li className="nav-item">
               {user ? (
                 <>
                   <a href="#logout" className="nav-link" onClick={handleLogout}>
-                    logout
+                    Logout
                   </a>
-                  <h6>{`Hello ${user.sub}`}</h6>
+                  <h6>Hello ${user.sub}</h6>
                 </>
-              ) : (
+              ): (
+                <>
                 <Link
                   to="/login"
                   className={`nav-link${
                     location.pathname.startsWith("/login") ? " active" : ""
                   }`}
                 >
-                  login
+                  Login
                 </Link>
+                </>
               )}
             </li>
           </ul>

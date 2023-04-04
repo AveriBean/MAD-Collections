@@ -78,30 +78,6 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     @Override
     @Transactional
-    public User createCredentials(User user) {
-        final String sql = "insert into user (username, password_hash) values (?, ?);";
-
-        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-        int rowsAffected = jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
-            return ps;
-        }, keyHolder);
-
-        if (rowsAffected <= 0) {
-            return null;
-        }
-
-        user.setUserId(keyHolder.getKey().intValue());
-
-        updateRoles(user);
-
-        return user;
-    }
-
-    @Override
-    @Transactional
     public User add(User user) {
         final String sql = "insert into user (username, first_name, last_name, location, password_hash, phone, email, enabled) "
                 + " values (?,?,?,?,?,?,?,?);";
@@ -125,6 +101,9 @@ public class UserJdbcTemplateRepository implements UserRepository {
         }
 
         user.setUserId(keyHolder.getKey().intValue());
+
+        updateRoles(user);
+
         return user;
     }
 

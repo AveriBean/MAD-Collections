@@ -59,12 +59,13 @@ export default function Login() {
           />
         </div>
         <div className="mb-2">
-          <Link to="/" className="btn btn-warning me-1">
+          <Link to="/" className="btn btn-warning me-1 my-2">
             Cancel
           </Link>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary me-5">
             Login
           </button>
+          <Link to="/createUser" className="btn btn-success">Create New User Account</Link>
         </div>
         {hasError && <div className="alert alert-danger">Bad Credentials.</div>}
       </form>

@@ -15,8 +15,6 @@ public interface UserRepository {
     User findByUsername(String username);
 
     @Transactional
-    User createCredentials(User user);
-
     User add(User user);
 
     @Transactional
