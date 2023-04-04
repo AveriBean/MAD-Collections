@@ -13,12 +13,9 @@ function CategoryItem() {
 
   useEffect(() => {
     if(categoryId) {
-      console.log("cat id received");
       findAllByCategory(categoryId)
         .then((setItems))
-        .catch(console.log);
-    } else {
-      console.log("no cat id");
+        .catch(() => navigate("/500"));
     }
   }, [categoryId, navigate]);
 
@@ -26,11 +23,11 @@ function CategoryItem() {
   return (
     <div className="container row">
 
-      <div>
-        <h2>{categoryId}</h2>
+      <div className="d-flex justify-content-center align-content-center">
+        <h2></h2>
       </div>
 
-      <div>
+      <div className="g-4 d-flex justify-content-center">
         {items.map((i) => (
           <Col key={"item-"+i.itemId} className="d-flex justify-content-center">
             <Card style={{ width: "18rem", marginTop: "10px" }}>
