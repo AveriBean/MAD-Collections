@@ -41,11 +41,11 @@ function App() {
 
   return (
     <AuthContext.Provider value={auth}>
-      <div className="container-fluid">
+      <div className="container-fluid parent">
         <Router>
-          <NavBar />
-          <SideBar />
-          <Routes>
+          <NavBar className="div1"/>
+          <SideBar className="div2" />
+          <Routes className="div4">
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add" element={<ItemForm />} />
@@ -57,7 +57,7 @@ function App() {
             {/* <Route path="/Profile" element={<Profile />} /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
+          <Footer className="div3"/>
         </Router>
       </div>
     </AuthContext.Provider>

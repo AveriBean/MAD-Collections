@@ -35,20 +35,20 @@ function CategoryItem() {
                 <Card.Title style={{ marginBottom: "10px" }}>
                   <b>{i.itemName}</b>
                 </Card.Title>
-                <Card.Text>Description: {i.description}</Card.Text>
-                <Card.Text>Value: {i.value}</Card.Text>
-                <Card.Text>
+                <Card.Text><b>Description:</b> {i.description}</Card.Text>
+                <Card.Text><b>Value:</b> {i.value}</Card.Text>
+                <div>
                   <b>Item Status:</b>
                   {i.actions.map((a) => (
-                    <div>{a.status}</div>
+                    <div key={a.actionId}>{a.status}</div>
                   ))}
-                </Card.Text>
-                <Card.Text>
+                </div>
+                <div>
                   <b>Categories:</b>
                   {i.categories.map((c) => (
-                    <div>{c.categoryName}</div>
+                    <div key={c.categoryId}>{c.categoryName}</div>
                   ))}
-                </Card.Text>
+                </div>
                 <Card.Text>
                   <Link to="/view/item" className="btn btn-info">
                     View
