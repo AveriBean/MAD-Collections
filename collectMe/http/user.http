@@ -1,12 +1,12 @@
 @url = http://localhost:8080
 
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiU2FsbHkiLCJ1c2VySWQiOjIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwiZmlyc3ROYW1lIjoiV2Fsa2VyIiwibGFzdE5hbWUiOiJTV2FsayIsImxvY2F0aW9uIjoiU2FsbHkncyBBZGRyZXNzIiwicGhvbmUiOiIyNjIyNjIyNjI2IiwiZW1haWwiOiJzd0B0ZXN0aW5nLmNvbSIsImV4cCI6MTY4MDI5MTQ1N30.nc280KSsoDWPhNPyAJZPV92wrX9i06mX6WgV3qotlqc
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiTWljYWhhZWwiLCJ1c2VySWQiOjEsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLCJmaXJzdE5hbWUiOiJKYWNrc29uIiwibGFzdE5hbWUiOiJKTWljaCIsImVtYWlsIjoibWpAdGVzdGluZy5jb20iLCJleHAiOjE2ODA2MTYxMjN9.HgzH19VTuQ4gtoV-5H6zk0voeQmxggW3CidxsO2kvLU
 
 GET {{url}}/api/user HTTP/1.1
 
 ### [ ] GET a user by ID
 
-GET {{url}}/api/user/1 HTTP/1.1
+GET {{url}}/api/user/6 HTTP/1.1
 
 ### [ ] For GET return a 404 if user is not found
 
@@ -84,6 +84,7 @@ Content-Type: application/json
 
 PUT {{url}}/api/user/2 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{jwt}}
 
 {
     "userId": 2,
@@ -100,6 +101,7 @@ Content-Type: application/json
 
 PUT {{url}}/api/user/2 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{jwt}}
 
 {
    "userId": 2,
@@ -115,14 +117,17 @@ Content-Type: application/json
 ### [ ] DELETE an user that is not in use by ID
 
 DELETE {{url}}/api/user/4 HTTP/1.1
+Authorization: Bearer {{jwt}}
 
 ### [ ] For DELETE return a 404 if the user is not found
 
 DELETE {{url}}/api/user/400 HTTP/1.1
+Authorization: Bearer {{jwt}}
 
 ### [ ] For DELETE return a 400 if the user is in use 
 
 DELETE {{url}}/api/user/1 HTTP/1.1
+Authorization: Bearer {{jwt}}
 
 
 ### Bad Credentials
@@ -135,15 +140,26 @@ Content-Type: application/json
     "password": "bad-password"
 }
 
-### Good credentials
+### Good User credentials
 
 POST {{url}}/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
     "username": "SWalk" ,
-    "password": "user"
+    "password": "go"
 }
+
+### Good Admin credentials
+
+POST {{url}}/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "JMich" ,
+    "password": "go"
+}
+
 
 ### Refresh token... be sure to replace the token in the Authorization header with a valid token
 

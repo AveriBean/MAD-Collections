@@ -14,7 +14,7 @@ function NavBar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{height: "5vh"}}>
       <div className="container-fluid">
         <a className="navbar-brand" href="#home">
           <h1 className="text-white">M.A.D. Collectibles</h1>
@@ -56,23 +56,34 @@ function NavBar() {
                 Items
               </Link>
             </li>
+            {user ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">
+                  Profile
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li className="nav-item">
               {user ? (
                 <>
                   <a href="#logout" className="nav-link" onClick={handleLogout}>
-                    logout
+                    Logout
                   </a>
-                  <h6>{`Hello ${user.sub}`}</h6>
+                  <h6>Hello ${user.sub}</h6>
                 </>
-              ) : (
+              ): (
+                <>
                 <Link
                   to="/login"
                   className={`nav-link${
                     location.pathname.startsWith("/login") ? " active" : ""
                   }`}
                 >
-                  login
+                  Login
                 </Link>
+                </>
               )}
             </li>
           </ul>

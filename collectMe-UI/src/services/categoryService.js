@@ -3,6 +3,7 @@ import * as base from "./baseService";
 const model = "category";
 
 export function getEmptyCategory() {
+
   return {
     categoryId: 0,
     name: "",
