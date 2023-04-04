@@ -107,4 +107,8 @@ public class Item {
     public int hashCode() {
         return Objects.hash(itemId, itemName, description, value, userId, image, actions, categories);
     }
+
+    public boolean hasCategory(Category category) {
+        return categories.contains(category);
+    }
 }

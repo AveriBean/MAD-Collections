@@ -26,7 +26,7 @@ function Home () {
     }
 
     return (
-        <div>
+        <div className="d-flex-row align-content-center justify-content-center" style={{minHeight: "75vh"}}>
             <h2 className="d-flex justify-content-center">ITEM OF THE DAY</h2>
             
             <Col className="d-flex justify-content-center">

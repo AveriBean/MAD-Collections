@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 class UserJdbcTemplateRepositoryTest {
 
     @Autowired
@@ -36,8 +36,8 @@ class UserJdbcTemplateRepositoryTest {
         List<String> roles1 = repository.getRolesByUsername("JMich");
         List<String> roles2 = repository.getRolesByUsername("SWalk");
 
-        User Jackson = new User(1, "JMich", "Micahael", "Jackson", null, "passwordHash1", null, "mj@testing.com", true, roles1 );
-        User Walker = new User(2, "SWalk", "Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", true, roles2 );
+        User Jackson = new User(1, "JMich", "Micahael", "Jackson", null, "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "mj@testing.com", true, roles1 );
+        User Walker = new User(2, "SWalk", "Sally", "Walker", "Sally's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "2622622626", "sw@testing.com", true, roles2 );
 
         User actual = repository.findById(1);
         assertEquals(Jackson, actual);

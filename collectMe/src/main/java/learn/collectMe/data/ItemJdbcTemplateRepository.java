@@ -20,6 +20,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ItemJdbcTemplateRepository implements ItemRepository {
@@ -36,6 +37,29 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         final String sql = "select item_id, `name`, description, value, user_id, image "
                 + "from item limit 1000;";
         List<Item> items = jdbcTemplate.query(sql, new ItemMapper());
+        for (Item i : items) {
+            addActions(i);
+            addCategories(i);
+        }
+        return items;
+    }
+
+    @Override
+    @Transactional
+    public List<Item> findByCategoryId(int categoryId) {
+        final String sql = "select " +
+                "    i.item_id, " +
+                "    i.`name`, " +
+                "    i.`description`, " +
+                "    i.`value`, " +
+                "    i.user_id, " +
+                "    i.image " +
+                "from category_item ci " +
+                "inner join item i on ci.item_id = i.item_id " +
+                "inner join category c on ci.category_id = c.category_id " +
+                "where c.category_id = ?;";
+
+        List<Item> items = jdbcTemplate.query(sql, new ItemMapper(), categoryId);
         for (Item i : items) {
             addActions(i);
             addCategories(i);
