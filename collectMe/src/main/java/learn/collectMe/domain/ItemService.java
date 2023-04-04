@@ -1,20 +1,28 @@
 package learn.collectMe.domain;
 
+import learn.collectMe.data.CategoryRepository;
 import learn.collectMe.data.ItemRepository;
+import learn.collectMe.models.Category;
 import learn.collectMe.models.Item;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
     private final ItemRepository repository;
+    private final CategoryRepository categoryRepository;
 
-    public ItemService(ItemRepository repository) {
+    public ItemService(ItemRepository repository, CategoryRepository categoryRepository) {
         this.repository = repository;
+        this.categoryRepository = categoryRepository;
     }
 
     public List<Item> findAll() {return repository.findAll();};
+
+    public List<Item> findByCategoryId(int categoryId) { return repository.findByCategoryId(categoryId); }
 
     public Item findById(int itemId) {return repository.findById(itemId);};
 
@@ -74,4 +82,5 @@ public class ItemService {
 
         return result;
     }
+
 }

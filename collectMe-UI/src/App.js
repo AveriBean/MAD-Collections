@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
+import CategoryItem from "./components/CategoryItem";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ItemForm from "./components/ItemForm";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add" element={<ItemForm />} />
+            <Route path="/category/:categoryId" element={<CategoryItem />} />
             {/* <Route path="/about" element={<AboutUs />} /> */}
             <Route path="/items" element={<Items />} />
             {/* <Route path="/items/:id" element={<Item />} /> */}

@@ -12,7 +12,7 @@ function NavBar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{height: "5vh"}}>
       <div className="container-fluid">
         <a className="navbar-brand" href="#home">
           <h1 className="text-white">M.A.D. Collectibles</h1>
