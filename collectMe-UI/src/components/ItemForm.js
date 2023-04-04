@@ -112,12 +112,11 @@ export default function ItemForm() {
 
   const handleActions = function (evt) {
     const actionId = parseInt(evt.target.value);
-    const status = evt.target.id;
     const actions = [...currentItem.actions];
 
     // if the checkbox is checked, add the value
     if (evt.target.checked) {
-      actions.push({ actionId: actionId, status: status });
+      actions.push({ actionId: actionId, status: "" });
     } else {
       // otherwise, remove it
       const actionIndex = actions.findIndex((a) => a.actionId === actionId);
