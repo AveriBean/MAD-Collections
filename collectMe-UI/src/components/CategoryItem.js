@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import { useContext, useState, useEffect} from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
@@ -78,14 +78,9 @@ function CategoryItem() {
                     }}
                     className="btn btn-info"
                   >
-                    View
+                    View Item
                   </Link>
                 </Card.Text>
-                {user ? (
-                    <Link to={`/viewProfile/${i.userId}`} className="btn btn-success">
-                    View Profile
-                  </Link>
-                    ) : ("")}
               </Card.Body>
             </Card>
           </Col>
