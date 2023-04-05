@@ -110,20 +110,18 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     @Transactional
     public boolean update(User user) {
-        final String sql = "update user set "
-                + "username = ?, " +
+        final String sql = "update user set " +
                 "first_name = ?, " +
                 "last_name = ?, " +
                 "location = ?, " +
-                "password_hash = ?, " +
                 "phone = ?, " +
                 "email = ?, " +
                 "enabled = ? "
                 + "where user_id = ?";
 
         boolean updated = jdbcTemplate.update(sql,
-                user.getUsername(), user.getFirstName(), user.getLastName(), user.getLocation(),
-                user.getPassword(), user.getPhone(), user.getEmail(), user.isEnabled(), user.getUserId()) > 0;
+                user.getFirstName(), user.getLastName(), user.getLocation(),
+                user.getPhone(), user.getEmail(), user.isEnabled(), user.getUserId()) > 0;
 
         if (updated) {
             updateRoles(user);

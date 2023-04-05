@@ -30,7 +30,10 @@ export default function Login() {
   }
 
   return (
-    <div className="container d-flex justify-content-center align-items-center col-4" style={{minHeight: "75vh"}}>
+    <div
+      className="container d-flex justify-content-center align-items-center col-4"
+      style={{ minHeight: "75vh" }}
+    >
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
           <label className="form-label" htmlFor="username">
@@ -62,10 +65,22 @@ export default function Login() {
           <Link to="/" className="btn btn-warning me-1 my-2">
             Cancel
           </Link>
-          <button type="submit" className="btn btn-primary me-5">
+          <button
+            type="submit"
+            style={{
+              background: "black",
+              border: "1px solid lightsteelblue",
+              color: "#D3D3D3",
+
+              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+            }}
+            className="btn btn-primary me-5"
+          >
             Login
           </button>
-          <Link to="/createUser" className="btn btn-success">Create New User Account</Link>
+          <Link to="/createUser" className="btn btn-success">
+            Create New User Account
+          </Link>
         </div>
         {hasError && <div className="alert alert-danger">Bad Credentials.</div>}
       </form>

@@ -4,36 +4,54 @@ import { findAll } from "../services/categoryService";
 import { findAllActions } from "../services/actionService";
 import { GetEmptyItem, save } from "../services/itemService";
 import AuthContext from "../contexts/AuthContext";
+import { Col, Form } from "react-bootstrap";
+import Multiselect from "react-bootstrap-multiselect";
+import Select from "react-select";
+import Upload from "./Upload";
+import { findById } from "../services/itemService";
 
 const fieldNames = ["Item Name", "Item Description", "Item Value"];
 
 export default function ItemForm() {
-  const [currentItem, setCurrentItem] = useState(GetEmptyItem());
   const [errors, setErrors] = useState([]);
   const [errMap, setErrMap] = useState({});
   const [wait, setWait] = useState(true);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [field, setField] = useState([]);
   const formRef = useRef();
-
+  const { itemId } = useParams();
+  const [currentItem, setCurrentItem] = useState(GetEmptyItem());
   const [categories, setCategories] = useState([]);
   const [actions, setActions] = useState([]);
 
   useEffect(() => {
-    findAll().then((result) => {
-      setCategories(result);
-      setWait(false);
-    });
-    //   .catch(() => navigate("/500"));
+    findAll()
+      .then((result) => {
+        setCategories(result);
+        setWait(false);
+      })
+      .catch(() => navigate("/500"));
   }, []);
 
   useEffect(() => {
-    findAllActions().then((result) => {
-      setActions(result);
-      setWait(false);
-    });
-    //   .catch(() => navigate("/500"));
+    findAllActions()
+      .then((result) => {
+        setActions(result);
+        setWait(false);
+      })
+      .catch(() => navigate("/500"));
+  }, []);
+
+  useEffect(() => {
+    if (itemId) {
+      findById(itemId).then((result) => {
+        setCurrentItem(result);
+        console.log(currentItem);
+        setWait(false);
+      });
+      // .catch(() => navigate("/500"));
+    }
   }, []);
 
   function handleSubmit(evt) {
@@ -43,11 +61,16 @@ export default function ItemForm() {
     setErrMap({});
 
     save(currentItem)
-      .then()
+      .then(() => navigate("/items"))
       .catch((errs) => {
+        const errsString = errs.toString();
+        console.log(errsString);
+        if (errsString.includes("Unexpected end of JSON")) {
+          navigate(-1);
+          return;
+        }
         if (errs) {
           const map = {};
-
           for (const err of errs) {
             for (const fieldName of fieldNames) {
               if (err.includes(`\`${fieldName}\``)) {
@@ -61,7 +84,7 @@ export default function ItemForm() {
           form.classList.add("was-validated");
           setErrors(errs);
         } else {
-          navigate("/");
+          navigate(-1);
         }
       });
   }
@@ -76,6 +99,12 @@ export default function ItemForm() {
     } else {
       nextItem[evt.target.name] = evt.target.value;
     }
+    setCurrentItem(nextItem);
+  }
+
+  function handleUrl(dataUrl) {
+    const nextItem = { ...currentItem };
+    nextItem.image = dataUrl;
     setCurrentItem(nextItem);
   }
 
@@ -115,8 +144,13 @@ export default function ItemForm() {
     return actions;
   };
 
+  // const options = actions.map((a) => ({
+  //   value: a.actionId,
+  //   label: a.status,
+  // }));
+
   return (
-    <div className="container col-4 border rounded border-info">
+    <div className="container col-4 border rounded border-dark">
       <form
         onSubmit={handleSubmit}
         ref={formRef}
@@ -178,10 +212,20 @@ export default function ItemForm() {
         </div>
         <div>
           <h3>Actions</h3>
+          {/* <Select
+            defaultValue={"viewable"}
+            isMulti
+            name="actions"
+            options={options}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            // onChange={handleChange}
+          /> */}
 
           {actions.map((a) => (
             <div>
               <input
+                key={a.actionId}
                 type="checkbox"
                 value={a.actionId}
                 id={a.status}
@@ -202,6 +246,7 @@ export default function ItemForm() {
           {categories.map((c) => (
             <div>
               <input
+                key={c.categoryId}
                 type="checkbox"
                 value={c.categoryId}
                 id={c.categoryName}
@@ -215,12 +260,34 @@ export default function ItemForm() {
             </div>
           ))}
         </div>
-
         <div>
-          <button type="submit" className="btn btn-primary me-2">
+          <Upload handleUrl={handleUrl} />
+        </div>
+        <div>
+          <button
+            style={{
+              background: "black",
+              border: "1px solid lightsteelblue",
+              color: "#D3D3D3",
+              margin: "5%",
+              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+            }}
+            type="submit"
+            className="btn btn-primary me-2"
+          >
             Save
           </button>
-          <button onClick={() => navigate(-1)} className="btn btn-warning">
+          <button
+            style={{
+              background: "#FFD700",
+              border: "1px solid lightsteelblue",
+              color: "black",
+              margin: "5%",
+              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+            }}
+            onClick={() => navigate(-1)}
+            className="btn ms-0"
+          >
             Cancel
           </button>
         </div>
@@ -233,24 +300,6 @@ export default function ItemForm() {
             </ul>
           </div>
         )}
-
-        {/* <div>
-          <button type="submit" className="btn btn-primary me-2">
-            Save
-          </button>
-          <Link to="/" className="btn btn-warning">
-            Cancel
-          </Link>
-        </div>
-         {errors.length > 0 && (
-          <div className="alert alert-danger mt-2">
-            <ul className="mb-0">
-              {errors.map((err) => (
-                <li key={err}>{err}</li>
-              ))} 
-            </ul>
-          </div>
-        )}  */}
       </form>
     </div>
   );

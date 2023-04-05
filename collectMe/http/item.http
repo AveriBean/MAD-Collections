@@ -1,5 +1,8 @@
 @url = http://localhost:8080/api/item
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiTWljYWhhZWwiLCJ1c2VySWQiOjEsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLCJmaXJzdE5hbWUiOiJKYWNrc29uIiwibGFzdE5hbWUiOiJKTWljaCIsImVtYWlsIjoibWpAdGVzdGluZy5jb20iLCJleHAiOjE2ODA1NTgxOTR9.phajJ2PjLE_MRDnKnvWqiI-6wCvFux0OsMelS-JlglE
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiTWljYWhhZWwiLCJ1c2VySWQiOjEsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLCJmaXJzdE5hbWUiOiJKYWNrc29uIiwibGFzdE5hbWUiOiJKTWljaCIsImVtYWlsIjoibWpAdGVzdGluZy5jb20iLCJleHAiOjE2ODA3MjM4NjB9.1ClYHxJx-lpCjumfYCc4eTsui9UqtFjIaMGIkg0NcpA
+
+
+
 GET {{url}} HTTP/1.1
 
 ### Find by Id#2
@@ -70,7 +73,7 @@ Authorization: Bearer {{jwt}}
 
 ### Delete an Item
 
-DELETE {{url}}/16 HTTP/1.1
+DELETE {{url}}/1 HTTP/1.1
 Authorization: Bearer {{jwt}}
 
 ### Good User credentials

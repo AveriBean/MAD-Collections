@@ -36,9 +36,8 @@ class UserJdbcTemplateRepositoryTest {
         List<String> roles1 = repository.getRolesByUsername("JMich");
         List<String> roles2 = repository.getRolesByUsername("SWalk");
 
-        User Jackson = new User(1, "JMich", "Micahael", "Jackson", null, "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "mj@testing.com", true, roles1 );
-        User Walker = new User(2, "SWalk", "Sally", "Walker", "Sally's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "2622622626", "sw@testing.com", true, roles2 );
-
+        User Jackson = new User(1, "JMich", "Micahael", "Jackson", "2720 Rogers Ave", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "(205) 402-9977", "mj@email.com", true, roles1 );
+        User Walker = new User(2, "SWalk", "Sally", "Walker", "16547 Baisley Blvd", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "(703) 528-7303", "sw@email.com", true, roles2 );
         User actual = repository.findById(1);
         assertEquals(Jackson, actual);
 
@@ -61,16 +60,14 @@ class UserJdbcTemplateRepositoryTest {
 
     @Test
     void shouldUpdateExisting() {
-        List<String> roles = repository.getRolesByUsername("SWalk");
-        User arg = new User(2, "Updated Username", "Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", true, roles);
+        User arg = new User(2, "Test", "Walker", "Sally's Address", "2622622626", "sw@testing.com");
         boolean actual = repository.update(arg);
         assertTrue(actual);
     }
 
     @Test
     void shouldNotUpdateMissing() {
-        List<String> roles = repository.getRolesByUsername("SWalk");
-        User arg = new User(100, "Updated Username", "Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", true, roles);
+        User arg = new User(100, "Test", "Walker", "Sally's Address", "2622622626", "sw@testing.com");
         boolean actual = repository.update(arg);
         assertFalse(actual);
     }
