@@ -7,24 +7,24 @@ import linkedIn from "../images/icons/linkedin.png";
 function Footer () {
     return (
 
-        <footer className="site-footer container-fluid">
-            <div className="container">
+        <footer className="site-footer">
+            <div className="d-flex">
                 <div className="row">
-                <div className="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p className="text-justify">M.A.D. Collection developed this site to finalize our Capstone Project as part of Cohort 46 of Dev-10 Training.  This site was developed as a mix between a Social Networking site with benefits of merchandising.   Browse the existing categories that may interest you. See was members are sharing with us and which items are all the rave.  If you want, go head and create a membership account so you can also share any collectible items you are proud of.</p>
-                </div>
+                    <div className="col-xs-6 col-md-6 text-center">
+                        <h6>About</h6>
+                        <p className="text-justify">M.A.D. Collection developed this site to finalize our Capstone Project as part of Cohort 46 of Dev-10 Training.  This site was developed as a mix between a Social Networking site with benefits of merchandising.   Browse the existing categories that may interest you. See was members are sharing with us and which items are all the rave.  If you want, go head and create a membership account so you can also share any collectible items you are proud of.</p>
+                    </div>
 
-                <div className="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    Site Creation by M.A.D. Developers
-                    backed by
-                    <p></p>
-                    Dev-10 Company
-                    Address:<br></br>
-                    100 Genesis Corp Way<br></br>
-                    Atlanta, GA 30001
-                </div>
+                    <div className="col-xs-6 col-md-3 text-center">
+                        <h6>Categories</h6>
+                        Site Creation by M.A.D. Developers
+                        backed by
+                        <p></p>
+                        Dev-10 Company
+                        Address:<br></br>
+                        100 Genesis Corp Way<br></br>
+                        Atlanta, GA 30001
+                    </div>
 
                 <div className="col-xs-6 col-md-3">
                     <h6>Quick Links</h6>
@@ -63,25 +63,3 @@ function Footer () {
 }
 
 export default Footer;
-
-        {/* <div className="footer container-fluid">
-            <div>
-                <p>Site Creation by M.A.D. Developers</p>
-                <p>backed by</p>
-                <p>Dev-10 Company</p>
-                Address:<br></br>
-                100 Genesis Corp Way<br></br>
-                Atlanta, GA 30001
-            </div>
-
-            <div>
-                <ul>
-                    <li>Facebook<span>F</span></li>
-                    <li>Twitter<span>T</span></li>
-                    <li>Instagram<span>I</span></li>
-                    <li>LinkedIn<span>L</span></li>
-                </ul>
-                
-            </div>
-
-        </div> */}

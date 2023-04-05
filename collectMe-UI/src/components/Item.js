@@ -11,27 +11,27 @@ export default function Item({ item }) {
 
   return (
     <>
-        <Col className="d-flex justify-content-center">
+        <Col key={item.itemId} className="d-flex justify-content-center">
           <Card style={{ width: "18rem", marginTop: "10px" }}>
             <Card.Img src={item.image} />
             <Card.Body style={{ textAlign: "center" }}>
               <Card.Title style={{ marginBottom: "10px" }}>
                 {item.itemName}
               </Card.Title>
-              <Card.Text>Description: {item.description}</Card.Text>
-              <Card.Text>Value: {item.value}</Card.Text>
-              <Card.Text>
-                Item Status:
+              <Card.Text><b>Description:</b> {item.description}</Card.Text>
+              <Card.Text><b>Value:</b> {item.value}</Card.Text>
+              <div>
+                <b>Item Status:</b>
                 {item.actions.map((a) => (
-                  <h6>{a.status}</h6>
+                  <div key={a.actionId}>{a.status}</div>
                 ))}
-              </Card.Text>
-              <Card.Text>
-                Categories:
+              </div>
+              <div>
+                <b>Categories:</b>
                 {item.categories.map((c) => (
-                  <h6>{c.categoryName}</h6>
+                  <div key={c.categoryId}>{c.categoryName}</div>
                 ))}
-              </Card.Text>
+              </div>
               <Card.Text>
                 <Link to="/view/item" className="btn btn-info m-2">
                   View Item
