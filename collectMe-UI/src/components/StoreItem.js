@@ -18,7 +18,7 @@ function StoreItem({ item }) {
                     {item.itemName}
                 </Card.Title>
                 <Card.Text><b>Description:</b> {item.description}</Card.Text>
-                <Card.Text><b>Value:</b> {item.value}</Card.Text>
+                <Card.Text><b>Value:</b> ${item.value}</Card.Text>
                 <Card.Footer style={{ textAlign: "center", alignItems: "end" }}>
                     <Button variant="secondary" onClick={() => cart.addOneToCart(item.itemId)}>Add to Cart</Button>
                 </Card.Footer>

@@ -26,19 +26,19 @@ export default function Item({ item }) {
             <Card.Text>
               <b>Value:</b> ${item.value}
             </Card.Text>
-            <div>
+            <Card.Text>
               <b>Item Status:</b>
               {item.actions.map((a) => (
                 <div key={a.actionId}>{a.status}</div>
               ))}
-            </div>
-            <div>
+            </Card.Text>
+            <Card.Text>
               <b>Categories:</b>
               {item.categories.map((c) => (
                 <div key={c.categoryId}>{c.categoryName}</div>
               ))}
-            </div>
-            <Card.Text>
+            </Card.Text>
+            <Card.Footer style={{ textAlign: "center", alignItems: "end" }}>
               <Link
                 to={`/view/item/${item.itemId}`}
                 className="btn btn-primary"
@@ -52,7 +52,7 @@ export default function Item({ item }) {
               >
                 View Item
               </Link>
-            </Card.Text>
+            </Card.Footer>
           </Card.Body>
         </Card>
       </Col>
