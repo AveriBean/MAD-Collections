@@ -52,6 +52,7 @@ function App() {
             <Route path="/add" element={<ItemForm />} />
             <Route path="/categories" element={<Category />} />
             <Route path="/category/:categoryId" element={<CategoryItem />} />
+            <Route path="/categories/category/:categoryId" element={<CategoryItem />} />
             {/* <Route path="/about" element={<AboutUs />} /> */}
             <Route path="/items" element={<Items />} />
             {/* <Route path="/items/:id" element={<Item />} /> */}

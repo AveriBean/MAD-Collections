@@ -22,7 +22,6 @@ function Home () {
                setItems(result)
                const random = result[Math.floor(Math.random() * result.length)];
                setOneItem(random);
-               console.log(random);
             } )
             .catch(alert);
     }, []);

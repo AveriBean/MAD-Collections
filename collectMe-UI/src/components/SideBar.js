@@ -23,7 +23,7 @@ function SideBar () {
       ? categories
       : categories.filter((category) =>
           category.categoryName.toLowerCase().includes(search.toLowerCase())
-        );
+    );
 
 
     return (

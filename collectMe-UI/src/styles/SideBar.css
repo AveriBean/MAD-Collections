@@ -1,84 +1,71 @@
-/* The sidebar menu */
 .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 15vw; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    /*z-index: 1;  Stay on top */
-    background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-  }
+  height: 100%;
+  width: 230px;
+  position: fixed;
+  z-index: 1;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
   
   /* The navigation menu links */
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-  }
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
   
   /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+.search-text {
+  font-size: 22px;
+  display: flex;
+}
+
+#search-box {
+  height: 25px;
+}
+
+#search-box[placeholder] {
+  line-height: 25px;
+  font-size: 25px;
+}
   
-  /* Style page content */
-  .main {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-  }
+#item-list {
+  min-height: 260px;
+}
 
-
-  .App {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* height: 100vh; */
-    font-size: 22px;
+@media screen and (max-width: 960px) {
+  .sidenav {
+    display: none;
   }
-  /* .search-header {
-    display: flex;
-  } */
-  .search-text {
-    font-size: 22px;
-    display: flex;
-  }
-
-  #search-box {
-    height: 25px;
-  }
-
-  #search-box[placeholder] {
-    line-height: 25px;
-    font-size: 25px;
-  }
-  
-  #item-list {
-    min-height: 260px;
-  }
+}
 
   
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-  @media screen and (max-width: 1400px) {
-    .sidenav {
-      padding-top: 15px;
-      width: auto;
-    }
-    .sidenav a {font-size: 10px;}
-
-    h2 {
-      font-size: 15px;;
-    }
-
-    input {
-      height: 15px;
-      width: 120px;
-    }
-
-    .searchText {
-      font-size: 5px;
-    }
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+/* @media screen and (max-width: 1400px) {
+  .sidenav {
+    padding-top: 15px;
+    width: auto;
   }
+  .sidenav a {font-size: 10px;}
+
+  h2 {
+    font-size: 15px;;
+  }
+
+  input {
+    height: 15px;
+    width: 120px;
+  }
+
+  .searchText {
+    font-size: 5px;
+  }
+} */

@@ -25,32 +25,32 @@ function NavBar() {
 
         <ul className={click ? "nav-menu active" : "nav-menu"}>
              <li className="nav-item">
-              <NavLink className="nav-links" exact to="/" activeClassName="active" onClick={handleClick}>
+              <NavLink className="nav-links" exact to="/" onClick={handleClick}>
                 Home
               </NavLink>
             </li>
             {user ? (
                <li className="nav-item">
-                <NavLink className="nav-links" exact to="/add" activeClassName="active" onClick={handleClick}>
+                <NavLink className="nav-links" exact to="/add" onClick={handleClick}>
                   Add Item
                 </NavLink>
               </li>
             ) : (
               ""
             )}
-             <li className="nav-item">
-              <NavLink className="nav-links" exact to="/categories" activeClassName="active" onClick={handleClick}>
+             <li className="nav-item categoryLink">
+              <NavLink className="nav-links" exact to="/categories" onClick={handleClick}>
                 Categories
               </NavLink>
             </li>
              <li className="nav-item">
-              <NavLink className="nav-links" exact to="/items" activeClassName="active" onClick={handleClick}>
+              <NavLink className="nav-links" exact to="/items" onClick={handleClick}>
                 Items
               </NavLink>
             </li>
             {user ? (
                <li className="nav-item">
-                <NavLink className="nav-links" exact to="/profile" activeClassName="active" onClick={handleClick}>
+                <NavLink className="nav-links" exact to="/profile" onClick={handleClick}>
                   Profile
                 </NavLink>
               </li>
@@ -68,7 +68,7 @@ function NavBar() {
               ): (
                 <>
                 <NavLink
-                  exact to="/login" activeClassName="active" onClick={handleClick}
+                  exact to="/login" onClick={handleClick}
                   className={`nav-links${
                     location.pathname.startsWith("/login") ? " active" : ""
                   }`}

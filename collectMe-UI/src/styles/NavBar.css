@@ -72,6 +72,10 @@
     display: none;
 }
 
+.categoryLink{
+    display: none;
+}
+
 @media screen and (max-width: 960px) {
     .nav-menu {
         display: flex;
@@ -110,5 +114,9 @@
 
     .navbar {
     height: 8vh;
+    }
+
+    .categoryLink{
+        display: contents;
     }
 }
