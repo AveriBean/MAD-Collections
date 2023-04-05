@@ -23,7 +23,7 @@ function SideBar () {
       ? categories
       : categories.filter((category) =>
           category.categoryName.toLowerCase().includes(search.toLowerCase())
-        );
+    );
 
 
     return (
@@ -31,7 +31,7 @@ function SideBar () {
 
         <div>
             <h2 className="text-white">Category: </h2>
-                {" "}
+                <div className="searchText">{" "}</div>
                 <input type="text" value={search} onChange={handleSearchChange} />
             <p></p>
             {filtered.map(f => <Link key={"category-"+f.categoryId} to={`category/${f.categoryId}`}>{f.categoryName}</Link>)}

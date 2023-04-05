@@ -8,34 +8,34 @@ function Footer () {
     return (
 
         <footer className="site-footer container-fluid">
-            <div className="container">
+            <div className="d-flex">
                 <div className="row">
-                <div className="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p className="text-justify">M.A.D. Collection developed this site to finalize our Capstone Project as part of Cohort 46 of Dev-10 Training.  This site was developed as a mix between a Social Networking site with benefits of merchandising.   Browse the existing categories that may interest you. See was members are sharing with us and which items are all the rave.  If you want, go head and create a membership account so you can also share any collectible items you are proud of.</p>
-                </div>
+                    <div className="col-xs-6 col-md-6 text-center">
+                        <h6>About</h6>
+                        <p className="text-justify">M.A.D. Collection developed this site to finalize our Capstone Project as part of Cohort 46 of Dev-10 Training.  This site was developed as a mix between a Social Networking site with benefits of merchandising.   Browse the existing categories that may interest you. See was members are sharing with us and which items are all the rave.  If you want, go head and create a membership account so you can also share any collectible items you are proud of.</p>
+                    </div>
 
-                <div className="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    Site Creation by M.A.D. Developers
-                    backed by
-                    <p></p>
-                    Dev-10 Company
-                    Address:<br></br>
-                    100 Genesis Corp Way<br></br>
-                    Atlanta, GA 30001
-                </div>
+                    <div className="col-xs-6 col-md-3 text-center">
+                        <h6>Categories</h6>
+                        Site Creation by M.A.D. Developers
+                        backed by
+                        <p></p>
+                        Dev-10 Company
+                        Address:<br></br>
+                        100 Genesis Corp Way<br></br>
+                        Atlanta, GA 30001
+                    </div>
 
-                <div className="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul className="footer-links">
-                    <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                    <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                    <li><a href="https://www.flaticon.com/free-icons/linkedin" target="_blank">Attribution</a></li>
-                    <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                    <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-                    </ul>
-                </div>
+                    <div className="col-xs-6 col-md-3 text-center">
+                        <h6>Quick Links</h6>
+                        <ul className="footer-links">
+                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                        <li><a href="https://www.flaticon.com/free-icons/linkedin" target="_blank">Attribution</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <hr></hr>
             </div>
