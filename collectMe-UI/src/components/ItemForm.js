@@ -43,7 +43,7 @@ export default function ItemForm() {
     setErrMap({});
 
     save(currentItem)
-      .then()
+      .then(() => navigate("/items"))
       .catch((errs) => {
         if (errs) {
           const map = {};

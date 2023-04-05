@@ -14,7 +14,7 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{height: "5vh"}}>
       <div className="container-fluid">
-        <a className="navbar-brand" href="#home">
+        <a className="navbar-brand" href="/">
           <h1 className="text-white">M.A.D. Collectibles</h1>
         </a>
         <button
@@ -56,7 +56,7 @@ function NavBar() {
             </li>
             {user ? (
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link" to={`/viewProfile/${user.userId}`}>
                   Profile
                 </Link>
               </li>
@@ -69,7 +69,6 @@ function NavBar() {
                   <a href="#logout" className="nav-link" onClick={handleLogout}>
                     Logout
                   </a>
-                  <h6>Hello ${user.sub}</h6>
                 </>
               ): (
                 <>

@@ -129,10 +129,10 @@ alter table user auto_increment = 1;
 
 insert into user (username, first_name, last_name, location, password_hash, phone, email)
 values 
-("JMich","Micahael", "Jackson", null, "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "mj@testing.com"),
-("SWalk","Sally", "Walker", "Sally's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "2622622626", "sw@testing.com"),
-("JRipp","Jack", "Ripper", "Jacks's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "4144144141", "jr@testing.com"),
-("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "dk@testing.com");
+("JMich","Micahael", "Jackson", "2720 Rogers Ave", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "(205) 402-9977", "mj@email.com"),
+("SWalk","Sally", "Walker", "16547 Baisley Blvd", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "(703) 528-7303", "sw@email.com"),
+("JRipp","Jack", "Ripper", "7205 Bishop Rd", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "(260) 471-3436", "jr@email.com"),
+("DKris", "Deorsa",  "Kristiane", "180 Main St # 232", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "(516) 433-0553", "dk@email.com");
 
 insert into category (`name`)
 values
