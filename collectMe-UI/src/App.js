@@ -60,7 +60,6 @@ function App() {
            <Route path="/upload" element={<Upload />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/add" element={<ItemForm />} />
             <Route path="/add/:itemId" element={<ItemForm />} />
             <Route path="/delete/:itemId" element={<ConfirmDelete />} />
             <Route path="/categories" element={<Category />} />
