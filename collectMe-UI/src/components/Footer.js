@@ -8,7 +8,7 @@ function Footer () {
     return (
 
         <footer className="site-footer container-fluid">
-            <div className="container">
+            <div className="d-flex">
                 <div className="row">
                 <div className="col-sm-12 col-md-6">
                     <h6>About</h6>

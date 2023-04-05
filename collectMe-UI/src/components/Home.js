@@ -36,33 +36,33 @@ function Home () {
         <div className="container d-flex-row align-content-center justify-content-center" style={{minHeight: "75vh"}}>
             <div className="col">
                 <Carousel activeIndex={index} onSelect={handleSelect}>
-                    <Carousel.Item style={{ height: "100%" }}>
+                    <Carousel.Item style={{maxHeight: "650px"}}>
                         <img
-                        className="d-flex w-100"
+                        className="w-100 h-50"
                         style={{ objectFit: "cover"  }}
                         src={bg1}
                         alt="First slide"
                         />
                     </Carousel.Item>
-                    <Carousel.Item style={{ height: "100%" }}>
+                    <Carousel.Item style={{maxHeight: "650px"}}>
                         <img
-                        className="d-flex w-100"
+                        className="w-100 h-50"
                         style={{ objectFit: "cover"  }}
                         src={bg2}
                         alt="Second slide"
                         />
                     </Carousel.Item>
-                    <Carousel.Item style={{ height: "100%" }}>
+                    <Carousel.Item style={{maxHeight: "650px"}}>
                         <img
-                        className="d-flex w-100"
+                        className="w-100 h-50"
                         style={{ objectFit: "cover"  }}
                         src={bg3}
                         alt="Third slide"
                         />
                     </Carousel.Item>
-                    <Carousel.Item style={{ height: "100%" }}>
+                    <Carousel.Item style={{maxHeight: "650px"}}>
                         <img
-                        className="d-flex w-100"
+                        className="w-100 h-50"
                         style={{ objectFit: "cover"  }}
                         src={bg4}
                         alt="Fourth slide"
@@ -90,10 +90,10 @@ function Home () {
                         <div>{oneItem.saleable === true ? "saleable": "" }</div>
                         <div>{oneItem.negotiable === true ? "negotiable": "" }</div>
                     </Card.Text>
-                     {/* <Card.Text>
+                     <Card.Text>
                         <b>Categories:</b>
-                        <div>{oneItem.categories[0].categoryName}</div>
-                    </Card.Text> */}
+                        <div>{oneItem.categories && oneItem.categories[0].categoryName}</div>
+                    </Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>

@@ -30,7 +30,7 @@ export default function Login() {
   }
 
   return (
-    <div className="container d-flex justify-content-center align-self-center col-4" style={{minHeight: "75vh"}}>
+    <div className="container d-flex justify-content-center align-items-center col-4" style={{minHeight: "75vh"}}>
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
           <label className="form-label" htmlFor="username">
