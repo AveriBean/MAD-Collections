@@ -34,7 +34,7 @@
 
 
 @media screen and (max-width: 960px) {
-    .catnav {
+    .catnav, .itemsStyle {
       display: contents;
     }
 }
