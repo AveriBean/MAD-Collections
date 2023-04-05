@@ -77,6 +77,25 @@ export default function ItemView() {
                 </>
               )}
             </Card.Text>
+            <Card.Text>
+              {user ? (
+                <Link
+                  to={`/viewProfile/${item.userId}`}
+                  className="btn btn-primary"
+                  style={{
+                    background: "black",
+                    border: "1px solid lightsteelblue",
+                    color: "#D3D3D3",
+                    margin: "5%",
+                    boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+                  }}
+                >
+                  Contact Owner
+                </Link>
+              ) : (
+                ""
+              )}
+            </Card.Text>
           </Card.Body>
         </Card>
       </Col>
