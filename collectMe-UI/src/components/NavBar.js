@@ -48,6 +48,15 @@ function NavBar() {
                 Items
               </NavLink>
             </li>
+            {/* {user ? ( */}
+            <li className="nav-item">
+              <NavLink className="nav-links" exact to="/store" onClick={handleClick}>
+                Store
+              </NavLink>
+            </li>
+             {/* ) : (
+               ""
+             )} */}
             {user ? (
                <li className="nav-item">
                 <NavLink className="nav-links" exact to="/profile" onClick={handleClick}>

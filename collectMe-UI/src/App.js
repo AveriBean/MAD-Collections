@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Cancel from "./pages/Cancel";
+import Store from "./pages/Store";
+import Success from "./pages/Success";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
 import AuthContext from "./contexts/AuthContext";
 // import AboutUs from "./components/AboutUs";
 import CategoryItem from "./components/CategoryItem";
@@ -16,6 +21,7 @@ import Profile from "./components/Profile";
 import { refresh } from "./services/authService";
 import SideBar from "./components/SideBar";
 import UserForm from "./components/UserForm";
+
 
 function App() {
   const [user, setUser] = useState();
@@ -58,7 +64,12 @@ function App() {
             {/* <Route path="/items/:id" element={<Item />} /> */}
             <Route path="/createUser" element={<UserForm />} />
             {/* <Route path="/Profile" element={<Profile />} /> */}
+            <Route path="/store" element={<Store />} />
+            <Route path="/store/success" element={<Success />} />
+            <Route path="/store/cancel" element={<Cancel />} />
             <Route path="*" element={<NotFound />} />
+
+
           </Routes>
           <Footer className="div3"/>
         </Router>
