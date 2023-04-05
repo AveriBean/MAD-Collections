@@ -61,7 +61,7 @@ export default function ItemForm() {
     setErrMap({});
 
     save(currentItem)
-      .then(() => navigate(-1))
+      .then(() => navigate("/items"))
       .catch((errs) => {
         const errsString = errs.toString();
         console.log(errsString);

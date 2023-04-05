@@ -1,7 +1,8 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import { useEffect, useState } from "react";
+import { useContext, useState, useEffect} from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 import { findByCategoryId } from "../services/itemService";
 
@@ -9,6 +10,7 @@ function CategoryItem() {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
   const { categoryId } = useParams();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (categoryId) {
@@ -79,6 +81,11 @@ function CategoryItem() {
                     View
                   </Link>
                 </Card.Text>
+                {user ? (
+                    <Link to={`/viewProfile/${i.userId}`} className="btn btn-success">
+                    View Profile
+                  </Link>
+                    ) : ("")}
               </Card.Body>
             </Card>
           </Col>

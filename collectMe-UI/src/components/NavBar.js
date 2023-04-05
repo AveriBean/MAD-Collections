@@ -16,14 +16,15 @@ function NavBar() {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
-            M.A.D. Collective
-          </NavLink>
+    <nav className="navbar">
+      <div className="nav-container">
+        <NavLink exact to="/" className="nav-logo">
+          M.A.D. Collective
+        </NavLink>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+             <li className="nav-item">
+
               <NavLink className="nav-links" exact to="/" onClick={handleClick}>
                 Home
               </NavLink>
@@ -64,12 +65,9 @@ function NavBar() {
             </li>
             {user ? (
               <li className="nav-item">
-                <NavLink
-                  className="nav-links"
-                  exact
-                  to="/profile"
-                  onClick={handleClick}
-                >
+
+                <NavLink className="nav-links" exact to={`/viewProfile/${user.userId}`} onClick={handleClick}>
+
                   Profile
                 </NavLink>
               </li>

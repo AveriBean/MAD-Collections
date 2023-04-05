@@ -1,12 +1,12 @@
 @url = http://localhost:8080
 
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiTWljYWhhZWwiLCJ1c2VySWQiOjEsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLCJmaXJzdE5hbWUiOiJKYWNrc29uIiwibGFzdE5hbWUiOiJKTWljaCIsImVtYWlsIjoibWpAdGVzdGluZy5jb20iLCJleHAiOjE2ODA2MTYxMjN9.HgzH19VTuQ4gtoV-5H6zk0voeQmxggW3CidxsO2kvLU
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiU2FsbHkiLCJ1c2VySWQiOjIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwiZmlyc3ROYW1lIjoiV2Fsa2VyIiwibGFzdE5hbWUiOiJTV2FsayIsImxvY2F0aW9uIjoiMTY1NDcgQmFpc2xleSBCbHZkIiwicGhvbmUiOiIoNzAzKSA1MjgtNzMwMyIsImVtYWlsIjoic3dAZW1haWwuY29tIiwiZXhwIjoxNjgwNzI0ODMzfQ.FjEVifWnr1AyHgUBZnfSq7I7SmP80C2HoS3xFeWKf-Y
 
 GET {{url}}/api/user HTTP/1.1
 
 ### [ ] GET a user by ID
 
-GET {{url}}/api/user/6 HTTP/1.1
+GET {{url}}/api/user/2 HTTP/1.1
 
 ### [ ] For GET return a 404 if user is not found
 
@@ -91,9 +91,7 @@ Authorization: Bearer {{jwt}}
     "firstName": "Test",
     "lastName": "Walker",
     "location": "Sally's Address",
-    "username": "SWalk",
-    "password": "$2a$10$.zydOtTivoIcJP1CVcbEbOEaSfgDefR8yIRp3W.oZRFrvOSEOAOm6",
-    "phone": "2622622626",
+    "phone": "262-262-2626",
     "email": "sw@testing.com"
 }
 
@@ -104,12 +102,10 @@ Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-   "userId": 2,
+    "userId": 2,
     "firstName": "Test",
     "lastName": "Walker",
     "location": "Sally's Address",
-    "username": "SWalk",
-    "password": "$2a$10$.zydOtTivoIcJP1CVcbEbOEaSfgDefR8yIRp3W.oZRFrvOSEOAOm6",
     "phone": "2622622626",
     "email": ""
 }

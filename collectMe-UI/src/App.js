@@ -64,7 +64,8 @@ function App() {
             <Route path="/items" element={<Items />} />
             {/* <Route path="/items/:id" element={<Item />} /> */}
             <Route path="/createUser" element={<UserForm />} />
-            {/* <Route path="/Profile" element={<Profile />} /> */}
+            <Route path="/editUser/:userId" element={<UserForm />} />
+            <Route path="/viewProfile/:userId" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer className="div3"/>
