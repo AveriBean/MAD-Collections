@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 export default function Upload({ handleUrl }) {
   const [currentFile, setCurrentFile] = useState();
   const [hasError, setHasError] = useState(false);
+  const [dataUrl, setDataUrl] = useState({});
   const preview = useRef();
   const imgPreview = useRef();
 
@@ -13,46 +14,63 @@ export default function Upload({ handleUrl }) {
 
     let reader = new FileReader();
     reader.onload = function () {
+      setDataUrl(reader.result);
+      // console.log(reader.result);
+      handleUrl(reader.result);
       imgPreview.current.src = reader.result;
       preview.current.style.display = "block";
     };
     setCurrentFile(evt.target.files[0]);
     reader.readAsDataURL(evt.target.files[0]);
+    // setDataUrl(reader.readAsDataURL(evt.target.files[0]));
+    // console.log(dataUrl);
+    // handleDataUrl(dataUrl);
+    // console.log(currentFile);
+    // toDataUrl(evt);
   }
 
-  function handleClick(evt) {
-    evt.preventDefault();
-    if (!currentFile) {
-      return;
-    }
-    const formData = new FormData();
-    formData.append("file", currentFile, currentFile.name);
-    console.log(currentFile);
-    // return;
+  // function toDataUrl(evt) {
+  //   if (evt.target.files.length === 0) {
+  //     return;
+  //   }
+  //   let reader = new FileReader();
+  //   setDataUrl(reader.readAsDataURL(currentFile));
+  //   console.log(dataUrl);
+  // }
 
-    const init = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("BG_JWT")}`,
-      },
-      body: formData,
-    };
+  // function handleClick(evt) {
+  //   evt.preventDefault();
+  //   if (!currentFile) {
+  //     return;
+  //   }
+  //   const formData = new FormData();
+  //   formData.append("file", currentFile, currentFile.name);
+  //   console.log(currentFile);
+  //   // return;
 
-    fetch("http://localhost:8080/upload", init)
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        }
-        return Promise.reject();
-      })
-      .then((relativePath) => {
-        console.log(relativePath);
-        handleUrl(relativePath);
-      })
-      .catch(() => {
-        setHasError(true);
-      });
-  }
+  //   const init = {
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("BG_JWT")}`,
+  //     },
+  //     body: formData,
+  //   };
+  //   console.log(init);
+  //   fetch("http://localhost:8080/upload", init)
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         return response.text();
+  //       }
+  //       return Promise.reject();
+  //     })
+  //     .then((relativePath) => {
+  //       console.log(relativePath);
+  //       handleUrl(relativePath);
+  //     })
+  //     .catch(() => {
+  //       setHasError(true);
+  //     });
+  // }
 
   return (
     <>
@@ -73,7 +91,7 @@ export default function Upload({ handleUrl }) {
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <button
             style={{
               background: "black",
@@ -89,7 +107,7 @@ export default function Upload({ handleUrl }) {
           >
             Upload
           </button>
-        </div>
+        </div> */}
 
         <div ref={preview} className="form-group">
           <img ref={imgPreview} alt="preview" />

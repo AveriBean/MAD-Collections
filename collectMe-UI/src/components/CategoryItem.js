@@ -12,10 +12,11 @@ function CategoryItem() {
 
   useEffect(() => {
     if (categoryId) {
-      findByCategoryId(categoryId).then(setItems);
-      // .catch(() => navigate("/500"));
+      findByCategoryId(categoryId)
+        .then(setItems)
+        .catch(() => navigate("/500"));
     }
-  }, []);
+  }, [categoryId, navigate]);
 
   return (
     <div
@@ -37,7 +38,10 @@ function CategoryItem() {
             className="d-flex justify-content-center"
           >
             <Card style={{ width: "18rem", marginTop: "10px" }}>
-              <Card.Img src={i.image} />
+              <Card.Img
+                style={{ height: "auto", width: "18rem", marginTop: "10px" }}
+                src={i.image}
+              />
               <Card.Body style={{ textAlign: "center" }}>
                 <Card.Title style={{ marginBottom: "10px" }}>
                   {i.itemName}
@@ -57,7 +61,7 @@ function CategoryItem() {
                   ))}
                 </Card.Text>
                 <Card.Text>
-                  <Link to="/view/item" className="btn btn-info">
+                  <Link to={`/view/item/${i.itemId}`} className="btn btn-info">
                     View
                   </Link>
                 </Card.Text>

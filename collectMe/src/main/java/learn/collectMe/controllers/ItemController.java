@@ -48,7 +48,7 @@ public class ItemController {
         }
         Result<Item> result = service.update(item);
         if (result.isSuccess()) {
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(result.getPayload(), HttpStatus.ACCEPTED);
         }
         return ErrorResponse.build(result);
    }

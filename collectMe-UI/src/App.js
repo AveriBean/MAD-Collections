@@ -14,6 +14,8 @@ import { refresh } from "./services/authService";
 import SideBar from "./components/SideBar";
 import UserForm from "./components/UserForm";
 import Upload from "./components/Upload";
+import ItemView from "./components/ItemView";
+import ConfirmDelete from "./components/ConfirmDelete";
 
 function App() {
   const [user, setUser] = useState();
@@ -49,7 +51,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add" element={<ItemForm />} />
+            <Route path="/add/:itemId" element={<ItemForm />} />
+            <Route path="/delete/:itemId" element={<ConfirmDelete />} />
             <Route path="/category/:categoryId" element={<CategoryItem />} />
+            <Route path="/view/item/:itemId" element={<ItemView />} />
             {/* <Route path="/about" element={<AboutUs />} /> */}
             <Route path="/items" element={<Items />} />
             {/* <Route path="/items/:id" element={<Item />} /> */}

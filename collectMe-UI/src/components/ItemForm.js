@@ -8,11 +8,11 @@ import { Col, Form } from "react-bootstrap";
 import Multiselect from "react-bootstrap-multiselect";
 import Select from "react-select";
 import Upload from "./Upload";
+import { findById } from "../services/itemService";
 
 const fieldNames = ["Item Name", "Item Description", "Item Value"];
 
 export default function ItemForm() {
-  const [currentItem, setCurrentItem] = useState(GetEmptyItem());
   const [errors, setErrors] = useState([]);
   const [errMap, setErrMap] = useState({});
   const [wait, setWait] = useState(true);
@@ -20,7 +20,8 @@ export default function ItemForm() {
   const navigate = useNavigate();
   const [field, setField] = useState([]);
   const formRef = useRef();
-
+  const { itemId } = useParams();
+  const [currentItem, setCurrentItem] = useState(GetEmptyItem());
   const [categories, setCategories] = useState([]);
   const [actions, setActions] = useState([]);
 
@@ -42,6 +43,17 @@ export default function ItemForm() {
       .catch(() => navigate("/500"));
   }, []);
 
+  useEffect(() => {
+    if (itemId) {
+      findById(itemId).then((result) => {
+        setCurrentItem(result);
+        console.log(currentItem);
+        setWait(false);
+      });
+      // .catch(() => navigate("/500"));
+    }
+  }, []);
+
   function handleSubmit(evt) {
     evt.preventDefault();
 
@@ -51,7 +63,12 @@ export default function ItemForm() {
     save(currentItem)
       .then(() => navigate(-1))
       .catch((errs) => {
-        console.log(errs);
+        const errsString = errs.toString();
+        console.log(errsString);
+        if (errsString.includes("Unexpected end of JSON")) {
+          navigate(-1);
+          return;
+        }
         if (errs) {
           const map = {};
           for (const err of errs) {
@@ -85,9 +102,9 @@ export default function ItemForm() {
     setCurrentItem(nextItem);
   }
 
-  function handleUrl(relativePath) {
+  function handleUrl(dataUrl) {
     const nextItem = { ...currentItem };
-    nextItem.image = relativePath;
+    nextItem.image = dataUrl;
     setCurrentItem(nextItem);
   }
 
