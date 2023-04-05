@@ -24,55 +24,75 @@ function NavBar() {
 
         <ul className={click ? "nav-menu active" : "nav-menu"}>
              <li className="nav-item">
+
               <NavLink className="nav-links" exact to="/" onClick={handleClick}>
                 Home
               </NavLink>
             </li>
             {user ? (
-               <li className="nav-item">
-                <NavLink className="nav-links" exact to="/add" onClick={handleClick}>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-links"
+                  exact
+                  to="/add"
+                  onClick={handleClick}
+                >
                   Add Item
                 </NavLink>
               </li>
             ) : (
               ""
             )}
-             <li className="nav-item categoryLink">
-              <NavLink className="nav-links" exact to="/categories" onClick={handleClick}>
+            <li className="nav-item categoryLink">
+              <NavLink
+                className="nav-links"
+                exact
+                to="/categories"
+                onClick={handleClick}
+              >
                 Categories
               </NavLink>
             </li>
-             <li className="nav-item">
-              <NavLink className="nav-links" exact to="/items" onClick={handleClick}>
+            <li className="nav-item">
+              <NavLink
+                className="nav-links"
+                exact
+                to="/items"
+                onClick={handleClick}
+              >
                 Items
               </NavLink>
             </li>
             {user ? (
               <li className="nav-item">
+
                 <NavLink className="nav-links" exact to={`/viewProfile/${user.userId}`} onClick={handleClick}>
+
                   Profile
                 </NavLink>
               </li>
             ) : (
               ""
             )}
-             <li className="nav-item">
+            <li className="nav-item">
               {user ? (
                 <>
                   <a href="#logout" className="nav-link" onClick={handleLogout}>
                     Logout
                   </a>
                 </>
-              ): (
+              ) : (
                 <>
-                <NavLink
-                  exact to="/login" onClick={handleClick}
-                  className={`nav-links${
-                    location.pathname.startsWith("/login") ? " active" : ""
-                  }`}
-                >
-                  Login
-                </NavLink>
+                  <NavLink
+                    exact
+                    to="/login"
+                    onClick={handleClick}
+                    className={`nav-links${
+                      location.pathname.startsWith("/login") ? " active" : ""
+                    }`}
+                  >
+                    Login
+                  </NavLink>
                 </>
               )}
             </li>
@@ -81,10 +101,9 @@ function NavBar() {
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
           </div>
-
-      </div>
-    </nav>
-  </>
+        </div>
+      </nav>
+    </>
   );
 }
 

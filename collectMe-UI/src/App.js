@@ -16,6 +16,9 @@ import Profile from "./components/Profile";
 import { refresh } from "./services/authService";
 import SideBar from "./components/SideBar";
 import UserForm from "./components/UserForm";
+import Upload from "./components/Upload";
+import ItemView from "./components/ItemView";
+import ConfirmDelete from "./components/ConfirmDelete";
 
 function App() {
   const [user, setUser] = useState();
@@ -47,11 +50,15 @@ function App() {
           <NavBar className="div1"/>
           <SideBar className="div2" />
           <Routes className="div4">
+           <Route path="/upload" element={<Upload />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add" element={<ItemForm />} />
+            <Route path="/add/:itemId" element={<ItemForm />} />
+            <Route path="/delete/:itemId" element={<ConfirmDelete />} />
             <Route path="/categories" element={<Category />} />
             <Route path="/category/:categoryId" element={<CategoryItem />} />
+            <Route path="/view/item/:itemId" element={<ItemView />} />
             <Route path="/categories/category/:categoryId" element={<CategoryItem />} />
             {/* <Route path="/about" element={<AboutUs />} /> */}
             <Route path="/items" element={<Items />} />

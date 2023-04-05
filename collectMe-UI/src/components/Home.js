@@ -16,24 +16,27 @@ function Home () {
     const [oneItem, setOneItem] = useState('');
     const [index, setIndex] = useState(0);
 
-    useEffect(() => {
-        findAll()
-            .then(result => {
-               setItems(result)
-               const random = result[Math.floor(Math.random() * result.length)];
-               setOneItem(random);
-            } )
-            .catch(alert);
-    }, []);
+  useEffect(() => {
+    findAll()
+      .then((result) => {
+        setItems(result);
+        const random = result[Math.floor(Math.random() * result.length)];
+        setOneItem(random);
+      })
+      .catch(alert);
+  }, []);
+
 
     const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
-    };
+    setIndex(selectedIndex);
+  };
 
-    return (
-
-        <div className="container d-flex-row align-content-center justify-content-center mx-auto" style={{minHeight: "75vh"}}>
-            <div className="col">
+  return (
+    <div
+      className="container d-flex-row align-content-center justify-content-center mx-auto"
+      style={{ minHeight: "75vh" }}
+    >
+      <div className="col">
                 <Carousel activeIndex={index} onSelect={handleSelect}>
                     <Carousel.Item style={{maxHeight: "650px"}}>
                         <img
@@ -72,17 +75,20 @@ function Home () {
 
             <div className="d-flex-row align-items-center justify-content-center">
                 <h2 className="d-flex justify-content-center">ITEM OF THE DAY</h2>
-                
-                <Col className="d-flex justify-content-center">
-                <Card style={{ width: "18rem", marginTop: "10px" }}>
-                    <Card.Img src={oneItem.image} />
-                    <Card.Body style={{ textAlign: "center" }}>
-                    <Card.Title style={{ marginBottom: "10px" }}>
-                        {oneItem.itemName}
-                    </Card.Title>
-                    <Card.Text><b>Description:</b> {oneItem.description}</Card.Text>
-                    <Card.Text><b>Value:</b> {oneItem.value}</Card.Text>
-                    <Card.Text>
+
+      <Col className="d-flex justify-content-center">
+        <Card style={{ width: "18rem", marginTop: "10px" }}>
+          <Card.Img
+            style={{ height: "auto", width: "18rem", marginTop: "10px" }}
+            src={oneItem.image}
+              />
+          <Card.Body style={{ textAlign: "center" }}>
+            <Card.Title style={{ marginBottom: "10px" }}>
+              {oneItem.itemName}
+            </Card.Title>
+            <Card.Text><b>Description:</b> {oneItem.description}</Card.Text>
+            <Card.Text><b>Value:</b> {oneItem.value}</Card.Text>
+             <Card.Text>
                         <b>Item Status:</b>
                         <div>{oneItem.viewable === true ? "viewable": "" }</div>
                         <div>{oneItem.tradeable === true ? "tradeable": "" }</div>
@@ -93,12 +99,11 @@ function Home () {
                         <b>Categories:</b>
                         <div>{oneItem.categories && oneItem.categories[0].categoryName}</div>
                     </Card.Text>
-                    </Card.Body>
-                </Card>
-                </Col>
-        
-            </div>            
-        </div>
+          </Card.Body>
+        </Card>
+      </Col>
+    </div>
+  </div>
 
     );
 }

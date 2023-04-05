@@ -28,11 +28,13 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
                 .antMatchers(HttpMethod.POST, "/refresh").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/**", "/images/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/**" ).authenticated()
+                .antMatchers(HttpMethod.POST, "/api/**",  "/upload" ).authenticated()
                 .antMatchers(HttpMethod.PUT, "/api/**").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/**").authenticated()
+
                 .antMatchers("/**").denyAll()
                 .and()
                 .addFilter(new JwtRequestFilter(manager(config), converter))

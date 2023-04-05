@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
@@ -13,7 +14,9 @@ export default function Item({ item }) {
     <>
         <Col key={item.itemId} className="d-flex justify-content-center">
           <Card style={{ width: "18rem", marginTop: "10px" }}>
-            <Card.Img src={item.image} />
+            <Card.Img 
+            style={{ width: "18rem", marginTop: "10px", height: "auto" }}
+            src={item.image} />
             <Card.Body style={{ textAlign: "center" }}>
               <Card.Title style={{ marginBottom: "10px" }}>
                 {item.itemName}
@@ -33,11 +36,25 @@ export default function Item({ item }) {
                 ))}
               </div>
               <Card.Text>
-                <Link to="/view/item" className="btn btn-info m-2">
+                <Link to="/view/item"  className="btn btn-primary"
+                style={{
+                  background: "black",
+                  border: "1px solid lightsteelblue",
+                  color: "#D3D3D3",
+                  margin: "5%",
+                  boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+                }}">
                   View Item
                 </Link>
                 {user ? (
-                    <Link to={`/viewProfile/${item.userId}`} className="btn btn-success">
+                    <Link to={`/viewProfile/${item.userId}`}  className="btn btn-primary"
+                style={{
+                  background: "black",
+                  border: "1px solid lightsteelblue",
+                  color: "#D3D3D3",
+                  margin: "5%",
+                  boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+                }}>
                     Contact User
                   </Link>
                     ) : ("")}

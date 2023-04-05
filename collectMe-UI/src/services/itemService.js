@@ -6,10 +6,9 @@ const model = "item";
 
 export function GetEmptyItem() {
   const { user } = useContext(AuthContext);
-
   return {
     itemId: 0,
-    name: "",
+    itemName: "",
     description: "",
     value: 0,
     userId: user.userId,
