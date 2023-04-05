@@ -32,7 +32,7 @@ function Home () {
 
     return (
 
-        <div className="container d-flex-row align-content-center justify-content-center" style={{minHeight: "75vh"}}>
+        <div className="container d-flex-row align-content-center justify-content-center mx-auto" style={{minHeight: "75vh"}}>
             <div className="col">
                 <Carousel activeIndex={index} onSelect={handleSelect}>
                     <Carousel.Item style={{maxHeight: "650px"}}>
@@ -70,7 +70,7 @@ function Home () {
                 </Carousel>
             </div>
 
-            <div className="d-flex-row align-content-center justify-content-center">
+            <div className="d-flex-row align-items-center justify-content-center">
                 <h2 className="d-flex justify-content-center">ITEM OF THE DAY</h2>
                 
                 <Col className="d-flex justify-content-center">
