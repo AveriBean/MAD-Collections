@@ -7,7 +7,7 @@ import linkedIn from "../images/icons/linkedin.png";
 function Footer () {
     return (
 
-        <footer className="site-footer container-fluid">
+        <footer className="site-footer">
             <div className="d-flex">
                 <div className="row">
                     <div className="col-xs-6 col-md-6 text-center">
