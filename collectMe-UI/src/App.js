@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import AuthContext from "./contexts/AuthContext";
+// import AboutUs from "./components/AboutUs";
 import CategoryItem from "./components/CategoryItem";
+import Category from "./components/Category";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ItemForm from "./components/ItemForm";
@@ -42,19 +45,21 @@ function App() {
 
   return (
     <AuthContext.Provider value={auth}>
-      <div className="container-fluid">
+      <div className="container-fluid parent">
         <Router>
-          <NavBar />
-          <SideBar />
-          <Routes>
-            <Route path="/upload" element={<Upload />} />
+          <NavBar className="div1"/>
+          <SideBar className="div2" />
+          <Routes className="div4">
+           <Route path="/upload" element={<Upload />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/add" element={<ItemForm />} />
             <Route path="/add/:itemId" element={<ItemForm />} />
             <Route path="/delete/:itemId" element={<ConfirmDelete />} />
+            <Route path="/categories" element={<Category />} />
             <Route path="/category/:categoryId" element={<CategoryItem />} />
             <Route path="/view/item/:itemId" element={<ItemView />} />
+            <Route path="/categories/category/:categoryId" element={<CategoryItem />} />
             {/* <Route path="/about" element={<AboutUs />} /> */}
             <Route path="/items" element={<Items />} />
             {/* <Route path="/items/:id" element={<Item />} /> */}
@@ -62,7 +67,7 @@ function App() {
             {/* <Route path="/Profile" element={<Profile />} /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
+          <Footer className="div3"/>
         </Router>
       </div>
     </AuthContext.Provider>

@@ -1,98 +1,92 @@
-import { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import "../styles/NavBar.css";
 
 function NavBar() {
-  const navigate = useNavigate();
+  const [click, setClick] = useState(false);
   const location = useLocation();
   const { user, logout } = useContext(AuthContext);
+  const handleClick = () => setClick(!click);
 
   function handleLogout(evt) {
     evt.preventDefault();
-    navigate("/");
     logout();
   }
 
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-dark bg-dark"
-      style={{ height: "5vh" }}
-    >
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#home">
-          <h1 className="text-white">M.A.D. Collectibles</h1>
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsible"
-          aria-controls="collapsible"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="collapsible">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
+    <>
+
+    <nav className="navbar">
+      <div className="nav-container">
+        <NavLink exact to="/" className="nav-logo">
+          M.A.D. Collective
+        </NavLink>
+
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+             <li className="nav-item">
+              <NavLink className="nav-links" exact to="/" onClick={handleClick}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             {user ? (
-              <li className="nav-item">
-                <Link className="nav-link" to="/add">
+               <li className="nav-item">
+                <NavLink className="nav-links" exact to="/add" onClick={handleClick}>
                   Add Item
-                </Link>
+                </NavLink>
               </li>
             ) : (
               ""
             )}
-            <li className="nav-item">
-              <Link className="nav-link" to="/categories">
+             <li className="nav-item categoryLink">
+              <NavLink className="nav-links" exact to="/categories" onClick={handleClick}>
                 Categories
-              </Link>
+              </NavLink>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/items">
+             <li className="nav-item">
+              <NavLink className="nav-links" exact to="/items" onClick={handleClick}>
                 Items
-              </Link>
+              </NavLink>
             </li>
             {user ? (
-              <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+               <li className="nav-item">
+                <NavLink className="nav-links" exact to="/profile" onClick={handleClick}>
                   Profile
-                </Link>
+                </NavLink>
               </li>
             ) : (
               ""
             )}
-            <li className="nav-item">
+             <li className="nav-item">
               {user ? (
                 <>
                   <a href="#logout" className="nav-link" onClick={handleLogout}>
                     Logout
                   </a>
-                  {/* <h6>Hello ${user.sub}</h6> */}
+                  <h6>Hello ${user.sub}</h6>
                 </>
-              ) : (
+              ): (
                 <>
-                  <Link
-                    to="/login"
-                    className={`nav-link${
-                      location.pathname.startsWith("/login") ? " active" : ""
-                    }`}
-                  >
-                    Login
-                  </Link>
+                <NavLink
+                  exact to="/login" onClick={handleClick}
+                  className={`nav-links${
+                    location.pathname.startsWith("/login") ? " active" : ""
+                  }`}
+                >
+                  Login
+                </NavLink>
                 </>
               )}
             </li>
           </ul>
-        </div>
+
+          <div className="nav-icon" onClick={handleClick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
+          </div>
+
       </div>
     </nav>
+  </>
   );
 }
 

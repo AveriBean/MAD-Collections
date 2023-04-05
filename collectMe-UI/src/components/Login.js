@@ -30,7 +30,7 @@ export default function Login() {
   }
 
   return (
-    <div className="container col-4">
+    <div className="container d-flex justify-content-center align-items-center col-4" style={{minHeight: "75vh"}}>
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
           <label className="form-label" htmlFor="username">
@@ -59,32 +59,13 @@ export default function Login() {
           />
         </div>
         <div className="mb-2">
-          <Link
-            style={{
-              background: "#FFD700",
-              border: "1px solid lightsteelblue",
-              color: "black",
-              margin: "5%",
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            to="/"
-            className="btn btn-warning ms-0"
-          >
+          <Link to="/" className="btn btn-warning me-1 my-2">
             Cancel
           </Link>
-          <button
-            style={{
-              background: "black",
-              border: "1px solid lightsteelblue",
-              color: "#D3D3D3",
-              margin: "5%",
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            type="submit"
-            className="btn btn-primary ms-0"
-          >
+          <button type="submit" className="btn btn-primary me-5">
             Login
           </button>
+          <Link to="/createUser" className="btn btn-success">Create New User Account</Link>
         </div>
         {hasError && <div className="alert alert-danger">Bad Credentials.</div>}
       </form>
