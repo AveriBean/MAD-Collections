@@ -4,7 +4,7 @@ import notFound from "../utilities/NotFoundPhoto/MADCollectionsNotFound.avif"
 
 function NotFound() {
     return (
-      <div style={{minHeight: "75vh"}} className="container-fluid">
+      <div style={{minHeight: "100vh"}} className="container-fluid">
         <div className="bgNotFound">
           <h2 className="textNotFound text-center">Sorry, Page Not Found. . .</h2>
 

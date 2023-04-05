@@ -74,7 +74,7 @@ public class UserService implements UserDetailsService{
     }
 
     public Result<User> update(User user) {
-        Result<User> result = validate(user);
+        Result<User> result = validateUpdate(user);
         if (!result.isSuccess()) {
             return result;
         }
@@ -131,6 +131,24 @@ public class UserService implements UserDetailsService{
         if (!isValidPassword(user.getPassword())) {
             result.addMessage("password must be at least 8 characters long and contain both a digit" +
                     " and a letter", ResultType.INVALID);
+        }
+
+        return result;
+    }
+
+    private Result<User> validateUpdate(User user) {
+        Result<User> result = new Result<>();
+        if (user == null) {
+            result.addMessage("user cannot be null", ResultType.INVALID);
+            return result;
+        }
+
+        if ((Validations.isNullOrBlank(user.getFirstName())) || (Validations.isNullOrBlank(user.getLastName()))) {
+            result.addMessage("name fields are required", ResultType.INVALID);
+        }
+
+        if (Validations.isNullOrBlank(user.getEmail())) {
+            result.addMessage("email is required", ResultType.INVALID);
         }
 
         return result;

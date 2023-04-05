@@ -73,9 +73,8 @@ class UserServiceTest {
 
     @Test
     void shouldUpdate() {
-        List<String> roles = userRepository.getRolesByUsername("SWalk");
 
-        User user = new User(2, "Updated Username", "Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", true, roles);
+        User user = new User(2, "Test", "Walker", "Sally's Address", "2622622626", "sw@testing.com");
 
         when(userRepository.update(user)).thenReturn(true);
 
@@ -85,9 +84,7 @@ class UserServiceTest {
 
     @Test
     void shouldNotUpdateEmptyName() {
-        List<String> roles = userRepository.getRolesByUsername("SWalk");
-
-        User user = new User(2, "Updated Username", "Sally", "", "Sally's Address", "passwordHash2", "2622622626", "sw@testing.com", true, roles);
+        User user = new User(2, "Sally", "", "Sally's Address", "2622622626", "sw@testing.com");
         Result<User> expected = new Result<>();
         expected.addMessage("name fields are required", ResultType.INVALID);
 
@@ -97,9 +94,7 @@ class UserServiceTest {
 
     @Test
     void shouldNotUpdateEmptyEmail() {
-        List<String> roles = userRepository.getRolesByUsername("SWalk");
-
-        User user = new User(2, "Updated Username", "Sally", "Walker", "Sally's Address", "passwordHash2", "2622622626", "", true, roles);
+        User user = new User(2, "Sally", "Walker", "Sally's Address", "2622622626", "");
         Result<User> expected = new Result<>();
         expected.addMessage("email is required", ResultType.INVALID);
 

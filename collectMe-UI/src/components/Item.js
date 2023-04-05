@@ -1,9 +1,13 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 
 
 export default function Item({ item }) {
+
+  const { user } = useContext(AuthContext);
 
   return (
     <>
@@ -29,9 +33,14 @@ export default function Item({ item }) {
                 ))}
               </div>
               <Card.Text>
-                <Link to="/view/item" className="btn btn-info">
-                  View
+                <Link to="/view/item" className="btn btn-info m-2">
+                  View Item
                 </Link>
+                {user ? (
+                    <Link to={`/viewProfile/${item.userId}`} className="btn btn-success">
+                    Contact User
+                  </Link>
+                    ) : ("")}
               </Card.Text>
             </Card.Body>
           </Card>

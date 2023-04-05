@@ -30,6 +30,15 @@ public class User implements UserDetails {
 
     }
 
+    public User(int userId, String firstName, String lastName, String location, String phone, String email) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.location = location;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public User( int userId, String username, String firstName, String lastName, String location, String password, String phone, String email, boolean enabled, List<String> roles) {
         this.userId = userId;
         this.username = username;

@@ -16,7 +16,6 @@ function NavBar() {
 
   return (
     <>
-
     <nav className="navbar">
       <div className="nav-container">
         <NavLink exact to="/" className="nav-logo">
@@ -49,8 +48,8 @@ function NavBar() {
               </NavLink>
             </li>
             {user ? (
-               <li className="nav-item">
-                <NavLink className="nav-links" exact to="/profile" onClick={handleClick}>
+              <li className="nav-item">
+                <NavLink className="nav-links" exact to={`/viewProfile/${user.userId}`} onClick={handleClick}>
                   Profile
                 </NavLink>
               </li>
@@ -63,7 +62,6 @@ function NavBar() {
                   <a href="#logout" className="nav-link" onClick={handleLogout}>
                     Logout
                   </a>
-                  <h6>Hello ${user.sub}</h6>
                 </>
               ): (
                 <>
