@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { findAll } from "../services/itemService";
-import StoreItem from "../components/StoreItem";
 
 export const CartContext = createContext({
     items: [],
@@ -11,18 +10,20 @@ export const CartContext = createContext({
     getTotalCost: () => {},
 });
 
+
 export function CartProvider({ children }) {
     const [cartItems, setCartItems] = useState([]);
-    const [items, setItems] = useState([]);
-
+    const [storeItems, setStoreItems] = useState([]);
+    console.log(storeItems);
+    
     useEffect(() => {
         findAll()
-            .then(setItems)
+            .then(setStoreItems)
             .catch(alert);
     }, []);
 
     function getItemQuantity(itemId) {
-        cartItems.find(item => item.itemId === itemId)?.quantity
+        const quantity = cartItems.find(item => item.itemId === itemId)?.quantity;
 
         if(quantity === undefined) {
             return 0;
@@ -57,7 +58,7 @@ export function CartProvider({ children }) {
     function deleteFromCart(itemId) {
         setCartItems(
             cartItems => cartItems.filter(currentItem => {
-                return currentItem.itemId != itemId;
+                return currentItem.itemId !== itemId;
             })
         )
     }
@@ -65,7 +66,7 @@ export function CartProvider({ children }) {
     function removeOneFromCart(itemId) {
         const quantity = getItemQuantity(itemId);
 
-        if(quantity == 1) {
+        if(quantity === 1) {
             deleteFromCart(itemId);
         } else {
             setCartItems(
@@ -77,18 +78,29 @@ export function CartProvider({ children }) {
         }
     }
 
+    function getItemData(itemId) {
+        let itemData = storeItems.find(i => i.itemId === itemId)
+
+        if (itemData === undefined) {
+            console.log("Item data does not exist for ID: " + itemId);
+        }
+
+        return itemData;
+    }
+
     function getTotalCost() {
         let totalCost = 0;
 
         cartItems.map((cartItem) => {
             const itemData = getItemData(cartItem.itemId);
             totalCost += (itemData.value * cartItem.quantity);
-        })
+            return totalCost;
+        });        
     }
 
 
     const contextValue = {
-        items: [],
+        items: cartItems,
         getItemQuantity,
         addOneToCart,
         removeOneFromCart,

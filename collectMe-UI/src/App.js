@@ -8,6 +8,7 @@ import Success from "./pages/Success";
 
 import AuthContext from "./contexts/AuthContext";
 // import AboutUs from "./components/AboutUs";
+import CartProvider from "./contexts/CartContext";
 import CategoryItem from "./components/CategoryItem";
 import Category from "./components/Category";
 import Footer from "./components/Footer";
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={auth}>
+      <CartProvider>
       <div className="container-fluid parent">
         <Router>
           <NavBar className="div1"/>
@@ -74,6 +76,7 @@ function App() {
           <Footer className="div3"/>
         </Router>
       </div>
+      </CartProvider>
     </AuthContext.Provider>
   );
 }

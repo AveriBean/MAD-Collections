@@ -1,9 +1,12 @@
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+import { Button, Card, Col } from "react-bootstrap";
+import { CartContext } from "../contexts/CartContext";
+import { useContext } from "react";
 
 
 function StoreItem({ item }) {
+    const cart = useContext(CartContext);
+    const itemQuantity = cart.getItemQuantity(item.itemId);
+    console.log(cart.items);
 
   return (
     <>
@@ -16,20 +19,8 @@ function StoreItem({ item }) {
                 </Card.Title>
                 <Card.Text><b>Description:</b> {item.description}</Card.Text>
                 <Card.Text><b>Value:</b> {item.value}</Card.Text>
-                {/* <Card.Text>
-                    <b>Item Status:</b>
-                    {item.actions.map((a) => (
-                    <div key={a.actionId}>{a.status}</div>
-                    ))}
-                </Card.Text>
-                <Card.Text>
-                    <b>Categories:</b>
-                    {item.categories.map((c) => (
-                    <div key={c.categoryId}>{c.categoryName}</div>
-                    ))} 
-                </Card.Text>*/}
                 <Card.Footer style={{ textAlign: "center", alignItems: "end" }}>
-                    <Link to={`/add/${item.itemId}`} className="btn btn-secondary btn-sm">Add to Cart</Link>
+                    <Button variant="secondary" onClick={() => cart.addOneToCart(item.itemId)}>Add to Cart</Button>
                 </Card.Footer>
             </Card.Body>
           </Card>
@@ -39,5 +30,3 @@ function StoreItem({ item }) {
 }
 
 export default StoreItem;
-
-

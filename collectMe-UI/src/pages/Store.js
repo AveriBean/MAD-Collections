@@ -5,14 +5,14 @@ import StoreItem from "../components/StoreItem";
 
 function Store() {
 
-    const [items, setItems] = useState([]);
+    const [storeItems, setStoreItems] = useState([]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     useEffect(() => {
         findAll()
-            .then(setItems)
+            .then(setStoreItems)
             .catch(alert);
     }, []);
 
@@ -41,7 +41,7 @@ function Store() {
 
             <Row xs={1} md={3} className="g-4">
 
-                {items.map(i => <StoreItem key={i.itemId} item={i} />)}
+                {storeItems.map(i => <StoreItem key={i.itemId} item={i} />)}
             </Row>
 
         </div>
