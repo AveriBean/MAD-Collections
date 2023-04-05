@@ -58,7 +58,6 @@ export default function ItemView() {
                     }}
                     className="btn btn-primary me-2"
                     to={`/add/${item.itemId}`}
-                    type="submit"
                   >
                     Edit
                   </Link>

@@ -10,22 +10,25 @@ function CategoryItem() {
   const navigate = useNavigate();
   const { categoryId } = useParams();
 
-
   useEffect(() => {
-    if(categoryId) {
+    if (categoryId) {
       findByCategoryId(categoryId)
-        .then((setItems))
+        .then(setItems)
         .catch(() => navigate("/500"));
     }
   }, [categoryId, navigate]);
- 
+
   return (
     <div
       className="container d-flex-row justify-content-center"
       style={{ minHeight: "75vh" }}
     >
       <div className="d-flex justify-content-center align-content-center">
-        <h2>{items.length > 0 ? items[0].categories[0].categoryName : navigate("/")}</h2>
+        <h2>
+          {items.length > 0
+            ? items[0].categories[0].categoryName
+            : navigate("/")}
+        </h2>
       </div>
 
       <div className="g-4 d-flex justify-content-center">
@@ -43,8 +46,12 @@ function CategoryItem() {
                 <Card.Title style={{ marginBottom: "10px" }}>
                   <b>{i.itemName}</b>
                 </Card.Title>
-                <Card.Text><b>Description:</b> {i.description}</Card.Text>
-                <Card.Text><b>Value:</b> {i.value}</Card.Text>
+                <Card.Text>
+                  <b>Description:</b> {i.description}
+                </Card.Text>
+                <Card.Text>
+                  <b>Value:</b> {i.value}
+                </Card.Text>
                 <div>
                   <b>Item Status:</b>
                   {i.actions.map((a) => (
@@ -58,7 +65,17 @@ function CategoryItem() {
                   ))}
                 </div>
                 <Card.Text>
-                  <Link to={`/view/item/${i.itemId}`} className="btn btn-info">
+                  <Link
+                    to={`/view/item/${i.itemId}`}
+                    style={{
+                      background: "black",
+                      border: "1px solid lightsteelblue",
+                      color: "#D3D3D3",
+                      margin: "5%",
+                      boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+                    }}
+                    className="btn btn-info"
+                  >
                     View
                   </Link>
                 </Card.Text>
@@ -67,12 +84,8 @@ function CategoryItem() {
           </Col>
         ))}
       </div>
-
     </div>
   );
 }
 
 export default CategoryItem;
-
-
-
