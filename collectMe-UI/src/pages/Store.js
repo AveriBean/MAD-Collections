@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { findAll } from "../services/itemService"
 import StoreItem from "../components/StoreItem";
+import ItemCart from "../components/ItemCart";
 
 function Store() {
     const cart = useContext(CartContext);
@@ -38,12 +39,12 @@ function Store() {
                     <>
                         <p> Items in your cart: </p>
                         {cart.items.map((currentItem, idx) => (
-                            <h1>{currentItem.id}</h1>
+                            <ItemCart key={idx} id={currentItem.id} quantity={currentItem.quantity}></ItemCart>
                         ))}
 
                         <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
 
-                        <Button varian="success">Purchased Items!</Button>
+                        <Button varian="success">Purchase Items?</Button>
                     </>
                     :
                         <h1>There are no Items in your cart!</h1>
