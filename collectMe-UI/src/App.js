@@ -25,6 +25,7 @@ import UserForm from "./components/UserForm";
 import Upload from "./components/Upload";
 import ItemView from "./components/ItemView";
 import ConfirmDelete from "./components/ConfirmDelete";
+import ConfirmUserDelete from "./components/ConfirmUserDelete"
 
 function App() {
   const [user, setUser] = useState();
@@ -52,35 +53,36 @@ function App() {
   return (
     <AuthContext.Provider value={auth}>
       <CartProvider>
-      <div className="container-fluid parent">
-        <Router>
-          <NavBar className="div1"/>
-          <SideBar className="div2" />
-          <Routes className="div4">
-           <Route path="/upload" element={<Upload />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/add/:itemId" element={<ItemForm />} />
-            <Route path="/delete/:itemId" element={<ConfirmDelete />} />
-            <Route path="/categories" element={<Category />} />
-            <Route path="/category/:categoryId" element={<CategoryItem />} />
-            <Route path="/view/item/:itemId" element={<ItemView />} />
-            <Route path="/categories/category/:categoryId" element={<CategoryItem />} />
-            {/* <Route path="/about" element={<AboutUs />} /> */}
-            <Route path="/items" element={<Items />} />
-            {/* <Route path="/items/:id" element={<Item />} /> */}
-            <Route path="/createUser" element={<UserForm />} />
-            {/* <Route path="/Profile" element={<Profile />} /> */}
-            <Route path="/store" element={<Store />} />
-            <Route path="/store/success" element={<Success />} />
-            <Route path="/store/cancel" element={<Cancel />} />
-            <Route path="/editUser/:userId" element={<UserForm />} />
-            <Route path="/viewProfile/:userId" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer className="div3"/>
-        </Router>
-      </div>
+        <div className="container-fluid parent">
+          <Router>
+            <NavBar className="div1" />
+            <SideBar className="div2" />
+            <Routes className="div4">
+              <Route path="/upload" element={<Upload />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/add/:itemId" element={<ItemForm />} />
+              <Route path="/add" element={<ItemForm />} />
+              <Route path="/delete/:itemId" element={<ConfirmDelete />} />
+              <Route path="/categories" element={<Category />} />
+              <Route path="/category/:categoryId" element={<CategoryItem />} />
+              <Route path="/view/item/:itemId" element={<ItemView />} />
+              <Route path="/categories/category/:categoryId" element={<CategoryItem />} />
+              {/* <Route path="/about" element={<AboutUs />} /> */}
+              <Route path="/items" element={<Items />} />
+              {/* <Route path="/items/:id" element={<Item />} /> */}
+              <Route path="/createUser" element={<UserForm />} />
+              <Route path="/store" element={<Store />} />
+              <Route path="/store/success" element={<Success />} />
+              <Route path="/store/cancel" element={<Cancel />} />
+              <Route path="/editUser/:userId" element={<UserForm />} />
+              <Route path="/deleteUser/:userId" element={<ConfirmUserDelete />} />
+              <Route path="/viewProfile/:userId" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer className="div3" />
+          </Router>
+        </div>
       </CartProvider>
     </AuthContext.Provider>
   );

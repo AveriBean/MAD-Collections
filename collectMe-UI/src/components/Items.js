@@ -32,7 +32,7 @@ function Items() {
     <div className="">
 
       <div><h1 className="text-center p-3">Current List of Items:</h1></div>
-        
+
       <div
         className="itemsStyle"
         style={{ minHeight: "75vh", marginLeft: "230px" }}

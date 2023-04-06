@@ -8,7 +8,19 @@ export async function findById(userId) {
     return Promise.reject(`Could not fetch the user with id ${userId}.`)
 }
 
-export async function add(user) {
+export async function deleteById(userId) {
+    const response = await fetch(`${url}/${userId}`, 
+    {method: "DELETE",
+    headers: {
+        "Authorization": `Bearer ${localStorage.getItem("BG_JWT")}`
+    }});
+    if (response.ok) {
+        return;
+    }
+    return Promise.reject(`Could not delete the user with id ${userId}.`)
+}
+
+async function add(user) {
     const config = {
         method: "POST",
         headers: {

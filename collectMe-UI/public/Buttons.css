@@ -1,0 +1,20 @@
+.dark-pop {
+  background-color: black;
+  border: 1px solid lightsteelblue;
+  color: #d3d3d3;
+  margin: 5%;
+  box-shadow: 5px 5px 3px rgba(46, 46, 46, 0.62);
+}
+
+.yellow-pop {
+  background-color: #ffd700;
+  border: 1px solid lightsteelblue;
+  color: black;
+  margin: 5%;
+  box-shadow: 5px 5px 3px rgba(46, 46, 46, 0.62);
+}
+
+.any-pop {
+  margin: 5%;
+  box-shadow: 5px 5px 3px rgba(46, 46, 46, 0.62);
+}

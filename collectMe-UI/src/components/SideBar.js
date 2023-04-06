@@ -3,42 +3,44 @@ import { Link } from "react-router-dom";
 import { findAll } from "../services/categoryService";
 import "../styles/SideBar.css";
 
-function SideBar () {
+function SideBar() {
+  const [categories, setCategories] = useState([]);
+  const [search, setNewSearch] = useState("");
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
 
-    const [categories, setCategories] = useState([]);
-    const [search, setNewSearch] = useState("");
+  useEffect(() => {
+    findAll().then(setCategories).catch(alert);
+  }, []);
 
-    useEffect(() => {
-        findAll()
-            .then(setCategories)
-            .catch(alert);
-    }, []);
+  const handleSearchChange = (e) => {
+    setNewSearch(e.target.value);
+  };
 
+  const filtered = !search
+    ? categories
+    : categories.filter((category) =>
+        category.categoryName.toLowerCase().includes(search.toLowerCase())
+      );
 
-    const handleSearchChange = (e) => {
-      setNewSearch(e.target.value);
-    };
-  
-    const filtered = !search
-      ? categories
-      : categories.filter((category) =>
-          category.categoryName.toLowerCase().includes(search.toLowerCase())
-    );
-
-
-    return (
+  return (
     <div id="mySidenav" className="sidenav border container-fluid">
-
-        <div>
-            <h2 className="text-white">Category: </h2>
-                <div className="searchText">{" "}</div>
-                <input type="text" value={search} onChange={handleSearchChange} />
-            <p></p>
-            {filtered.map(f => <Link key={"category-"+f.categoryId} to={`category/${f.categoryId}`}>{f.categoryName}</Link>)}
-        </div>
-        
+      <div>
+        <h2 className="text-white">Category: </h2>
+        <div className="searchText"> </div>
+        <input type="text" value={search} onChange={handleSearchChange} />
+        <p></p>
+        {filtered.map((f) => (
+          <Link
+            key={"category-" + f.categoryId}
+            to={`category/${f.categoryId}`}
+          >
+            {f.categoryName}
+          </Link>
+        ))}
+      </div>
     </div>
-    )
+  );
 }
 
 export default SideBar;

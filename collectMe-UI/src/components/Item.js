@@ -11,12 +11,27 @@ export default function Item({ item }) {
   return (
     <>
       <Col key={item.itemId} className="d-flex justify-content-center">
-        <Card style={{ width: "18rem", marginTop: "10px" }}>
+        <Card
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            boxShadow: "0 0 3px 2px #cec7c759",
+            alignItems: "center",
+            width: "18rem",
+            marginTop: "10px",
+          }}
+        >
           <Card.Img
-            style={{ width: "18rem", marginTop: "10px", height: "auto" }}
+            style={{ width: "16rem", marginTop: "10px", height: "auto" }}
             src={item.image}
           />
-          <Card.Body style={{ textAlign: "center" }}>
+          <Card.Body
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+            }}
+          >
             <Card.Title style={{ marginBottom: "10px" }}>
               {item.itemName}
             </Card.Title>
@@ -38,21 +53,11 @@ export default function Item({ item }) {
                 <div key={c.categoryId}>{c.categoryName}</div>
               ))}
             </Card.Text>
-            <Card.Footer style={{ textAlign: "center", alignItems: "end" }}>
-              <Link
-                to={`/view/item/${item.itemId}`}
-                className="btn btn-primary"
-                style={{
-                  background: "black",
-                  border: "1px solid lightsteelblue",
-                  color: "#D3D3D3",
-                  margin: "5%",
-                  boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                }}
-              >
+            <Card.Text className="mt-auto">
+              <Link to={`/view/item/${item.itemId}`} className="btn dark-pop">
                 View Item
               </Link>
-            </Card.Footer>
+            </Card.Text>
           </Card.Body>
         </Card>
       </Col>

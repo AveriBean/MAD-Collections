@@ -59,7 +59,7 @@ public class CategoryJdbcTemplateRepository implements CategoryRepository {
             return statement;
         }, keyholder);
 
-        category.setCategoryId((keyholder.getKey().intValue()));
+        category.setCategoryId((keyholder.getKey().intValue()));clear
         return category;
     }
 
