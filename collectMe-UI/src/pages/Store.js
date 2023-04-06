@@ -15,18 +15,6 @@ function Store() {
     const handleShow = () => setShow(true);
     const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
-    const checkout = async() => {
-        await fetch('http://localhost:8080/api/checkout', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({items: cart.items})
-        }).then((response) => {
-            return response.json();
-        });
-    }
-
     useEffect(() => {
         findAll()
             .then(setStoreItems)
@@ -56,7 +44,7 @@ function Store() {
 
                         <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
 
-                        <Button variant="success" onClick={checkout}>Purchase Items?</Button>
+                        <Button variant="success">Purchase Items?</Button>
                     </>
                     :
                         <h1>There are no Items in your cart!</h1>

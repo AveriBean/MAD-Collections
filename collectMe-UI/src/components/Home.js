@@ -74,7 +74,7 @@ function Home() {
       </div>
 
       <div className="d-flex-row align-items-center justify-content-center">
-        <h2 className="d-flex justify-content-center">ITEM OF THE DAY</h2>
+        <h2 className="d-flex justify-content-center p-3">FEATURED ITEM</h2>
 
         <Col className="d-flex justify-content-center">
           <Card style={{ width: "18rem", marginTop: "10px" }}>
