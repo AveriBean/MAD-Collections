@@ -83,7 +83,7 @@ export default function ItemView() {
               )}
             </Card.Text>
             <Card.Text className="mt-auto">
-              {user && user.userId === item.userId ? (
+              {user && user.userId !== item.userId ? (
                 <Link
                   to={`/viewProfile/${item.userId}`}
                   className="btn dark-pop"

@@ -1,25 +1,25 @@
 import { Button, Container, Navbar, Modal, Row, Col } from "react-bootstrap";
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
-import { findAll } from "../services/itemService"
+import { findAll } from "../services/itemService";
 import StoreItem from "../components/StoreItem";
 import ItemCart from "../components/ItemCart";
 
 import "../styles/Store.css";
 
 function Store() {
-    const cart = useContext(CartContext);
-    const [storeItems, setStoreItems] = useState([]);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+  const cart = useContext(CartContext);
+  const [storeItems, setStoreItems] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
     useEffect(() => {
         findAll()
             .then(setStoreItems)
             .catch(alert);
-    }, []);  
+    }, []);
 
 
     return (
@@ -42,7 +42,7 @@ function Store() {
                             <ItemCart key={idx} id={currentItem.id} quantity={currentItem.quantity}></ItemCart>
                         ))}
 
-                        <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
+              <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
 
                         <Button variant="success">Purchase Items?</Button>
                     </>
