@@ -6,8 +6,6 @@ import "../styles/SideBar.css";
 function SideBar() {
   const [categories, setCategories] = useState([]);
   const [search, setNewSearch] = useState("");
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
 
   useEffect(() => {
     findAll().then(setCategories).catch(alert);

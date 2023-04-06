@@ -139,7 +139,7 @@ values
 ('Pokemon'),
 ('Magic'),
 ('Baseball'),
-('Bug');
+('Books');
 
 insert into action (`status`)
 values
