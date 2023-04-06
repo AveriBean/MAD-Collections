@@ -90,7 +90,7 @@ function Home() {
                 <b>Description:</b> {oneItem.description}
               </Card.Text>
               <Card.Text>
-                <b>Value:</b> {oneItem.value}
+                <b>Value:</b> ${oneItem.value}
               </Card.Text>
               <Card.Text>
                 <b>Item Status:</b>
@@ -105,7 +105,7 @@ function Home() {
                   {oneItem.categories && oneItem.categories[0].categoryName}
                 </div>
               </Card.Text>
-              <Card.Text>
+              <Card.Footer style={{ textAlign: "center", alignItems: "end" }}>
                 <button
                   onClick={() => navigate(`/view/item/${oneItem.itemId}`)}
                   style={{
@@ -119,7 +119,7 @@ function Home() {
                 >
                   View Item
                 </button>
-              </Card.Text>
+              </Card.Footer>
             </Card.Body>
           </Card>
         </Col>
