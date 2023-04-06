@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 public class ChargeController {
 
-    @PostMapping("/api/charge")
+    @PostMapping("/api/checkout")
     public ResponseEntity<?> charge() {
 
         Map<String, Object> params = new HashMap<String, Object>();

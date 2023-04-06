@@ -29,22 +29,28 @@ function Items() {
   }
 
   return (
-    <div
-      className="itemsStyle"
-      style={{ minHeight: "75vh", marginLeft: "230px" }}
-    >
-      <Row
-        xs={1}
-        lg={2}
-        xl={3}
-        xxl={4}
-        className="g-4 justify-content-center container-fluid"
+    <div className="">
+
+      <div><h1 className="text-center p-3">Current List of Items:</h1></div>
+        
+      <div
+        className="itemsStyle"
+        style={{ minHeight: "75vh", marginLeft: "230px" }}
       >
-        {items.map((i) => (
-          <Item key={i.itemId} item={i} />
-        ))}
-      </Row>
+        <Row
+          xs={1}
+          lg={2}
+          xl={3}
+          xxl={4}
+          className="g-4 justify-content-center container-fluid"
+        >
+          {items.map((i) => (
+            <Item key={i.itemId} item={i} />
+          ))}
+        </Row>
+      </div>
     </div>
+
   );
 }
 

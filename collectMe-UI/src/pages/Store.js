@@ -5,6 +5,8 @@ import { findAll } from "../services/itemService"
 import StoreItem from "../components/StoreItem";
 import ItemCart from "../components/ItemCart";
 
+import "../styles/Category.css";
+
 function Store() {
     const cart = useContext(CartContext);
     const [storeItems, setStoreItems] = useState([]);
@@ -14,7 +16,7 @@ function Store() {
     const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
     const checkout = async() => {
-        await fetch('http://localhost:8080/api/charge', {
+        await fetch('http://localhost:8080/api/checkout', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -33,14 +35,12 @@ function Store() {
 
 
     return (
-        <div className="container">
+        <div>
 
-            <Navbar expand="sm" style={{background: "none", position: "static"}}>
-                <Navbar.Brand href="/">Collectible Item Store</Navbar.Brand>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end bg-none">
+            <Navbar className="container justify-content-end"expand="sm" style={{background: "none", position: "static"}}>
+                <p>
                     <Button onClick={handleShow}>Cart ({itemsCount} Items)</Button>
-                </Navbar.Collapse>
+                </p>
             </Navbar>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -68,7 +68,7 @@ function Store() {
 
             <h1 align="center" className="p-3">Welcome to Item Checkout!</h1>
 
-            <Row xs={1} lg={2} xl={3} xxl={4} className="g-4 justify-content-center container-fluid">
+            <Row xs={1} lg={2} xl={3} xxl={4} className="storeStyle g-4 justify-content-center" style={{ minHeight: "75vh", marginLeft: "230px" }}>
 
                 {storeItems.map(i => <StoreItem key={i.itemId} item={i} />)}
             </Row>
