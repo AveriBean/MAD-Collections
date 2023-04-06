@@ -24,7 +24,7 @@ export default function Item({ item }) {
               <b>Description:</b> {item.description}
             </Card.Text>
             <Card.Text>
-              <b>Value:</b> ${item.value}
+              <b>Value:</b> ${item.value.toFixed(2)}
             </Card.Text>
             <Card.Text>
               <b>Item Status:</b>

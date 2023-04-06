@@ -23,7 +23,7 @@ export function CartProvider({ children }) {
     }, []);
 
     function getItemQuantity(itemId) {
-        const quantity = cartItems.find(item => item.itemId === itemId)?.quantity;
+        const quantity = cartItems.find(item => item.id === itemId)?.quantity;
 
         if(quantity === undefined) {
             return 0;
@@ -40,14 +40,14 @@ export function CartProvider({ children }) {
                 [
                     ...cartItems,
                     {
-                        itemId: itemId,
+                        id: itemId,
                         quantity: 1
                     }
                 ]
             )
         } else {
             setCartItems(
-                cartItems.map(item => item.itemId === itemId 
+                cartItems.map(item => item.id === itemId 
                     ? { ...item, quantity: item.quantity + 1 }
                     : item
                 )
@@ -58,7 +58,7 @@ export function CartProvider({ children }) {
     function deleteFromCart(itemId) {
         setCartItems(
             cartItems => cartItems.filter(currentItem => {
-                return currentItem.itemId !== itemId;
+                return currentItem.id !== itemId;
             })
         )
     }
@@ -70,7 +70,7 @@ export function CartProvider({ children }) {
             deleteFromCart(itemId);
         } else {
             setCartItems(
-                cartItems.map(item => item.itemId === itemId 
+                cartItems.map(item => item.id === itemId 
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
                 )
@@ -92,10 +92,11 @@ export function CartProvider({ children }) {
         let totalCost = 0;
 
         cartItems.map((cartItem) => {
-            const itemData = getItemData(cartItem.itemId);
+            const itemData = getItemData(cartItem.id);
             totalCost += (itemData.value * cartItem.quantity);
-            return totalCost;
-        });        
+            
+        });
+        return totalCost;      
     }
 
 

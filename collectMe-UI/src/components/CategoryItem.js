@@ -51,7 +51,7 @@ function CategoryItem() {
                   <b>Description:</b> {i.description}
                 </Card.Text>
                 <Card.Text>
-                  <b>Value:</b> ${i.value}
+                  <b>Value:</b> ${i.value.toFixed(2)}
                 </Card.Text>
                 <Card.Text>
                   <b>Item Status:</b>

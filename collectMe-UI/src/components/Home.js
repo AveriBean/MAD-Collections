@@ -90,7 +90,7 @@ function Home() {
                 <b>Description:</b> {oneItem.description}
               </Card.Text>
               <Card.Text>
-                <b>Value:</b> ${oneItem.value}
+                <b>Value:</b> ${oneItem.value.toFixed(2)}
               </Card.Text>
               <Card.Text>
                 <b>Item Status:</b>
