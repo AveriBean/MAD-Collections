@@ -62,7 +62,7 @@ export default function Login() {
           />
         </div>
         <div className="mb-2">
-          <Link to="/" className="btn btn-warning me-1 my-2">
+          <Link to="/" className="btn yellow-pop m-0 me-1 my-2">
             Cancel
           </Link>
           <button
@@ -74,11 +74,11 @@ export default function Login() {
 
               boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
             }}
-            className="btn btn-primary me-5"
+            className="btn dark-pop m-0 me-5"
           >
             Login
           </button>
-          <Link to="/createUser" className="btn btn-success">
+          <Link to="/createUser" className="btn btn-success any-pop m-0">
             Create New User Account
           </Link>
         </div>

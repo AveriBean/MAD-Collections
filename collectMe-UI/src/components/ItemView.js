@@ -49,27 +49,13 @@ export default function ItemView() {
               {user.userId && user.userId === item.userId && (
                 <>
                   <Link
-                    style={{
-                      background: "black",
-                      border: "1px solid lightsteelblue",
-                      color: "#D3D3D3",
-                      margin: "5%",
-                      boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                    }}
-                    className="btn btn-primary me-2"
+                    className="btn dark-pop me-2"
                     to={`/add/${item.itemId}`}
                   >
                     Edit
                   </Link>
                   <Link
-                    style={{
-                      background: "#FFD700",
-                      border: "1px solid lightsteelblue",
-                      color: "black",
-                      margin: "5%",
-                      boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                    }}
-                    className="btn ms-0"
+                    className="btn yellow-pop ms-0"
                     to={`/delete/${item.itemId}`}
                   >
                     Delete
@@ -81,14 +67,7 @@ export default function ItemView() {
               {user ? (
                 <Link
                   to={`/viewProfile/${item.userId}`}
-                  className="btn btn-primary"
-                  style={{
-                    background: "black",
-                    border: "1px solid lightsteelblue",
-                    color: "#D3D3D3",
-                    margin: "5%",
-                    boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                  }}
+                  className="btn dark-pop"
                 >
                   Contact Owner
                 </Link>

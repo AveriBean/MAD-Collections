@@ -150,7 +150,7 @@ export default function ItemForm() {
   // }));
 
   return (
-    <div className="container col-4 border rounded border-dark">
+    <div className="container my-3 col-4 border rounded border-dark">
       <form
         onSubmit={handleSubmit}
         ref={formRef}
@@ -264,30 +264,10 @@ export default function ItemForm() {
           <Upload handleUrl={handleUrl} />
         </div>
         <div>
-          <button
-            style={{
-              background: "black",
-              border: "1px solid lightsteelblue",
-              color: "#D3D3D3",
-              margin: "5%",
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            type="submit"
-            className="btn btn-primary me-2"
-          >
+          <button type="submit" className="btn dark-pop me-2">
             Save
           </button>
-          <button
-            style={{
-              background: "#FFD700",
-              border: "1px solid lightsteelblue",
-              color: "black",
-              margin: "5%",
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            onClick={() => navigate(-1)}
-            className="btn ms-0"
-          >
+          <button onClick={() => navigate(-1)} className="btn yellow-pop ms-0">
             Cancel
           </button>
         </div>

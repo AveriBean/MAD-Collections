@@ -5,6 +5,7 @@ import { findAll, findById } from "../services/itemService";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
+// import "../styles/Buttons.css";
 
 import bg1 from "../images/carousel/toysresize.jpg";
 import bg2 from "../images/carousel/sportcardsresize.jpg";
@@ -13,6 +14,7 @@ import bg4 from "../images/carousel/nutcrackers.jpg";
 
 function Home() {
   const [items, setItems] = useState([]);
+  const [wait, setWait] = useState(true);
   const [oneItem, setOneItem] = useState("");
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
@@ -23,9 +25,18 @@ function Home() {
         setItems(result);
         const random = result[Math.floor(Math.random() * result.length)];
         setOneItem(random);
+        setWait(false);
       })
       .catch(alert);
   }, []);
+
+  if (wait) {
+    return (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
+  }
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -77,9 +88,21 @@ function Home() {
         <h2 className="d-flex justify-content-center">ITEM OF THE DAY</h2>
 
         <Col className="d-flex justify-content-center">
-          <Card style={{ width: "18rem", marginTop: "10px" }}>
+          <Card
+            style={{
+              width: "20rem",
+              marginBottom: "10px",
+              marginTop: "10px",
+              boxShadow: "0 0 3px 2px #cec7c759",
+              alignItems: "center",
+            }}
+          >
             <Card.Img
-              style={{ height: "auto", width: "18rem", marginTop: "10px" }}
+              style={{
+                height: "auto",
+                width: "18rem",
+                marginTop: "10px",
+              }}
               src={oneItem.image}
             />
             <Card.Body style={{ textAlign: "center" }}>
@@ -108,14 +131,15 @@ function Home() {
               <Card.Text>
                 <button
                   onClick={() => navigate(`/view/item/${oneItem.itemId}`)}
-                  style={{
-                    background: "black",
-                    border: "1px solid lightsteelblue",
-                    color: "#D3D3D3",
-                    margin: "5%",
-                    boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                  }}
-                  className="btn btn-info"
+                  // style={{
+                  //   background: "black",
+                  //   border: "1px solid lightsteelblue",
+                  //   color: "#D3D3D3",
+                  //   margin: "5%",
+                  //   boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
+                  // }}
+
+                  className="btn dark-pop"
                 >
                   View Item
                 </button>
