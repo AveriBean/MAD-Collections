@@ -1,5 +1,4 @@
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
+import { Card, Col, Row } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
@@ -23,7 +22,7 @@ function CategoryItem() {
   return (
     <div
       className="container d-flex-row justify-content-center"
-      style={{ minHeight: "75vh" }}
+      style={{ minHeight: "75vh", marginLeft: "230px", marginBottom: "10px" }}
     >
       <div className="d-flex justify-content-center align-content-center">
         <h2>
@@ -33,18 +32,33 @@ function CategoryItem() {
         </h2>
       </div>
 
-      <div className="g-4 d-flex justify-content-center">
+      <Row className="g-4 d-flex justify-content-center">
         {items.map((i) => (
           <Col
             key={"item-" + i.itemId}
             className="d-flex justify-content-center"
           >
-            <Card style={{ width: "18rem", marginTop: "10px" }}>
+            <Card
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "0 0 3px 2px #cec7c759",
+                alignItems: "center",
+                width: "18rem",
+                marginTop: "10px",
+              }}
+            >
               <Card.Img
-                style={{ height: "auto", width: "18rem", marginTop: "10px" }}
+                style={{ width: "16rem", marginTop: "10px", height: "auto" }}
                 src={i.image}
               />
-              <Card.Body style={{ textAlign: "center" }}>
+              <Card.Body
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "center",
+                }}
+              >
                 <Card.Title style={{ marginBottom: "10px" }}>
                   <b>{i.itemName}</b>
                 </Card.Title>
@@ -52,32 +66,22 @@ function CategoryItem() {
                   <b>Description:</b> {i.description}
                 </Card.Text>
                 <Card.Text>
-                  <b>Value:</b> {i.value}
+                  <b>Value:</b> ${i.value.toFixed(2)}
                 </Card.Text>
-                <div>
+                <Card.Text>
                   <b>Item Status:</b>
                   {i.actions.map((a) => (
                     <div key={a.actionId}>{a.status}</div>
                   ))}
-                </div>
-                <div>
+                </Card.Text>
+                <Card.Text>
                   <b>Categories:</b>
                   {i.categories.map((c) => (
                     <div key={c.categoryId}>{c.categoryName}</div>
                   ))}
-                </div>
-                <Card.Text>
-                  <Link
-                    to={`/view/item/${i.itemId}`}
-                    style={{
-                      background: "black",
-                      border: "1px solid lightsteelblue",
-                      color: "#D3D3D3",
-                      margin: "5%",
-                      boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                    }}
-                    className="btn btn-info"
-                  >
+                </Card.Text>
+                <Card.Text className="mt-auto">
+                  <Link to={`/view/item/${i.itemId}`} className="btn dark-pop">
                     View Item
                   </Link>
                 </Card.Text>
@@ -85,7 +89,7 @@ function CategoryItem() {
             </Card>
           </Col>
         ))}
-      </div>
+      </Row>
     </div>
   );
 }

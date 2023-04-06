@@ -26,7 +26,7 @@ function Footer () {
                         Atlanta, GA 30001
                     </div>
 
-                <div className="col-xs-6 col-md-3">
+                <div className="col-xs-6 col-md-3 text-center">
                     <h6>Quick Links</h6>
                     <ul className="footer-links">
                     <li><a href="">About Us</a></li>
@@ -49,10 +49,10 @@ function Footer () {
 
                 <div className="col-md-4 col-sm-6 col-xs-12">
                     <ul className="social-icons">
-                    <li><a className="facebook" href="#" target="_blank"><i className="fa fa-facebook"><img style={{height: "30px"}} src={faceBook} /></i></a></li>
-                    <li><a className="twitter" href="#" target="_blank"><i className="fa fa-twitter"><img style={{height: "30px"}} src={twitter} /></i></a></li>
-                    <li><a className="instagram" href="#" target="_blank"><i className="fa fa-instagram"><img style={{height: "30px"}} src={instagram} /></i></a></li>
-                    <li><a className="linkedin" href="#" target="_blank"><i className="fa fa-linkedin"><img style={{height: "30px"}} src={linkedIn} /></i></a></li>   
+                    <li><a className="facebook" href="#" target="_blank"><i className="fa fa-facebook"></i></a></li>
+                    <li><a className="twitter" href="#" target="_blank"><i className="fa fa-twitter"></i></a></li>
+                    <li><a className="instagram" href="#" target="_blank"><i className="fa fa-instagram"></i></a></li>
+                    <li><a className="linkedin" href="#" target="_blank"><i className="fa fa-linkedin"></i></a></li>   
                     </ul>
                 </div>
                 </div>

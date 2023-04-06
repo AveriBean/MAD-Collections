@@ -31,7 +31,7 @@ function Items() {
   return (
     <div
       className="itemsStyle"
-      style={{ minHeight: "75vh", marginLeft: "230px" }}
+      style={{ minHeight: "75vh", marginLeft: "230px", marginBottom: "10px" }}
     >
       <Row
         xs={1}

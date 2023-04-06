@@ -11,12 +11,27 @@ export default function Item({ item }) {
   return (
     <>
       <Col key={item.itemId} className="d-flex justify-content-center">
-        <Card style={{ width: "18rem", marginTop: "10px" }}>
+        <Card
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            boxShadow: "0 0 3px 2px #cec7c759",
+            alignItems: "center",
+            width: "18rem",
+            marginTop: "10px",
+          }}
+        >
           <Card.Img
-            style={{ width: "18rem", marginTop: "10px", height: "auto" }}
+            style={{ width: "16rem", marginTop: "10px", height: "auto" }}
             src={item.image}
           />
-          <Card.Body style={{ textAlign: "center" }}>
+          <Card.Body
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+            }}
+          >
             <Card.Title style={{ marginBottom: "10px" }}>
               {item.itemName}
             </Card.Title>
@@ -24,32 +39,22 @@ export default function Item({ item }) {
               <b>Description:</b> {item.description}
             </Card.Text>
             <Card.Text>
-              <b>Value:</b> {item.value}
+              <b>Value:</b> ${item.value.toFixed(2)}
             </Card.Text>
-            <div>
+            <Card.Text>
               <b>Item Status:</b>
               {item.actions.map((a) => (
                 <div key={a.actionId}>{a.status}</div>
               ))}
-            </div>
-            <div>
+            </Card.Text>
+            <Card.Text>
               <b>Categories:</b>
               {item.categories.map((c) => (
                 <div key={c.categoryId}>{c.categoryName}</div>
               ))}
-            </div>
-            <Card.Text>
-              <Link
-                to={`/view/item/${item.itemId}`}
-                className="btn btn-primary"
-                style={{
-                  background: "black",
-                  border: "1px solid lightsteelblue",
-                  color: "#D3D3D3",
-                  margin: "5%",
-                  boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                }}
-              >
+            </Card.Text>
+            <Card.Text className="mt-auto">
+              <Link to={`/view/item/${item.itemId}`} className="btn dark-pop">
                 View Item
               </Link>
             </Card.Text>

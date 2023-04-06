@@ -20,11 +20,13 @@ function NavBar() {
     <>
       <nav className="navbar">
         <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
+          <NavLink exact to="/" className="nav-logo mb-auto">
             M.A.D. Collective
           </NavLink>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <ul
+            className={click ? "nav-menu active mb-auto" : "nav-menu mb-auto"}
+          >
             <li className="nav-item">
               <NavLink className="nav-links" exact to="/" onClick={handleClick}>
                 Home
@@ -64,6 +66,20 @@ function NavBar() {
                 Items
               </NavLink>
             </li>
+            {/* {user ? ( */}
+            <li className="nav-item">
+              <NavLink
+                className="nav-links"
+                exact
+                to="/store"
+                onClick={handleClick}
+              >
+                Store
+              </NavLink>
+            </li>
+            {/* ) : (
+               ""
+             )} */}
             {user ? (
               <li className="nav-item">
                 <NavLink
@@ -81,7 +97,11 @@ function NavBar() {
             <li className="nav-item">
               {user ? (
                 <>
-                  <a href="#logout" className="nav-link" onClick={handleLogout}>
+                  <a
+                    href="#logout"
+                    className="nav-links"
+                    onClick={handleLogout}
+                  >
                     Logout
                   </a>
                 </>
