@@ -4,9 +4,6 @@ import { findAll } from "../services/categoryService";
 import { findAllActions } from "../services/actionService";
 import { GetEmptyItem, save } from "../services/itemService";
 import AuthContext from "../contexts/AuthContext";
-import { Col, Form } from "react-bootstrap";
-import Multiselect from "react-bootstrap-multiselect";
-import Select from "react-select";
 import Upload from "./Upload";
 import { findById } from "../services/itemService";
 

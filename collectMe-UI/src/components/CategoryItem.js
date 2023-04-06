@@ -1,5 +1,4 @@
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
+import { Card, Col, Row } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
@@ -33,7 +32,7 @@ function CategoryItem() {
         </h2>
       </div>
 
-      <div className="g-4 d-flex justify-content-center">
+      <Row className="g-4 d-flex justify-content-center">
         {items.map((i) => (
           <Col
             key={"item-" + i.itemId}
@@ -67,20 +66,20 @@ function CategoryItem() {
                   <b>Description:</b> {i.description}
                 </Card.Text>
                 <Card.Text>
-                  <b>Value:</b> {i.value}
+                  <b>Value:</b> ${i.value.toFixed(2)}
                 </Card.Text>
-                <div>
+                <Card.Text>
                   <b>Item Status:</b>
                   {i.actions.map((a) => (
                     <div key={a.actionId}>{a.status}</div>
                   ))}
-                </div>
-                <div>
+                </Card.Text>
+                <Card.Text>
                   <b>Categories:</b>
                   {i.categories.map((c) => (
                     <div key={c.categoryId}>{c.categoryName}</div>
                   ))}
-                </div>
+                <Card.Text>
                 <Card.Text className="mt-auto">
                   <Link to={`/view/item/${i.itemId}`} className="btn dark-pop">
                     View Item
@@ -90,7 +89,7 @@ function CategoryItem() {
             </Card>
           </Col>
         ))}
-      </div>
+      </Row>
     </div>
   );
 }

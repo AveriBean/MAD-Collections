@@ -1,8 +1,13 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 
 export default function Item({ item }) {
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <Col key={item.itemId} className="d-flex justify-content-center">
@@ -34,20 +39,20 @@ export default function Item({ item }) {
               <b>Description:</b> {item.description}
             </Card.Text>
             <Card.Text>
-              <b>Value:</b> {item.value}
+              <b>Value:</b> ${item.value.toFixed(2)}
             </Card.Text>
-            <div>
+            <Card.Text>
               <b>Item Status:</b>
               {item.actions.map((a) => (
                 <div key={a.actionId}>{a.status}</div>
               ))}
-            </div>
-            <div>
+            </Card.Text>
+            <Card.Text>
               <b>Categories:</b>
               {item.categories.map((c) => (
                 <div key={c.categoryId}>{c.categoryName}</div>
               ))}
-            </div>
+            </Card.Text>
             <Card.Text className="mt-auto">
               <Link to={`/view/item/${item.itemId}`} className="btn dark-pop">
                 View Item
