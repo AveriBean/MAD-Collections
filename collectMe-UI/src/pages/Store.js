@@ -35,7 +35,9 @@ function Store() {
         <Navbar.Brand href="/">Collectible Item Store</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end bg-none">
-          <Button onClick={handleShow}>Cart ({itemsCount} Items)</Button>
+          <Button className="yellow-pop me-0" onClick={handleShow}>
+            Cart ({itemsCount} Items)
+          </Button>
         </Navbar.Collapse>
       </Navbar>
       <Modal show={show} onHide={handleClose}>

@@ -52,7 +52,7 @@ function StoreItem({ item }) {
               {itemQuantity > 0 ? (
                 <>
                   <Form as={Row}>
-                    <Form.Label as={Col} sm="6">
+                    <Form.Label style={{ alignSelf: "center" }} as={Col} sm="6">
                       In Cart: {itemQuantity}
                     </Form.Label>
                     <Col sm="6">
@@ -60,7 +60,7 @@ function StoreItem({ item }) {
                         sm="6"
                         variant="success"
                         onClick={() => cart.addOneToCart(item.itemId)}
-                        className="mx-2"
+                        className="any-pop py-1"
                       >
                         +
                       </Button>
@@ -68,7 +68,7 @@ function StoreItem({ item }) {
                         sm="6"
                         variant="warning"
                         onClick={() => cart.removeOneFromCart(item.itemId)}
-                        className="mx-2"
+                        className="any-pop py-1"
                       >
                         -
                       </Button>
@@ -77,13 +77,14 @@ function StoreItem({ item }) {
                   <Button
                     variant="danger"
                     onClick={() => cart.deleteFromCart(item.itemId)}
-                    className="my-2"
+                    className="dark-pop m-0 my-2"
                   >
                     Remove from Cart
                   </Button>
                 </>
               ) : (
                 <Button
+                  className="dark-pop"
                   variant="secondary"
                   onClick={() => cart.addOneToCart(item.itemId)}
                 >
