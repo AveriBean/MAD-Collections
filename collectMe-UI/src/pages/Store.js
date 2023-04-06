@@ -5,7 +5,7 @@ import { findAll } from "../services/itemService"
 import StoreItem from "../components/StoreItem";
 import ItemCart from "../components/ItemCart";
 
-import "../styles/Category.css";
+import "../styles/Store.css";
 
 function Store() {
     const cart = useContext(CartContext);
@@ -19,7 +19,7 @@ function Store() {
         findAll()
             .then(setStoreItems)
             .catch(alert);
-    }, []);
+    }, []);  
 
 
     return (
@@ -52,7 +52,6 @@ function Store() {
                     
                 </Modal.Body>
             </Modal>
-
 
             <h1 align="center" className="p-3">Welcome to Item Checkout!</h1>
 
