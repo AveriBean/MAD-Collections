@@ -26,7 +26,7 @@ function Footer () {
                         Atlanta, GA 30001
                     </div>
 
-                <div className="col-xs-6 col-md-3">
+                <div className="col-xs-6 col-md-3 text-center">
                     <h6>Quick Links</h6>
                     <ul className="footer-links">
                     <li><a href="">About Us</a></li>
