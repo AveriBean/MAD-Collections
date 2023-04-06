@@ -19,6 +19,7 @@ import UserForm from "./components/UserForm";
 import Upload from "./components/Upload";
 import ItemView from "./components/ItemView";
 import ConfirmDelete from "./components/ConfirmDelete";
+import ConfirmUserDelete from "./components/ConfirmUserDelete"
 
 function App() {
   const [user, setUser] = useState();
@@ -65,6 +66,7 @@ function App() {
             {/* <Route path="/items/:id" element={<Item />} /> */}
             <Route path="/createUser" element={<UserForm />} />
             <Route path="/editUser/:userId" element={<UserForm />} />
+            <Route path="/deleteUser/:userId" element={<ConfirmUserDelete />} />
             <Route path="/viewProfile/:userId" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
