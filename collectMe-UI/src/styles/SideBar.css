@@ -7,8 +7,8 @@
   overflow-x: hidden;
   padding-top: 20px;
 }
-  
-  /* The navigation menu links */
+
+/* The navigation menu links */
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -16,12 +16,11 @@
   color: #818181;
   display: block;
 }
-  
-  /* When you mouse over the navigation links, change their color */
+
+/* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
 }
-
 
 .search-text {
   font-size: 22px;
@@ -36,7 +35,7 @@
   line-height: 25px;
   font-size: 25px;
 }
-  
+
 #item-list {
   min-height: 260px;
 }
@@ -47,7 +46,6 @@
   }
 }
 
-  
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 /* @media screen and (max-width: 1400px) {
   .sidenav {

@@ -23,35 +23,15 @@ export default function ConfirmDelete() {
 
   return (
     <>
-      <div className="container alert alert-danger col-4">
+      <div className="container alert alert-danger my-5 col-4">
         <div className="alert alert-danger">
           Are you sure you want to delete {item.itemName}?
         </div>
         <div>
-          <button
-            onClick={handleDelete}
-            style={{
-              background: "black",
-              border: "1px solid lightsteelblue",
-              color: "#D3D3D3",
-              margin: "5%",
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            className="btn btn-primary me-2"
-          >
+          <button onClick={handleDelete} className="btn dark-pop m-0 me-2">
             Delete
           </button>
-          <button
-            onClick={() => navigate(-1)}
-            style={{
-              background: "#FFD700",
-              border: "1px solid lightsteelblue",
-              color: "black",
-              margin: "5%",
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            className="btn ms-0"
-          >
+          <button onClick={() => navigate(-1)} className="btn yellow-pop m-0">
             Cancel
           </button>
         </div>

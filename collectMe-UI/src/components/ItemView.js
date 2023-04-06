@@ -5,6 +5,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { findById } from "../services/itemService";
 import AuthContext from "../contexts/AuthContext";
 import { useContext } from "react";
+import { Row } from "react-bootstrap";
 
 export default function ItemView() {
   const [item, setItem] = useState({});
@@ -25,17 +26,33 @@ export default function ItemView() {
   return (
     <>
       <Col className="d-flex justify-content-center">
-        <Card style={{ width: "18rem", marginTop: "10px" }}>
+        <Card
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            boxShadow: "0 0 3px 2px #cec7c759",
+            alignItems: "center",
+            width: "22rem",
+            marginTop: "10px",
+            marginBottom: "10px",
+          }}
+        >
           <Card.Img
-            style={{ height: "auto", width: "18rem", marginTop: "10px" }}
+            style={{ width: "20rem", marginTop: "10px", height: "auto" }}
             src={item.image}
           />
-          <Card.Body style={{ textAlign: "center" }}>
+          <Card.Body
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+            }}
+          >
             <Card.Title style={{ marginBottom: "10px" }}>
               {item.itemName}
             </Card.Title>
             <Card.Text>Description: {item.description}</Card.Text>
-            <Card.Text>Value: {item.value}</Card.Text>
+            <Card.Text>Value: ${item.value}</Card.Text>
             <Card.Text>
               Item Status:
               {item.actions && item.actions.map((a) => <h6>{a.status}</h6>)}
@@ -46,49 +63,30 @@ export default function ItemView() {
                 item.categories.map((c) => <h6>{c.categoryName}</h6>)}
             </Card.Text>
             <Card.Text>
-              {user.userId && user.userId === item.userId && (
-                <>
+              {user && user.userId === item.userId ? (
+                <Col className="d-flex justify-content-center">
                   <Link
-                    style={{
-                      background: "black",
-                      border: "1px solid lightsteelblue",
-                      color: "#D3D3D3",
-                      margin: "5%",
-                      boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                    }}
-                    className="btn btn-primary me-2"
+                    className="btn dark-pop me-2"
                     to={`/add/${item.itemId}`}
                   >
                     Edit
                   </Link>
                   <Link
-                    style={{
-                      background: "#FFD700",
-                      border: "1px solid lightsteelblue",
-                      color: "black",
-                      margin: "5%",
-                      boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                    }}
-                    className="btn ms-0"
+                    className="btn yellow-pop ms-0"
                     to={`/delete/${item.itemId}`}
                   >
                     Delete
                   </Link>
-                </>
+                </Col>
+              ) : (
+                ""
               )}
             </Card.Text>
-            <Card.Text>
-              {user ? (
+            <Card.Text className="mt-auto">
+              {user && user.userId === item.userId ? (
                 <Link
                   to={`/viewProfile/${item.userId}`}
-                  className="btn btn-primary"
-                  style={{
-                    background: "black",
-                    border: "1px solid lightsteelblue",
-                    color: "#D3D3D3",
-                    margin: "5%",
-                    boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                  }}
+                  className="btn dark-pop"
                 >
                   Contact Owner
                 </Link>
