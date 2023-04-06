@@ -20,7 +20,9 @@ function Store() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({items: cart.items})
-        })
+        }).then((response) => {
+            return response.json();
+        });
     }
 
     useEffect(() => {

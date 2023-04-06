@@ -15,7 +15,7 @@ function ItemCart(props) {
             <h3>{itemData.itemName}</h3>
             <p>{quantity} Total</p>
             <p>${ (quantity * itemData.value).toFixed(2) }</p>
-            <Button size="sm" onClick={() => cart.deleteFromCart(id)}>Remove</Button>
+            <Button variant="danger" size="sm" onClick={() => cart.deleteFromCart(id)}>Remove</Button>
             <hr></hr>
         </>
     )
