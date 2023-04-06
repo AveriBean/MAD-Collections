@@ -23,21 +23,16 @@ function ConfirmDelete() {
 
     function handleDelete() {
         deleteById(user.userId)
-        .then(() => handleLogout)
+        .then(() => navigate("/"),
+        logout())
         .catch(() => setHasError(true))
     }
 
-    function handleLogout(evt) {
-        evt.preventDefault();
-        navigate("/");
-        logout();
-      }
-
     return (
         < main style={{ minHeight: "75vh" }} >
-            <div className="container alert alert-danger col-4 my-2">
+            <div className="container alert alert-danger col-4 my-4">
             <div className="alert alert-danger">
-            Do you really want to delete the user {user.username}?
+            Do you really want to delete the user {user.username}? (This action will log you out of your account)
             </div>
             <div>
                 <button
@@ -68,7 +63,7 @@ function ConfirmDelete() {
                 </button>
         </div>
         </div>
-        {hasError && <div className="container alert alert-warning col-4 text-center">There are still items in our collection associated with this user, so they can not be deleted.</div>}
+        {hasError && <div className="container alert alert-warning col-4 text-center">There are still items in our collection associated with this account, so it can not be deleted.</div>}
         </main>
     );
 }

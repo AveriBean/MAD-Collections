@@ -34,7 +34,6 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/api/**",  "/upload" ).authenticated()
                 .antMatchers(HttpMethod.PUT, "/api/**").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/**").authenticated()
-
                 .antMatchers("/**").denyAll()
                 .and()
                 .addFilter(new JwtRequestFilter(manager(config), converter))

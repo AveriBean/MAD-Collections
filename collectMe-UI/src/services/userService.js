@@ -9,7 +9,11 @@ export async function findById(userId) {
 }
 
 export async function deleteById(userId) {
-    const response = await fetch(`${url}/${userId}`, {method: "DELETE"});
+    const response = await fetch(`${url}/${userId}`, 
+    {method: "DELETE",
+    headers: {
+        "Authorization": `Bearer ${localStorage.getItem("BG_JWT")}`
+    }});
     if (response.ok) {
         return;
     }
