@@ -84,6 +84,13 @@
             </exclusions>
         </dependency>
 
+        <!-- Stripe API -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>22.14.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>
