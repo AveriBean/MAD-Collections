@@ -79,7 +79,7 @@ function CategoryItem() {
                   {i.categories.map((c) => (
                     <div key={c.categoryId}>{c.categoryName}</div>
                   ))}
-                <Card.Text>
+                </Card.Text>
                 <Card.Text className="mt-auto">
                   <Link to={`/view/item/${i.itemId}`} className="btn dark-pop">
                     View Item

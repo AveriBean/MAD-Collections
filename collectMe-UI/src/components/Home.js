@@ -113,7 +113,7 @@ function Home() {
                 <b>Description:</b> {oneItem.description}
               </Card.Text>
               <Card.Text>
-                <b>Value:</b> ${oneItem.value}
+                <b>Value:</b> ${oneItem.value.toFixed(2)}
               </Card.Text>
               <Card.Text>
                 <b>Item Status:</b>
@@ -128,22 +128,14 @@ function Home() {
                   {oneItem.categories && oneItem.categories[0].categoryName}
                 </div>
               </Card.Text>
-              <Card.Footer style={{ textAlign: "center", alignItems: "end" }}>
+              <Card.Text style={{ textAlign: "center", alignItems: "end" }}>
                 <button
                   onClick={() => navigate(`/view/item/${oneItem.itemId}`)}
-                  // style={{
-                  //   background: "black",
-                  //   border: "1px solid lightsteelblue",
-                  //   color: "#D3D3D3",
-                  //   margin: "5%",
-                  //   boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-                  // }}
-
                   className="btn dark-pop"
                 >
                   View Item
                 </button>
-              </Card.Footer>
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>

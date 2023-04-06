@@ -65,17 +65,7 @@ export default function Login() {
           <Link to="/" className="btn yellow-pop m-0 me-1 my-2">
             Cancel
           </Link>
-          <button
-            type="submit"
-            style={{
-              background: "black",
-              border: "1px solid lightsteelblue",
-              color: "#D3D3D3",
-
-              boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)",
-            }}
-            className="btn dark-pop m-0 me-5"
-          >
+          <button type="submit" className="btn dark-pop m-0 me-5">
             Login
           </button>
           <Link to="/createUser" className="btn btn-success any-pop m-0">
