@@ -1,2 +1,4 @@
-package learn.collectMe.models;public class Comment {
+package learn.collectMe.models;
+
+public class Comment {
 }
