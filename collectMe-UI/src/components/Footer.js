@@ -16,11 +16,11 @@ function Footer () {
                     </div>
 
                     <div className="col-xs-6 col-md-3 text-center">
-                        <h6>Categories</h6>
+                        <h6>Information</h6>
                         Site Creation by M.A.D. Developers
                         backed by
                         <p></p>
-                        Dev-10 Company
+                        Dev-10 Company<br></br>
                         Address:<br></br>
                         100 Genesis Corp Way<br></br>
                         Atlanta, GA 30001

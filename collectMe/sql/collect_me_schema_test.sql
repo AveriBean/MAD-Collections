@@ -17,7 +17,7 @@ locked bit not null default(0)
 
 create table item (
 item_id int primary key auto_increment,
-`name` varchar(30) not null,
+`name` varchar(1028) not null,
 `description` varchar(128) not null,
 `value` decimal(10,2) null,
 user_id int not null,

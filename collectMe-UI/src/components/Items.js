@@ -29,14 +29,13 @@ function Items() {
   }
 
   return (
-    <div className="">
+    <div>
 
       <div><h1 className="text-center p-3">Current List of Items:</h1></div>
 
       <div
         className="itemsStyle"
-        style={{ minHeight: "75vh", marginLeft: "230px" }}
-      >
+        style={{ minHeight: "75vh", marginLeft: "230px" }}>
         <Row
           xs={1}
           lg={2}
