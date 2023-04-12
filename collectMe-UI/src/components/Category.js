@@ -29,7 +29,7 @@ function Category () {
     return (
     <div className="catnav container text-center">
 
-        <div className="">
+        <div>
             <h2 className="">Category: </h2>
             <div className="searchText">{" "}</div>
             <input type="text" value={search} onChange={handleSearchChange} />

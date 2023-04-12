@@ -1,4 +1,4 @@
-@url = http://localhost:8080/api/charge
+@url = http://localhost:8080/api/checkout
 @jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiTWljYWhhZWwiLCJ1c2VySWQiOjEsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLCJmaXJzdE5hbWUiOiJKYWNrc29uIiwibGFzdE5hbWUiOiJKTWljaCIsImVtYWlsIjoibWpAdGVzdGluZy5jb20iLCJleHAiOjE2ODA1NTgwNjV9.WWg1NA4j3ZhYQHwNfKG96J75EJFaIFN03CeqAXdjlT0
 
 POST {{url}} HTTP/1.1

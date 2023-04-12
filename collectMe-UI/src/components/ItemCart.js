@@ -8,7 +8,6 @@ function ItemCart(props) {
     const id = props.id;
     const quantity = props.quantity;
     const itemData = cart.getItemData(id);
-    console.log(itemData);
 
     return (
         <>

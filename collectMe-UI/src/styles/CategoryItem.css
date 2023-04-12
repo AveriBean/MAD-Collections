@@ -1,0 +1,9 @@
+/* .catItemStyle {
+    margin-left: 230px;
+} */
+
+@media screen and (max-width: 960px) {
+    .catItemStyle {
+      display: contents;
+    }
+  }

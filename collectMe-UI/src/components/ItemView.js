@@ -52,13 +52,15 @@ export default function ItemView() {
               {item.itemName}
             </Card.Title>
             <Card.Text>Description: {item.description}</Card.Text>
-            <Card.Text>Value: ${item.value}</Card.Text>
             <Card.Text>
-              Item Status:
+              <b>Value:</b> ${item.value && item.value.toFixed(2)}
+            </Card.Text>
+            <Card.Text>
+              <b>Item Status:</b>
               {item.actions && item.actions.map((a) => <h6>{a.status}</h6>)}
             </Card.Text>
             <Card.Text>
-              Categories:
+              <b>Categories:</b>
               {item.categories &&
                 item.categories.map((c) => <h6>{c.categoryName}</h6>)}
             </Card.Text>

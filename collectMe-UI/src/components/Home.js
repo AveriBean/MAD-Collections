@@ -5,7 +5,7 @@ import { findAll, findById } from "../services/itemService";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
-// import "../styles/Buttons.css";
+import "../styles/Carousel.css";
 
 import bg1 from "../images/carousel/toysresize.jpg";
 import bg2 from "../images/carousel/sportcardsresize.jpg";
@@ -44,12 +44,12 @@ function Home() {
 
   return (
     <div
-      className="container d-flex-row align-content-center justify-content-center mx-auto"
+      className="container d-flex-row align-content-center justify-content-center"
       style={{ minHeight: "75vh" }}
     >
-      <div className="col">
+      <div className="carouselStyle">
         <Carousel activeIndex={index} onSelect={handleSelect}>
-          <Carousel.Item style={{ maxHeight: "650px" }}>
+          <Carousel.Item style={{ maxHeight: "575" }}>
             <img
               className="w-100 h-50"
               style={{ objectFit: "cover" }}
@@ -57,7 +57,7 @@ function Home() {
               alt="First slide"
             />
           </Carousel.Item>
-          <Carousel.Item style={{ maxHeight: "650px" }}>
+          <Carousel.Item style={{ maxHeight: "575" }}>
             <img
               className="w-100 h-50"
               style={{ objectFit: "cover" }}
@@ -65,7 +65,7 @@ function Home() {
               alt="Second slide"
             />
           </Carousel.Item>
-          <Carousel.Item style={{ maxHeight: "650px" }}>
+          <Carousel.Item style={{ maxHeight: "575" }}>
             <img
               className="w-100 h-50"
               style={{ objectFit: "cover" }}
@@ -73,7 +73,7 @@ function Home() {
               alt="Third slide"
             />
           </Carousel.Item>
-          <Carousel.Item style={{ maxHeight: "650px" }}>
+          <Carousel.Item style={{ maxHeight: "575" }}>
             <img
               className="w-100 h-50"
               style={{ objectFit: "cover" }}
@@ -84,8 +84,8 @@ function Home() {
         </Carousel>
       </div>
 
-      <div className="d-flex-row align-items-center justify-content-center">
-        <h2 className="d-flex justify-content-center">ITEM OF THE DAY</h2>
+      <div className="carouselStyle d-flex-row align-items-center justify-content-center">
+        <h2 className="d-flex justify-content-center p-3">FEATURED ITEM</h2>
 
         <Col className="d-flex justify-content-center">
           <Card
@@ -113,7 +113,7 @@ function Home() {
                 <b>Description:</b> {oneItem.description}
               </Card.Text>
               <Card.Text>
-                <b>Value:</b> ${oneItem.value.toFixed(2)}
+                <b>Value:</b> ${oneItem.value && oneItem.value.toFixed(2)}
               </Card.Text>
               <Card.Text>
                 <b>Item Status:</b>
