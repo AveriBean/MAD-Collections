@@ -27,7 +27,7 @@ public class CommentService {
         if (!result.isSuccess()) {
             return result;
         }
-        if (comment.getItemId() !=0) {
+        if (comment.getCommentId() !=0) {
             result.addMessage("comment id cannot be set for this operation", ResultType.INVALID);
         }
         comment = repository.add(comment);

@@ -35,7 +35,7 @@ public class CommentJdbcTemplateRepository implements CommentRepository {
     @Override
     @Transactional
     public Comment findById(int commentId) {
-        final String sql = "select user_id, item_id, content "
+        final String sql = "select user_id, comment_id, item_id, content "
                 + "from comment where comment_id = ?";
         Comment comment = jdbcTemplate.query(sql, new CommentMapper(), commentId).stream()
                 .findFirst()
@@ -78,7 +78,7 @@ public class CommentJdbcTemplateRepository implements CommentRepository {
     @Override
     @Transactional
     public boolean deleteById(int commentId) {
-        jdbcTemplate.update("delete from comment where comment_id = ?;", commentId);
+//        jdbcTemplate.update("delete from comment where comment_id = ?;", commentId);
         return jdbcTemplate.update("delete from comment where comment_id = ?;", commentId) > 0;
 
 }
