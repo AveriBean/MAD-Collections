@@ -2,10 +2,13 @@ package learn.collectMe.data;
 
 import learn.collectMe.data.mappers.ActionMapper;
 import learn.collectMe.data.mappers.CategoryMapper;
+import learn.collectMe.data.mappers.CommentMapper;
 import learn.collectMe.data.mappers.ItemMapper;
 import learn.collectMe.models.Category;
+import learn.collectMe.models.Comment;
 import learn.collectMe.models.Item;
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.dao.DataIntegrityViolationException;
 
 
@@ -40,6 +43,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         for (Item i : items) {
             addActions(i);
             addCategories(i);
+            addComments(i);
         }
         return items;
     }
@@ -177,6 +181,20 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
                 "where i.item_id = ?";
         List<Category> categories = jdbcTemplate.query(sql, new CategoryMapper(), item.getItemId());
         item.setCategories(categories);
+    }
+
+    private void addComments(Item item) {
+        final String sql = "select " +
+                "c.comment_id, " +
+                "u.user_id, " +
+                "c.content " +
+                "from `comment` c " +
+                "inner join item i on c.item_id = i.item_id " +
+                "inner join `user` u on c.comment_id = u.user_id " +
+                "where i.item_id = ?;";
+
+        List<Comment> comments = jdbcTemplate.query(sql, new CommentMapper(), item.getItemId());
+        item.setComments(comments);
     }
 
     private void handleBridgeTables(Item item) {
