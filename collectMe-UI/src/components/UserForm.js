@@ -37,7 +37,10 @@ function UserForm() {
   function handleSubmit(evt) {
     evt.preventDefault();
     save(currentUser)
-      .then(() => navigate("/"))
+      .then(() => {
+        window.alert("Success - Return to LogIn")
+        navigate(-1)
+      })
       .catch((errs) => {
         if (errs) {
           setErrors(errs);

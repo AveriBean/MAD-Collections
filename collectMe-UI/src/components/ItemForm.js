@@ -6,6 +6,7 @@ import { GetEmptyItem, save } from "../services/itemService";
 import AuthContext from "../contexts/AuthContext";
 import Upload from "./Upload";
 import { findById } from "../services/itemService";
+import "../styles/Carousel.css";
 
 const fieldNames = ["Item Name", "Item Description", "Item Value"];
 
@@ -147,11 +148,11 @@ export default function ItemForm() {
   // }));
 
   return (
-    <div className="container my-3 col-4 border rounded border-dark">
+    <div className="container my-3 col-auto border rounded border-dark">
       <form
         onSubmit={handleSubmit}
         ref={formRef}
-        className="needs-validation"
+        className="needs-validation itemFormStyle"
         noValidate
       >
         <div>

@@ -28,8 +28,8 @@ function Profile() {
   }, [userId, navigate]);
 
   return (
-    <main style={{ minHeight: "75vh" }}>
-      <div className="bgProfile container col-6 ">
+    <div className="d-flex justify-content-center" style={{ minHeight: "75vh" }}>
+      <div className="">
         <Card
           style={{
             width: "38rem",
@@ -86,7 +86,7 @@ function Profile() {
           </Card.Body>
         </Card>
       </div>
-    </main>
+    </div>
   );
 }
 

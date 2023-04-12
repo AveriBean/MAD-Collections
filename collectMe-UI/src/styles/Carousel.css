@@ -1,0 +1,22 @@
+.carouselStyle, .itemFormStyle {
+    margin-left: 230px;
+}
+
+.catItemStyle {
+    min-height: 75vh;
+    margin-left: 230px;
+    margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: 960px) {
+    .carouselStyle, .catItemStyle, .itemFormStyle {
+      margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 364px) {
+  .carHeight {
+    max-height: 204px;
+  }
+}

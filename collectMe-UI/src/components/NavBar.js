@@ -25,7 +25,7 @@ function NavBar() {
           </NavLink>
 
           <ul
-            className={click ? "nav-menu active mb-auto" : "nav-menu mb-auto"}
+            className={click ? "nav-menu active" : "nav-menu"}
           >
             <li className="nav-item">
               <NavLink className="nav-links" exact to="/" onClick={handleClick}>
@@ -66,7 +66,7 @@ function NavBar() {
                 Items
               </NavLink>
             </li>
-            {/* {user ? ( */}
+            {user ? (
             <li className="nav-item">
               <NavLink
                 className="nav-links"
@@ -77,9 +77,9 @@ function NavBar() {
                 Store
               </NavLink>
             </li>
-            {/* ) : (
+            ) : (
                ""
-             )} */}
+             )}
             {user ? (
               <li className="nav-item">
                 <NavLink

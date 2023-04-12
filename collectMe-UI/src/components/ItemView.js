@@ -51,11 +51,9 @@ export default function ItemView() {
             <Card.Title style={{ marginBottom: "10px" }}>
               {item.itemName}
             </Card.Title>
+            <Card.Text>Description: {item.description}</Card.Text>
             <Card.Text>
-              <b>Description:</b> {item.description}
-            </Card.Text>
-            <Card.Text>
-              <b>Value:</b> ${item.value}
+              <b>Value:</b> ${item.value && item.value.toFixed(2)}
             </Card.Text>
             <Card.Text>
               <b>Item Status:</b>
