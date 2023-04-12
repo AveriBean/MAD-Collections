@@ -30,7 +30,10 @@ function Store() {
   }, []);
 
   return (
-    <div style={{ marginLeft: "230px" }} className="container">
+    <div
+      style={{ marginLeft: "230px", marginBottom: "10px" }}
+      className="container"
+    >
       <Navbar expand="sm" style={{ background: "none", position: "static" }}>
         <Navbar.Brand href="/">Collectible Item Store</Navbar.Brand>
         <Navbar.Toggle />

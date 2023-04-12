@@ -17,7 +17,7 @@ locked bit not null default(0)
 
 create table item (
 item_id int primary key auto_increment,
-`name` varchar(30) not null,
+`name` varchar(1028) not null,
 `description` varchar(128) not null,
 `value` decimal(10,2) null,
 user_id int not null,
@@ -129,10 +129,10 @@ alter table user auto_increment = 1;
 
 insert into user (username, first_name, last_name, location, password_hash, phone, email)
 values 
-("JMich","Micahael", "Jackson", null, "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "mj@testing.com"),
-("SWalk","Sally", "Walker", "Sally's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "2622622626", "sw@testing.com"),
-("JRipp","Jack", "Ripper", "Jacks's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "4144144141", "jr@testing.com"),
-("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "dk@testing.com");
+("JMich","Micahael", "Jackson", null, "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "mj@gmail.com"),
+("SWalk","Sally", "Walker", "Sally's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "2622622626", "sw@yahoo.com"),
+("JRipp","Jack", "Ripper", "Jacks's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", "4144144141", "jr@sbcglobal.net"),
+("DKris", "Deorsa",  "Kristiane", "Deorsa's Address", "$2a$04$fsGhcT.hzvC1kKWIxinY3.ILDY44jfgVVQuy7ALwx7BSphI0B3mLa", null, "dk@gmail.com");
 
 insert into category (`name`)
 values

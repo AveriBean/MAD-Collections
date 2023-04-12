@@ -60,13 +60,13 @@ export default function ItemForm() {
     save(currentItem)
       .then(() => navigate("/items"))
       .catch((errs) => {
-        const errsString = errs.toString();
-        console.log(errsString);
-        if (errsString.includes("Unexpected end of JSON")) {
-          navigate(-1);
-          return;
-        }
         if (errs) {
+          const errsString = errs.toString();
+          console.log(errsString);
+          if (errsString.includes("Unexpected end of JSON")) {
+            navigate(-1);
+            return;
+          }
           const map = {};
           for (const err of errs) {
             for (const fieldName of fieldNames) {
@@ -258,7 +258,7 @@ export default function ItemForm() {
           ))}
         </div>
         <div>
-          <Upload handleUrl={handleUrl} />
+          <Upload style={{ width: "auto" }} handleUrl={handleUrl} />
         </div>
         <div>
           <button type="submit" className="btn dark-pop me-2">
