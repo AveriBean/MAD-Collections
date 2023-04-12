@@ -4,9 +4,12 @@ import learn.collectMe.data.CommentJdbcTemplateRepository;
 import learn.collectMe.data.CommentRepository;
 import learn.collectMe.models.Comment;
 import learn.collectMe.models.Item;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public class CommentService {
 
     private final CommentRepository repository;
@@ -25,7 +28,7 @@ public class CommentService {
         if (!result.isSuccess()) {
             return result;
         }
-        if (comment.getItemId() !=0) {
+        if (comment.getCommentId() !=0) {
             result.addMessage("comment id cannot be set for this operation", ResultType.INVALID);
         }
         comment = repository.add(comment);

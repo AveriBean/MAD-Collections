@@ -67,6 +67,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         for (Item i : items) {
             addActions(i);
             addCategories(i);
+            addComments(i);
         }
         return items;
     }
@@ -83,6 +84,7 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
         if (i != null) {
             addActions(i);
             addCategories(i);
+            addComments(i);
         }
         return i;
     }
@@ -185,16 +187,16 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
 
     private void addComments(Item item) {
         final String sql = "select " +
-                "c.comment_id, " +
-                "u.user_id, " +
-                "c.content " +
-                "from `comment` c " +
-                "inner join item i on c.item_id = i.item_id " +
-                "inner join `user` u on c.comment_id = u.user_id " +
-                "where i.item_id = ?;";
+                "comment_id, " +
+                "user_id, " +
+                "item_id, " +
+                "content " +
+                "from comment " +
+                "where item_id = ?;";
 
         List<Comment> comments = jdbcTemplate.query(sql, new CommentMapper(), item.getItemId());
-        item.setComments(comments);
+        if(comments.size()>0) {
+        item.setComments(comments);}
     }
 
     private void handleBridgeTables(Item item) {

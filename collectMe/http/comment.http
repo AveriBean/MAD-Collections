@@ -1,0 +1,62 @@
+@url = http://localhost:8080/api/comment
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0LW1lIiwic3ViIjoiTWljYWhhZWwiLCJ1c2VySWQiOjEsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiVVNFUiJdLCJmaXJzdE5hbWUiOiJKYWNrc29uIiwibGFzdE5hbWUiOiJKTWljaCIsImVtYWlsIjoibWpAZ21haWwuY29tIiwiZXhwIjoxNjgxMzI4MTU4fQ.hJNbBBG00AmEi3Zq55J-lT6QDA8j4a3XiC978qUNkeI
+
+
+
+
+GET {{url}} HTTP/1.1
+
+### Find by Id#2
+
+GET {{url}}/5 HTTP/1.1
+
+### POST a Item ... be sure to replace the token in the Authorization header with a valid token
+
+POST  {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+  "commentId": 0,
+  "userId": 3,
+  "itemId": 2,
+  "content": "THIS IS A TEST"
+}
+
+### [ ] PUT an Item
+
+PUT {{url}}/5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+   "commentId": 5,
+  "userId": 3,
+  "itemId": 2,
+  "content": "THIS IS AN UPDATE TEST"
+}
+
+### Delete an Item
+
+DELETE {{url}}/5 HTTP/1.1
+Authorization: Bearer {{jwt}}
+
+### Good User credentials
+
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "SWalk" ,
+    "password": "go"
+}
+
+### Good Admin credentials
+
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "JMich" ,
+    "password": "go"
+}
