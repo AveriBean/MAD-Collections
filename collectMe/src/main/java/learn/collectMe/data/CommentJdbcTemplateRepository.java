@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
-public class CommentJdbcTemplateRepository {
+public class CommentJdbcTemplateRepository implements CommentRepository {
     private final JdbcTemplate jdbcTemplate;
 
 
@@ -20,8 +20,9 @@ public class CommentJdbcTemplateRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     @Transactional
-    List<Comment> findAll() {
+    public List<Comment> findAll() {
 
             final String sql = "select comment_id, user_id, item_id, content "
                     + "from comment limit 1000;";
@@ -29,8 +30,9 @@ public class CommentJdbcTemplateRepository {
             return comments;
     }
 
+    @Override
     @Transactional
-    Comment findById(int commentId) {
+    public Comment findById(int commentId) {
         final String sql = "select user_id, item_id, content "
                 + "from comment where comment_id = ?";
         Comment comment = jdbcTemplate.query(sql, new CommentMapper(), commentId).stream()
@@ -39,8 +41,9 @@ public class CommentJdbcTemplateRepository {
         return comment;
     }
 
+    @Override
     @Transactional
-    Comment add(Comment comment) {
+    public Comment add(Comment comment) {
         String sql = "insert into comment (user_id, item_id, content) values (?,?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update((conn) -> {
@@ -57,8 +60,9 @@ public class CommentJdbcTemplateRepository {
         return null;
     }
 
+    @Override
     @Transactional
-    boolean update (Comment comment) {
+    public boolean update(Comment comment) {
         String sql = "update comment set user_id = ?, item_id = ?, content = ?;";
 
         int rowsAffected = jdbcTemplate.update(sql, comment.getUserId(), comment.getItemId(), comment.getContent());
@@ -69,8 +73,9 @@ public class CommentJdbcTemplateRepository {
         return false;
     }
 
+    @Override
     @Transactional
-    boolean deleteById(int commentId) {
+    public boolean deleteById(int commentId) {
         jdbcTemplate.update("delete from comment where comment_id = ?;", commentId);
         return jdbcTemplate.update("delete from comment where comment_id = ?;", commentId) > 0;
 
