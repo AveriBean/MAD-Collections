@@ -6,12 +6,14 @@ import learn.collectMe.models.Comment;
 import learn.collectMe.models.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
+@Repository
 public class CommentJdbcTemplateRepository implements CommentRepository {
     private final JdbcTemplate jdbcTemplate;
 

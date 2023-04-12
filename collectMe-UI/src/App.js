@@ -11,6 +11,7 @@ import AuthContext from "./contexts/AuthContext";
 import CartProvider from "./contexts/CartContext";
 import CategoryItem from "./components/CategoryItem";
 import Category from "./components/Category";
+import Comment from "./components/Comment";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ItemForm from "./components/ItemForm";
@@ -78,6 +79,7 @@ function App() {
               <Route path="/editUser/:userId" element={<UserForm />} />
               <Route path="/deleteUser/:userId" element={<ConfirmUserDelete />} />
               <Route path="/viewProfile/:userId" element={<Profile />} />
+              <Route path="/Comment" element={<Comment />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer className="div3" />
