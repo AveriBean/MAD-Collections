@@ -14,6 +14,9 @@ public class Item {
     private BigDecimal value;
     private int userId;
     private String image;
+
+    private List<Comment> comments = new ArrayList<>();
+
     private List<Action> actions = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
@@ -22,6 +25,14 @@ public class Item {
     }
     public List<Category> getCategories() {
         return new ArrayList<>(categories);
+    }
+
+    public List<Comment> getComments() {
+        return new ArrayList<>(comments);
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
 
