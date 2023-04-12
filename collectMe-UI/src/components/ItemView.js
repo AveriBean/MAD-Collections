@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import Comment from "./Comment";
 import { useEffect, useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { findById } from "../services/itemService";
@@ -25,6 +26,7 @@ export default function ItemView() {
 
   return (
     <>
+    <Row style={{ width: "20rem", marginTop: "10px", height: "auto" }}>
       <Col className="d-flex justify-content-center">
         <Card
           style={{
@@ -99,6 +101,14 @@ export default function ItemView() {
           </Card.Body>
         </Card>
       </Col>
+
+      <Col>
+        <Comment/>
+      </Col>
+      </Row>
+      <div>
+
+      </div>
     </>
   );
 }
