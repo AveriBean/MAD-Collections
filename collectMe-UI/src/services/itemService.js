@@ -15,6 +15,7 @@ export function GetEmptyItem() {
     image: "",
     actions: [],
     categories: [],
+    comments: [],
   };
 }
 
@@ -40,6 +41,13 @@ export function getTestItem() {
       {
         categoryId: 1,
         categoryName: "Pokemon",
+      },
+    ],
+    comments: [
+      {
+        commentId: 1,
+        userId: 1,
+        content: "Pokemon",
       },
     ],
   };
